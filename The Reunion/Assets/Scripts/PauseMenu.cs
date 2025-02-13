@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject inventory;
     public static bool isPaused;
 
 
@@ -12,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        inventory.SetActive(true);
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
+        inventory.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -41,6 +44,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("resume button");
         pauseMenu.SetActive(false);
+        inventory.SetActive(true);
         Time.timeScale = 1.0f;
         isPaused = false;   
     }
