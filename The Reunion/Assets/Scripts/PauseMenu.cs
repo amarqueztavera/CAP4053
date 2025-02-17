@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject inventory;
+    public GameObject settingsMenuUI;
     public static bool isPaused;
 
 
@@ -13,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        settingsMenuUI.SetActive(false);
         inventory.SetActive(true);
     }
 
@@ -35,6 +37,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
+        settingsMenuUI.SetActive(false);
         inventory.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
@@ -44,24 +47,33 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("resume button");
         pauseMenu.SetActive(false);
+        settingsMenuUI.SetActive(false);
         inventory.SetActive(true);
         Time.timeScale = 1.0f;
         isPaused = false;   
     }
 
-    public void GoToSettings()
+    public void OpenSettings()
     {
         Debug.Log("settings button");
+        pauseMenu.SetActive(false);
+        settingsMenuUI.SetActive(true);
         Time.timeScale = 1f;
-        //SceneManager.LoadScene("Settings"); //scene needs to be in build settings
+        isPaused = true;
+    }
+
+    public void BackToPauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        settingsMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = true;
     }
 
     public void GoToMainMenu()
     {
         Debug.Log("main menu button");
         Time.timeScale = 1f;
-        //SceneManager.LoadScene("MainMenu"); //scene needs to be in build settings
+        SceneManager.LoadScene("Main Menu"); //scene needs to be in build settings
     }
-
-   
 }

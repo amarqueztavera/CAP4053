@@ -37,9 +37,9 @@ public class SuspicionManager : MonoBehaviour
             float rate = baseSuspicionRate * multiplier;
 
             // Debug logs to track values
-            Debug.Log($"Current Act: {currentAct}");
-            Debug.Log($"Multiplier: {multiplier}");
-            Debug.Log($"Rate: {rate}");
+            //Debug.Log($"Current Act: {currentAct}");
+            //Debug.Log($"Multiplier: {multiplier}");
+            //Debug.Log($"Rate: {rate}");
 
             if (isInReunionArea)
             {
