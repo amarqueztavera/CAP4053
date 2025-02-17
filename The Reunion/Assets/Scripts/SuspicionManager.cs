@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class SuspicionManager : MonoBehaviour
 {
@@ -32,8 +33,14 @@ public class SuspicionManager : MonoBehaviour
     {
         while (true)
         {
-            // Update suspicion based on act and location
-            float rate = baseSuspicionRate * actMultipliers[currentAct - 1];
+            float multiplier = actMultipliers[currentAct - 1];
+            float rate = baseSuspicionRate * multiplier;
+
+            // Debug logs to track values
+            Debug.Log($"Current Act: {currentAct}");
+            Debug.Log($"Multiplier: {multiplier}");
+            Debug.Log($"Rate: {rate}");
+
             if (isInReunionArea)
             {
                 currentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseRate * Time.deltaTime);
@@ -49,7 +56,7 @@ public class SuspicionManager : MonoBehaviour
             if (currentSuspicion >= 100)
             {
                 TriggerAlert();
-                yield break; // Stop coroutine if suspicion maxes out
+                yield break;
             }
 
             yield return null;
@@ -71,6 +78,7 @@ public class SuspicionManager : MonoBehaviour
     public void SetAct(int act)
     {
         currentAct = Mathf.Clamp(act, 1, 3);
+        Debug.Log($"Act changed to: {currentAct}");
     }
 
     public void SetReunionArea(bool isInArea)
