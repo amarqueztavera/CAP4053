@@ -2972,6 +2972,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 1374930172018882266, guid: d172c3e292483884a9546747dc441abf, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1997655084427463377, guid: d172c3e292483884a9546747dc441abf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4256024
@@ -2979,6 +2983,14 @@ PrefabInstance:
     - target: {fileID: 1997655084427463377, guid: d172c3e292483884a9546747dc441abf, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.021757841
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138106153168479692, guid: d172c3e292483884a9546747dc441abf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138106153168479692, guid: d172c3e292483884a9546747dc441abf, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7233621903837158530, guid: d172c3e292483884a9546747dc441abf, type: 3}
       propertyPath: m_Enabled
@@ -4229,49 +4241,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1361867120}
-    m_ColliderPaths:
-    - - X: 80000000
-        Y: 30000000
-      - X: 50000000
-        Y: 30000000
-      - X: 50000000
-        Y: 20000000
-      - X: 20000000
-        Y: 20000000
-      - X: 20000000
-        Y: 60000000
-      - X: 10000000
-        Y: 60000000
-      - X: 10000000
-        Y: 70000000
-      - X: -30000000
-        Y: 70000000
-      - X: -30000000
-        Y: 80000000
-      - X: -50000000
-        Y: 80000000
-      - X: -50000000
-        Y: 50000000
-      - X: -40000000
-        Y: 50000000
-      - X: -40000000
-        Y: 60000000
-      - X: 0
-        Y: 60000000
-      - X: 0
-        Y: 50000000
-      - X: 10000000
-        Y: 50000000
-      - X: 10000000
-        Y: 20000000
-      - X: -50000000
-        Y: 20000000
-      - X: -50000000
-        Y: -30000000
-      - X: 80000000
-        Y: -30000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 7.9999704, y: -3}
@@ -4341,7 +4311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &1628283812
 Grid:
   m_ObjectHideFlags: 0
