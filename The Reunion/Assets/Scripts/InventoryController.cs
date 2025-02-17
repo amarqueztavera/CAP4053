@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class InventoryController : MonoBehaviour
 {
     public GameObject inventoryUI;
-    public GameObject hotbarUI;
+    //public Button[] inventorySlots; // Assign slots manually in Unity
     private bool isInventoryOpen = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,10 +13,7 @@ public class Inventory : MonoBehaviour
         {
             inventoryUI.SetActive(false);
         }
-        if (hotbarUI != null)
-        {
-            hotbarUI.SetActive(true);
-        }
+       
     }
 
     // Update is called once per frame
@@ -33,10 +31,6 @@ public class Inventory : MonoBehaviour
         if (inventoryUI != null)
         {
             inventoryUI.SetActive(isInventoryOpen);
-        }
-        if (hotbarUI != null) 
-        { 
-            hotbarUI.SetActive(!isInventoryOpen);
         }
 
         // pause game when inventory is open, resume when closed
