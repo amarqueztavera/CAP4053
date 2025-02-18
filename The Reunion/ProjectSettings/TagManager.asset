@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - ItemDrop
+  - ItemPickup
   layers:
   - Default
   - TransparentFX
@@ -12,7 +14,7 @@ TagManager:
   - Water
   - UI
   - player
-  - 
+  - objects
   - 
   - 
   - 
@@ -43,6 +45,9 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 1324410065
+    locked: 0
+  - name: objects
+    uniqueID: 3787537267
     locked: 0
   m_RenderingLayers:
   - Default
