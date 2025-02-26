@@ -78,7 +78,7 @@ public class SuspicionManager : MonoBehaviour
     public void SetAct(int act)
     {
         currentAct = Mathf.Clamp(act, 1, 3);
-        Debug.Log($"Act changed to: {currentAct}");
+        Debug.Log($"Entered Act: {currentAct}");
     }
 
     public void SetReunionArea(bool isInArea)

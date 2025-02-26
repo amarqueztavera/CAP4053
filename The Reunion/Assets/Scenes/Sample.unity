@@ -2062,6 +2062,67 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1001 &479124315
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1374930172018882266, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_Name
+      value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374930172018882266, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -18.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299023085226594447, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
 --- !u!1 &961898040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,7 +2380,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1022589311}
+  m_Father: {fileID: 1195027624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &986579831
 AudioSource:
@@ -2418,11 +2479,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &1022589311 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8299023085226594447, guid: d172c3e292483884a9546747dc441abf, type: 3}
-  m_PrefabInstance: {fileID: 1195027623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1051039657
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,11 +3231,16 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2154723025508734851, guid: d172c3e292483884a9546747dc441abf, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8299023085226594447, guid: d172c3e292483884a9546747dc441abf, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 896321047142010925, guid: d172c3e292483884a9546747dc441abf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 986579830}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d172c3e292483884a9546747dc441abf, type: 3}
+--- !u!4 &1195027624 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 896321047142010925, guid: d172c3e292483884a9546747dc441abf, type: 3}
+  m_PrefabInstance: {fileID: 1195027623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1361867114
 GameObject:
   m_ObjectHideFlags: 0
@@ -4487,3 +4548,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1628283813}
   - {fileID: 1195027623}
+  - {fileID: 479124315}

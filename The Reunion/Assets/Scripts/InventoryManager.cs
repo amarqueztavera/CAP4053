@@ -16,6 +16,8 @@ public class InventoryManager : MonoBehaviour
 
     private Coroutine tooltipCoroutine;
 
+    public ClueCounter clueCounter;
+
     private void Start()
     {
         // Hide the tooltip at the start
@@ -47,6 +49,7 @@ public class InventoryManager : MonoBehaviour
         clues.Add(clue); // Add the clue to the list
         UpdateInventoryUI(); // Update the inventory UI
         Destroy(clue.gameObject); // Remove the clue from the game world
+        clueCounter.AddClue(); // Update clue counter
         return true;
     }
 

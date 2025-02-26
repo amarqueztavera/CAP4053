@@ -15,7 +15,8 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenuUI.SetActive(false);
-        inventory.SetActive(true);
+        inventory.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("settings button");
         pauseMenu.SetActive(false);
         settingsMenuUI.SetActive(true);
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
         isPaused = true;
     }
 
