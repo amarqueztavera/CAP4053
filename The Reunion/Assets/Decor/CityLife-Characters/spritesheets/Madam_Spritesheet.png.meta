@@ -1,0 +1,683 @@
+fileFormatVersion: 2
+guid: 21798c43bf6ac6e49a4defddd9b4fb84
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5127454748306657459
+    second: spritesheetmadame_0
+  - first:
+      213: -5184387605782406255
+    second: spritesheetmadame_1
+  - first:
+      213: -7293251999116633350
+    second: spritesheetmadame_2
+  - first:
+      213: -21037920864953569
+    second: spritesheetmadame_3
+  - first:
+      213: -4214207125690390784
+    second: spritesheetmadame_4
+  - first:
+      213: -253893657454921402
+    second: spritesheetmadame_5
+  - first:
+      213: -406289411058572413
+    second: spritesheetmadame_6
+  - first:
+      213: 6408854828000948357
+    second: spritesheetmadame_7
+  - first:
+      213: 4812137349634000213
+    second: spritesheetmadame_8
+  - first:
+      213: -4804748439085807739
+    second: spritesheetmadame_9
+  - first:
+      213: 7445371277597827252
+    second: spritesheetmadame_10
+  - first:
+      213: 9076721650283871485
+    second: spritesheetmadame_11
+  - first:
+      213: -6994995805357958544
+    second: spritesheetmadame_12
+  - first:
+      213: -4346395890841559536
+    second: spritesheetmadame_13
+  - first:
+      213: 7867260197061704042
+    second: spritesheetmadame_14
+  - first:
+      213: 1471425968296646741
+    second: spritesheetmadame_15
+  - first:
+      213: -8568167242166358927
+    second: spritesheetmadame_16
+  - first:
+      213: -8216109307410729305
+    second: spritesheetmadame_17
+  - first:
+      213: 3804478754012365253
+    second: spritesheetmadame_18
+  - first:
+      213: -1072154494841235324
+    second: spritesheetmadame_19
+  - first:
+      213: -6390761972663851230
+    second: spritesheetmadame_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 5
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spritesheetmadame_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 208
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4faa45a21f97d8b0800000000000000
+      internalID: -5127454748306657459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 208
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19bd66bc0fa5d08b0800000000000000
+      internalID: -5184387605782406255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 208
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afade37b2f929ca90800000000000000
+      internalID: -7293251999116633350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_3
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 208
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.405, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1b18085f1245bff0800000000000000
+      internalID: -21037920864953569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_4
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 208
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.345, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 007ed4f62f02485c0800000000000000
+      internalID: -4214207125690390784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 176
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 649bca0501df97cf0800000000000000
+      internalID: -253893657454921402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_6
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 176
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383e9d9eee19c5af0800000000000000
+      internalID: -406289411058572413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_7
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 176
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5803b00b283d0f850800000000000000
+      internalID: 6408854828000948357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_8
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 176
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55503577c6528c240800000000000000
+      internalID: 4812137349634000213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 144
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5878d2550ca125db0800000000000000
+      internalID: -4804748439085807739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_10
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 144
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b06d1ecab5435760800000000000000
+      internalID: 7445371277597827252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_11
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfc744a104ef6fd70800000000000000
+      internalID: 9076721650283871485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 112
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a9a484068ccee90800000000000000
+      internalID: -6994995805357958544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_13
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 112
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01edb2927ff7ea3c0800000000000000
+      internalID: -4346395890841559536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_14
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 112
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a69be69777f1e2d60800000000000000
+      internalID: 7867260197061704042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_15
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 80
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5585b994f1e8b6410800000000000000
+      internalID: 1471425968296646741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_16
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 80
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c29821a41c71980800000000000000
+      internalID: -8568167242166358927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_17
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 80
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a6b000ad148afd80800000000000000
+      internalID: -8216109307410729305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_18
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 48
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c18d6015493cc430800000000000000
+      internalID: 3804478754012365253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_19
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 48
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48856aeda21fe11f0800000000000000
+      internalID: -1072154494841235324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetmadame_20
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 16
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 227eb4778d37f47a0800000000000000
+      internalID: -6390761972663851230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 981d091e1b223684986318cc8d11d847
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spritesheetmadame_0: -5127454748306657459
+      spritesheetmadame_1: -5184387605782406255
+      spritesheetmadame_10: 7445371277597827252
+      spritesheetmadame_11: 9076721650283871485
+      spritesheetmadame_12: -6994995805357958544
+      spritesheetmadame_13: -4346395890841559536
+      spritesheetmadame_14: 7867260197061704042
+      spritesheetmadame_15: 1471425968296646741
+      spritesheetmadame_16: -8568167242166358927
+      spritesheetmadame_17: -8216109307410729305
+      spritesheetmadame_18: 3804478754012365253
+      spritesheetmadame_19: -1072154494841235324
+      spritesheetmadame_2: -7293251999116633350
+      spritesheetmadame_20: -6390761972663851230
+      spritesheetmadame_3: -21037920864953569
+      spritesheetmadame_4: -4214207125690390784
+      spritesheetmadame_5: -253893657454921402
+      spritesheetmadame_6: -406289411058572413
+      spritesheetmadame_7: 6408854828000948357
+      spritesheetmadame_8: 4812137349634000213
+      spritesheetmadame_9: -4804748439085807739
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307163
+  packageName: City Life Characters
+  packageVersion: 1.0
+  assetPath: Assets/CityLife-Characters/spritesheets/Madam_Spritesheet.png
+  uploadId: 721969
