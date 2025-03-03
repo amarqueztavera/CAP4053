@@ -2,26 +2,33 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;  // Speed at which the player moves
-    private Rigidbody2D rb;       // Reference to the Rigidbody2D component
+    public float moveSpeed = 5f;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private Vector2 movement;
 
-    // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();  // Get the Rigidbody2D component from the player
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Get the player's input (WASD or Arrow keys)
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        // Get movement input
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
-        // Create the movement vector
-        Vector2 movement = new Vector2(moveX, moveY).normalized * moveSpeed;
+        // Store movement direction
+        movement = new Vector2(moveX, moveY);
 
-        // Apply the movement to the Rigidbody2D's velocity
-        rb.linearVelocity = movement;
+        // Set animation state based on movement
+        animator.SetBool("isWalking", movement.sqrMagnitude > 0);
+    }
+
+    void FixedUpdate()
+    {
+        // Move player with Rigidbody
+        rb.linearVelocity = movement.normalized * moveSpeed;
     }
 }
