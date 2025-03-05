@@ -5,6 +5,7 @@ public class MapManager : MonoBehaviour
 {
     public RawImage mapRawImage; // Reference to the UI RawImage
     public Camera gridCamera; // Reference to the GridCamera
+    public GameObject suspicionMeter;
     private bool isMapOpen = false;
 
     void Start()
@@ -32,6 +33,10 @@ public class MapManager : MonoBehaviour
         if (isMapOpen)
         {
             gridCamera.Render(); // Explicitly render the grid
+            suspicionMeter.SetActive(false);
+        } else
+        {
+            suspicionMeter.SetActive(true);
         }
 
         // Pause gameplay
