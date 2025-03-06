@@ -1,10 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+public class Clue
+{
+    public string clueName; // Name of the clue
+    public Sprite icon; // Icon to display in the inventory
+    public GameObject gameObject; // Reference to the clue in the game world
+    [TextArea] // Makes the description field multi-line in the Inspector
+    public string description; // Description of the clue
+}
 public class ClueCounter : MonoBehaviour
 {
     public SuspicionManager suspicionManager;
-    public string endingSceneName = "EndingScene"; // Name of ending scene
+    public string endingSceneName = "End Scene"; // Name of ending scene
     private int clueCount = 0;
 
     private void Start()
@@ -24,7 +33,7 @@ public class ClueCounter : MonoBehaviour
         // Check for ending
         if (clueCount >= 9)
         {
-            //SceneManager.LoadScene(endingSceneName); // Update with reall ending scene
+            SceneManager.LoadScene(endingSceneName); // Update with reall ending scene
             return;
         }
 
