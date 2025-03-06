@@ -43,7 +43,8 @@ public class SuspicionManager : MonoBehaviour
 
             if (isInReunionArea)
             {
-                currentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseRate * Time.deltaTime);
+                //currentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseRate * Time.deltaTime);
+                currentSuspicion = 0; // suspicion drops to 0 instead of having down time
             }
             else
             {
