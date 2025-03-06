@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject inventory;
     public GameObject settingsMenuUI;
     public GameObject suspicionMeter;
+    public GameObject clueCounterDisplay;
     public static bool isPaused;
 
 
@@ -18,7 +20,7 @@ public class PauseMenu : MonoBehaviour
         settingsMenuUI.SetActive(false);
         inventory.SetActive(false);
         suspicionMeter.SetActive(true);
-
+        clueCounterDisplay.SetActive(true);
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class PauseMenu : MonoBehaviour
         settingsMenuUI.SetActive(false);
         inventory.SetActive(false);
         suspicionMeter.SetActive(false);
+        clueCounterDisplay.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -54,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         settingsMenuUI.SetActive(false);
         inventory.SetActive(false);
         suspicionMeter.SetActive(true);
+        clueCounterDisplay.SetActive(true);
         Time.timeScale = 1.0f;
         isPaused = false;   
     }
@@ -65,6 +69,7 @@ public class PauseMenu : MonoBehaviour
         settingsMenuUI.SetActive(true);
         inventory.SetActive(false);
         suspicionMeter.SetActive(false);
+        clueCounterDisplay.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -75,6 +80,7 @@ public class PauseMenu : MonoBehaviour
         settingsMenuUI.SetActive(false);
         inventory.SetActive(false);
         suspicionMeter.SetActive(false);
+        clueCounterDisplay.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
