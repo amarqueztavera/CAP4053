@@ -15,9 +15,21 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text tooltipText; // Reference to the tooltip text component
 
     private Coroutine tooltipCoroutine;
-
     public ClueCounter clueCounter;
 
+    public static InventoryManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // persist across scenes
+        } else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         // Hide the tooltip at the start
