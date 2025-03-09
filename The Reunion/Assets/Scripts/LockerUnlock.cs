@@ -3,11 +3,15 @@ using UnityEngine.UI;
 
 public class LockerUnlock : MonoBehaviour
 {
+    [Header("UI References")]
     public InputField inputField1;
     public InputField inputField2;
     public InputField inputField3;
     public Text resultText;
     public GameObject locker; // Reference to the locker
+
+    [Header("Clue Settings")]
+    public Clue clueToAdd; // Assign in Inspector
 
     private string correctCode1 = "08";
     private string correctCode2 = "09";
@@ -44,5 +48,9 @@ public class LockerUnlock : MonoBehaviour
     {
         locker.SetActive(false); // Hide the locker when unlocked
         Debug.Log("Locker has been unlocked!");
+
+        // Add clue and return to game
+        InventoryManager.Instance.AddClue(clueToAdd);
+        PuzzleSceneSwapper.Instance.LoadMap();
     }
 }

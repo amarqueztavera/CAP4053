@@ -12,6 +12,7 @@ public class ClickableClue : MonoBehaviour
         if (InventoryManager.Instance.AddClue(clue))
         {
             Debug.Log("Clue added to inventory: " + clue.clueName);
+            Destroy(gameObject);
         }
     }
 }

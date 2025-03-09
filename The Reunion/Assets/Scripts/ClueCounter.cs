@@ -1,13 +1,19 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ClueCounter : MonoBehaviour
 {
-    public SuspicionManager suspicionManager;
+    [Header("Settings")]
     public string endingSceneName = "End Scene"; // Name of ending scene
+
+    [Header("UI")]
     public TMP_Text cluesText;
+
+    public SuspicionManager suspicionManager;
     private int clueCount = 0;
+
 
     private void Start()
     {
