@@ -790,7 +790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTransform: {fileID: 614770526}
-  piecePrefab: {fileID: 6153467231098054136, guid: eddb15993c6a1724495b8a1e26704957, type: 3}
+  piecePrefab: {fileID: 1476595762586591094, guid: 9952f73d70c3fa2439dedc0461d76da0, type: 3}
+  completeUI: {fileID: 1590766725}
 --- !u!4 &1590780328
 Transform:
   m_ObjectHideFlags: 0
@@ -1096,7 +1097,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5062390320939746380, guid: 47decb729db54764db47ba584f34f46f, type: 3}
+  m_Sprite: {fileID: -7439290634749555634, guid: e0d7247c423effe45b65083c29f490b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

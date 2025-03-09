@@ -63,16 +63,38 @@ public class SlidingJigsaw : MonoBehaviour
     }
 
     // Update is called once per frame
+    [SerializeField] private GameObject completeUI; // Reference to the entire UI box
+    private bool isComplete = false; // Track completion state
+    private bool hasShuffled = false; // Ensure shuffle happens only once
+
     void Update()
     {
-        // Check for completion.
-        if (!shuffling && CheckCompletion())
+
+        // Shuffle once at the start, but not again
+        if (!hasShuffled && !shuffling)
         {
+            hasShuffled = true;
             shuffling = true;
             StartCoroutine(WaitShuffle(0.5f));
         }
 
-        // On click send out ray to see if we click a piece.
+        // Check for completion
+        if (!shuffling && CheckCompletion())
+        {
+            isComplete = true; // Mark as completed
+
+            if (completeUI != null)
+            {
+                completeUI.SetActive(true); // Activates the entire UI box
+            }
+
+            return; // Stop further updates
+        }
+
+        // Prevent actions after completion
+        if (isComplete) return;
+
+        // Handle click events to move pieces
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -92,9 +114,9 @@ public class SlidingJigsaw : MonoBehaviour
                     }
                 }
             }
-
         }
     }
+
 
     // colCheck is used to stop horizontal moves wrapping.
     private bool SwapIfValid(int i, int offset, int colCheck)
