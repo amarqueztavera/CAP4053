@@ -26,8 +26,14 @@ public class ClueCounter : MonoBehaviour
 
 
         // Calculate current act (1-3) based on clues collected
-        int currentAct = Mathf.Clamp((clueCount-1 / 3) + 1, 1, 3); // 0-2: Act 1, 3-5: Act 2, 6-8: Act 3
+        //int currentAct = Mathf.Clamp((clueCount-1 / 3) + 1, 1, 3); // 0-2: Act 1, 3-5: Act 2, 6-8: Act 3
+
+        // for prototype act 2 starts after 1 clue, act 3 starts after 2.
+        //int currentAct = Mathf.Clamp((clueCount - 1) / 1 + 1, 1, 3); 
+        int currentAct = Mathf.Clamp(clueCount + 1, 1, 3);
         suspicionManager.SetAct(currentAct);
+
+        ActLockController.UpdateAllLocks(currentAct);
 
         // Check for ending
         if (clueCount >= 9)

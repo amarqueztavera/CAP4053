@@ -23,6 +23,8 @@ public class SuspicionManager : MonoBehaviour
     private bool isInReunionArea = false;
     private Coroutine suspicionCoroutine;
 
+    public static SuspicionManager Instance;
+
     void Start()
     {
         suspicionMeter.maxValue = 100;
