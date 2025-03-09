@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
@@ -70,4 +70,4 @@ public class GridManager : MonoBehaviour
         return grid != null;
     }
 
-}*/
+}
