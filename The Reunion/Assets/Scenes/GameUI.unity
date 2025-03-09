@@ -3913,7 +3913,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1603664730}
   - component: {fileID: 1603664731}
-  - component: {fileID: 1603664732}
   m_Layer: 5
   m_Name: SuspicionMeter
   m_TagString: Untagged
@@ -3995,19 +3994,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1603664732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603664729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ac5e0a6784d1b48aa7ed99272d579e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suspicionManager: {fileID: 2118088820}
 --- !u!1 &1609055438
 GameObject:
   m_ObjectHideFlags: 0
@@ -4463,7 +4449,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a111672a0f784642958fcee1e7ec5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 2118088819}
+  clue:
+    clueName: 
+    icon: {fileID: 0}
+    gameObject: {fileID: 0}
+    description: 
 --- !u!1 &1733009634
 GameObject:
   m_ObjectHideFlags: 0
@@ -5479,6 +5469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a846796573bddbe46870c3cdf7621f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clues: []
   inventorySlots:
   - {fileID: 323279014}
   - {fileID: 1645551917}

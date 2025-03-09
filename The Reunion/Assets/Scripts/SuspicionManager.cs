@@ -24,6 +24,7 @@ public class SuspicionManager : MonoBehaviour
     private Coroutine suspicionCoroutine;
 
     public static SuspicionManager Instance;
+    public static event System.Action<int> OnActChanged;
 
     void Start()
     {
@@ -82,6 +83,7 @@ public class SuspicionManager : MonoBehaviour
     {
         currentAct = Mathf.Clamp(act, 1, 3);
         Debug.Log($"Entered Act: {currentAct}");
+        OnActChanged?.Invoke(currentAct);
     }
 
     public void SetReunionArea(bool isInArea)

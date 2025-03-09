@@ -33,7 +33,7 @@ public class ClueCounter : MonoBehaviour
         int currentAct = Mathf.Clamp(clueCount + 1, 1, 3);
         suspicionManager.SetAct(currentAct);
 
-        ActLockController.UpdateAllLocks(currentAct);
+        DoorLockController.UpdateAllLocks(currentAct); // Update door locks
 
         // Check for ending
         if (clueCount >= 9)

@@ -5,6 +5,7 @@ public class ClickableClue : MonoBehaviour
     public Clue clue; // Reference to the clue data
     //public InventoryManager inventoryManager; // Reference to the inventory manager
 
+
     void OnMouseDown()
     {
         Debug.Log("Clue clicked: " + clue.clueName);
