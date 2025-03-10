@@ -1,5 +1,5 @@
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PuzzleSceneSwapper : MonoBehaviour
@@ -10,7 +10,7 @@ public class PuzzleSceneSwapper : MonoBehaviour
     public string persistentUIScene = "GameUI";
     public string mapScene = "Map";
 
-    private string _currentGameScene;
+    private string _currentPuzzleScene;
 
     void Awake()
     {
@@ -18,7 +18,7 @@ public class PuzzleSceneSwapper : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InitializeScenes();
+            //InitializeScenes();
         }
         else
         {
@@ -26,42 +26,72 @@ public class PuzzleSceneSwapper : MonoBehaviour
         }
     }
 
-    void InitializeScenes()
+    //void InitializeScenes()
+    //{
+    //    StartCoroutine(LoadEssentialScenes());
+    //}
+
+    //IEnumerator LoadEssentialScenes()
+    //{
+    //    // Load UI if not loaded
+    //    if (!SceneManager.GetSceneByName(persistentUIScene).isLoaded)
+    //    {
+    //        yield return SceneManager.LoadSceneAsync(persistentUIScene, LoadSceneMode.Additive);
+    //    }
+
+    //    // Load map if not loaded
+    //    if (!SceneManager.GetSceneByName(mapScene).isLoaded)
+    //    {
+    //        yield return SceneManager.LoadSceneAsync(mapScene, LoadSceneMode.Additive);
+    //        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mapScene));
+    //    }
+    //}
+
+    public void LoadPuzzleScene(string puzzleSceneName)
     {
-        // Load persistent UI if not already loaded
-        if (!SceneManager.GetSceneByName(persistentUIScene).isLoaded)
+        if (SceneManager.GetActiveScene().name == puzzleSceneName) return;
+        StartCoroutine(SwapToPuzzleScene(puzzleSceneName));
+    }
+
+    private IEnumerator SwapToPuzzleScene(string puzzleScene)
+    {
+        // Load new puzzle scene
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync(puzzleScene, LoadSceneMode.Additive);
+        loadOp.allowSceneActivation = true;
+
+
+        // Unload current scene if it's the map
+        if (SceneManager.GetSceneByName(mapScene).isLoaded)
         {
-            SceneManager.LoadScene(persistentUIScene, LoadSceneMode.Additive);
+            yield return SceneManager.UnloadSceneAsync(mapScene);
         }
 
-        // Load initial map
-        LoadMap();
-    }
+        
 
-    public void LoadPuzzle(string puzzleSceneName)
-    {
-        StartCoroutine(SwapScenes(puzzleSceneName));
-    }
-
-    public void LoadMap()
-    {
-        StartCoroutine(SwapScenes(mapScene));
-    }
-
-    private IEnumerator SwapScenes(string newScene)
-    {
-        // Unload current scene
-        if (_currentGameScene != null && _currentGameScene != persistentUIScene)
+        while (!loadOp.isDone)
         {
-            AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(_currentGameScene);
-            while (!unloadOp.isDone) yield return null;
+            yield return null;
         }
 
-        // Load new scene
-        AsyncOperation loadOp = SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
-        while (!loadOp.isDone) yield return null;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(puzzleScene));
+        _currentPuzzleScene = puzzleScene;
+    }
 
-        _currentGameScene = newScene;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(newScene));
+    public void ReturnToMap()
+    {
+        StartCoroutine(SwapBackToMap());
+    }
+
+    private IEnumerator SwapBackToMap()
+    {
+        // Unload puzzle scene
+        if (!string.IsNullOrEmpty(_currentPuzzleScene))
+        {
+            yield return SceneManager.UnloadSceneAsync(_currentPuzzleScene);
+        }
+
+        // Reload map scene
+        yield return SceneManager.LoadSceneAsync(mapScene, LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mapScene));
     }
 }

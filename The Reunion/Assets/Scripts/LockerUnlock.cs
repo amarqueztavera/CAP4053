@@ -51,6 +51,6 @@ public class LockerUnlock : MonoBehaviour
 
         // Add clue and return to game
         InventoryManager.Instance.AddClue(clueToAdd);
-        PuzzleSceneSwapper.Instance.LoadMap();
+        PuzzleSceneSwapper.Instance.ReturnToMap();
     }
 }
