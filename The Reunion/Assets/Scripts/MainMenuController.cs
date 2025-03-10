@@ -4,22 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private string mapSceneName = "Map";
-    [SerializeField] private string uiSceneName = "GameUI";
+    [SerializeField] private string mapSceneName = "welcome_story";
+    //[SerializeField] private string uiSceneName = "GameUI";
 
     public void LoadGameScenes()
     {
         StartCoroutine(LoadScenesAdditively());
+        
     }
 
     private IEnumerator LoadScenesAdditively()
     {
         // Load the Map and UI scenes ADDITIVELY
-        AsyncOperation loadMap = SceneManager.LoadSceneAsync(mapSceneName, LoadSceneMode.Additive);
-        AsyncOperation loadUI = SceneManager.LoadSceneAsync(uiSceneName, LoadSceneMode.Additive);
+        AsyncOperation loadMap = SceneManager.LoadSceneAsync(mapSceneName, LoadSceneMode.Single);
+        //AsyncOperation loadUI = SceneManager.LoadSceneAsync(uiSceneName, LoadSceneMode.Additive);
 
         // Wait for BOTH scenes to finish loading
-        while (!loadMap.isDone || !loadUI.isDone)
+        while (!loadMap.isDone /*|| !loadUI.isDone)*/)
         {
             yield return null;
         }
@@ -29,6 +30,10 @@ public class MainMenuController : MonoBehaviour
 
         // Unload the Main Menu scene
         SceneManager.UnloadSceneAsync("Main Menu");
+
+        //SceneManager.LoadSceneAsync("welcome_story", LoadSceneMode.Additive);
+        //SceneManager.SetActiveScene(SceneManager.GetSceneByName(mapSceneName));
+        //SceneManager.UnloadSceneAsync("Main Menu");
     }
 
     public void QuitGame()
