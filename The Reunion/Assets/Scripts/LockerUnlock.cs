@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class LockerUnlock : MonoBehaviour
 
     public void CheckCode()
     {
+        Debug.Log("button clicked");
         // Normalize input by removing leading zeros
         string enteredCode1 = inputField1.text.TrimStart('0');
         string enteredCode2 = inputField2.text.TrimStart('0');
@@ -34,6 +36,7 @@ public class LockerUnlock : MonoBehaviour
         {
             resultText.text = "Locker Unlocked!";
             resultText.color = Color.green;
+            StartCoroutine(UnlockAndReturn());
             UnlockLocker();
         }
         else
@@ -43,6 +46,13 @@ public class LockerUnlock : MonoBehaviour
         }
     }
 
+    private IEnumerator UnlockAndReturn()
+    {
+        UnlockLocker();
+        yield return new WaitForSeconds(1f);
+        Debug.Log("Load back into game");
+        PuzzleSceneSwapper.Instance.ReturnToMap();
+    }
 
     void UnlockLocker()
     {
@@ -50,7 +60,7 @@ public class LockerUnlock : MonoBehaviour
         Debug.Log("Locker has been unlocked!");
 
         // Add clue and return to game
+        Debug.Log("Clue Added!");
         InventoryManager.Instance.AddClue(clueToAdd);
-        PuzzleSceneSwapper.Instance.ReturnToMap();
     }
 }

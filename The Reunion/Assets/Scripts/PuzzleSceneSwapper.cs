@@ -22,59 +22,40 @@ public class PuzzleSceneSwapper : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
     //void InitializeScenes()
     //{
-    //    StartCoroutine(LoadEssentialScenes());
-    //}
-
-    //IEnumerator LoadEssentialScenes()
-    //{
-    //    // Load UI if not loaded
+    //    // Ensure UI and Map are loaded first
     //    if (!SceneManager.GetSceneByName(persistentUIScene).isLoaded)
-    //    {
-    //        yield return SceneManager.LoadSceneAsync(persistentUIScene, LoadSceneMode.Additive);
-    //    }
+    //        SceneManager.LoadScene(persistentUIScene, LoadSceneMode.Additive);
 
-    //    // Load map if not loaded
     //    if (!SceneManager.GetSceneByName(mapScene).isLoaded)
-    //    {
-    //        yield return SceneManager.LoadSceneAsync(mapScene, LoadSceneMode.Additive);
-    //        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mapScene));
-    //    }
+    //        SceneManager.LoadScene(mapScene, LoadSceneMode.Additive);
     //}
 
     public void LoadPuzzleScene(string puzzleSceneName)
     {
-        if (SceneManager.GetActiveScene().name == puzzleSceneName) return;
+        if (string.IsNullOrEmpty(puzzleSceneName)) return;
         StartCoroutine(SwapToPuzzleScene(puzzleSceneName));
     }
 
     private IEnumerator SwapToPuzzleScene(string puzzleScene)
     {
-        // Load new puzzle scene
+        // 1. Load the puzzle scene first
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(puzzleScene, LoadSceneMode.Additive);
         loadOp.allowSceneActivation = true;
+        yield return new WaitUntil(() => loadOp.isDone);
 
-
-        // Unload current scene if it's the map
-        if (SceneManager.GetSceneByName(mapScene).isLoaded)
-        {
-            yield return SceneManager.UnloadSceneAsync(mapScene);
-        }
-
-        
-
-        while (!loadOp.isDone)
-        {
-            yield return null;
-        }
-
+        // 2. Set active scene AFTER loading
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(puzzleScene));
         _currentPuzzleScene = puzzleScene;
+
+        // 3. Unload map scene only after puzzle is fully ready
+        if (SceneManager.GetSceneByName(mapScene).isLoaded)
+            yield return SceneManager.UnloadSceneAsync(mapScene);
     }
 
     public void ReturnToMap()
@@ -84,14 +65,15 @@ public class PuzzleSceneSwapper : MonoBehaviour
 
     private IEnumerator SwapBackToMap()
     {
-        // Unload puzzle scene
+        // 1. Unload puzzle scene first
         if (!string.IsNullOrEmpty(_currentPuzzleScene))
-        {
             yield return SceneManager.UnloadSceneAsync(_currentPuzzleScene);
-        }
 
-        // Reload map scene
-        yield return SceneManager.LoadSceneAsync(mapScene, LoadSceneMode.Additive);
+        // 2. Reload map scene
+        if (!SceneManager.GetSceneByName(mapScene).isLoaded)
+            yield return SceneManager.LoadSceneAsync(mapScene, LoadSceneMode.Additive);
+
+        // 3. Reactivate map scene
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(mapScene));
     }
 }

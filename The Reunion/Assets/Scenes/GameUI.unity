@@ -5405,6 +5405,7 @@ GameObject:
   - component: {fileID: 2118088820}
   - component: {fileID: 2118088821}
   - component: {fileID: 2118088822}
+  - component: {fileID: 2118088823}
   m_Layer: 0
   m_Name: GameUIGameObject
   m_TagString: Untagged
@@ -5519,9 +5520,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00ab804e2280fd4b9136b2a1287a8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suspicionManager: {fileID: 2118088820}
   endingSceneName: EndingScene
   cluesText: {fileID: 1992922459}
+  suspicionManager: {fileID: 2118088820}
 --- !u!114 &2118088822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5538,6 +5539,20 @@ MonoBehaviour:
   gridCamera: {fileID: 293581117}
   suspicionMeter: {fileID: 1603664729}
   clueCounterDisplay: {fileID: 2114074518}
+--- !u!114 &2118088823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118088815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1354ff8e036f98c4bb6913ccf7c6d5a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistentUIScene: GameUI
+  mapScene: Map
 --- !u!1 &2121966663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5359016375789611686, guid: 6b507dd8add91074aa238411b4f4cbf3, type: 3}
