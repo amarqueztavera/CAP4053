@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class PillManager : MonoBehaviour
 {
+    [Header("Clue Settings")]
+    public Clue clueToAdd; // Assign in Inspector
+
     public static PillManager Instance;
     public GameObject winText;
 
@@ -47,6 +50,14 @@ public class PillManager : MonoBehaviour
                 return false;
             }
         }
+
+        Debug.Log("Load back into game");
+        PuzzleSceneSwapper.Instance.ReturnToMap();
+
+        // Add clue and return to game
+        Debug.Log("Clue Added!");
+        InventoryManager.Instance.AddClue(clueToAdd);
+
         return true; // All colors have been sorted correctly
     }
 

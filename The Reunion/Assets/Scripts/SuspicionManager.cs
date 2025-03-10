@@ -26,10 +26,25 @@ public class SuspicionManager : MonoBehaviour
     public static SuspicionManager Instance;
     public static event System.Action<int> OnActChanged;
 
-    void Start()
+    void Awake()
+    {
+        // Singleton setup
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Keep alive between scenes
+            Initialize();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Initialize()
     {
         suspicionMeter.maxValue = 100;
-        suspicionCoroutine = StartCoroutine(UpdateSuspicion());
+        StartCoroutine(UpdateSuspicion());
     }
 
     IEnumerator UpdateSuspicion()

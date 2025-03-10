@@ -9,8 +9,15 @@ public class DoorLockController : MonoBehaviour
 
     private static List<DoorLockController> allDoorLocks = new List<DoorLockController>();
 
+    void Start()
+    {
+        // Initialize state based on current act
+        UpdateLockState(SuspicionManager.Instance.currentAct);
+    }
+
     void Awake() => allDoorLocks.Add(this);
     void OnDestroy() => allDoorLocks.Remove(this);
+
 
     public void UpdateLockState(int currentAct)
     {
@@ -20,9 +27,10 @@ public class DoorLockController : MonoBehaviour
 
     public static void UpdateAllLocks(int currentAct)
     {
-        foreach (DoorLockController doorLock in allDoorLocks)
+        DoorLockController[] allLocks = FindObjectsByType<DoorLockController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (DoorLockController lockObj in allLocks)
         {
-            doorLock.UpdateLockState(currentAct);
+            lockObj.UpdateLockState(currentAct);
         }
     }
 }

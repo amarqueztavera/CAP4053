@@ -67,6 +67,9 @@ public class SlidingJigsaw : MonoBehaviour
     private bool isComplete = false; // Track completion state
     private bool hasShuffled = false; // Ensure shuffle happens only once
 
+    [Header("Clue Settings")]
+    public Clue clueToAdd; // Assign in Inspector
+
     void Update()
     {
 
@@ -92,7 +95,17 @@ public class SlidingJigsaw : MonoBehaviour
         }
 
         // Prevent actions after completion
-        if (isComplete) return;
+        if (isComplete)
+        {
+            Debug.Log("Load back into game");
+            PuzzleSceneSwapper.Instance.ReturnToMap();
+
+            // Add clue and return to game
+            Debug.Log("Clue Added!");
+            InventoryManager.Instance.AddClue(clueToAdd);
+            return;
+        }
+            
 
         // Handle click events to move pieces
         if (Input.GetMouseButtonDown(0))

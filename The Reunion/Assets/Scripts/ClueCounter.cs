@@ -37,7 +37,7 @@ public class ClueCounter : MonoBehaviour
         // for prototype act 2 starts after 1 clue, act 3 starts after 2.
         //int currentAct = Mathf.Clamp((clueCount - 1) / 1 + 1, 1, 3); 
         int currentAct = Mathf.Clamp(clueCount + 1, 1, 3);
-        suspicionManager.SetAct(currentAct);
+        SuspicionManager.Instance.SetAct(currentAct);
 
         DoorLockController.UpdateAllLocks(currentAct); // Update door locks
 
