@@ -177,9 +177,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\n\n\nGame Design: \n\nSamantha Noble\nAndrea Marquez Tavera\n\nScripting:
-    \n\nJosie Goreczky \nJandro Damas\n\n\nCredits:\n\nCanva\nChatGPT\nDeepSeek\nUnity
-    Asset Store"
+  m_text: "\n\n\n\nCreators: \n\nSamantha Noble\nAndrea Marquez Tavera\nJosie Goreczky
+    \nJandro Damas\n\n\nCredits:\n\nCanva\nChatGPT\nDeepSeek\nUnity Asset Store"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -308,7 +307,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -11, y: -2}
-  m_SizeDelta: {x: 750, y: 450}
+  m_SizeDelta: {x: 1020, y: 1020}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647602353
 MonoBehaviour:

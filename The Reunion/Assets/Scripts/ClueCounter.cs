@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ClueCounter : MonoBehaviour
 {
     [Header("Settings")]
-    public string endingSceneName = "End Scene"; // Name of ending scene
+    public string endingSceneName = "Thank_you_Scene"; // Name of ending scene
 
     [Header("UI")]
     public TMP_Text cluesText;
