@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,5 +62,12 @@ public class LockerUnlock : MonoBehaviour
         // Add clue and return to game
         Debug.Log("Clue Added!");
         InventoryManager.Instance.AddClue(clueToAdd);
+    }
+
+    // 🔹 New Method for Exiting Without Adding Clue
+    public void ExitPuzzleScene()
+    {
+        Debug.Log("Exiting puzzle scene without solving.");
+        PuzzleSceneSwapper.Instance.ReturnToMap(); // Go back without adding the clue
     }
 }
