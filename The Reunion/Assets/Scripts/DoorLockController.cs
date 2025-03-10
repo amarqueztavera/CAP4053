@@ -12,7 +12,7 @@ public class DoorLockController : MonoBehaviour
     void Start()
     {
         // Initialize state based on current act
-        UpdateLockState(SuspicionManager.Instance.currentAct);
+        //UpdateLockState(SuspicionManager.Instance.currentAct);
     }
 
     void Awake() => allDoorLocks.Add(this);
