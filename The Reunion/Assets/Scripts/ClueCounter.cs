@@ -42,7 +42,7 @@ public class ClueCounter : MonoBehaviour
         DoorLockController.UpdateAllLocks(currentAct); // Update door locks
 
         // Check for ending
-        if (clueCount > 3)// edit to 9 after prototype
+        if (clueCount >= 3)// edit to 9 after prototype
         {
             SceneManager.UnloadSceneAsync("Map");
             SceneManager.UnloadSceneAsync("GameUI");
