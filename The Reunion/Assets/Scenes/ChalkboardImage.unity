@@ -844,6 +844,7 @@ GameObject:
   - component: {fileID: 1929635778}
   - component: {fileID: 1929635777}
   - component: {fileID: 1929635776}
+  - component: {fileID: 1929635779}
   m_Layer: 5
   m_Name: Claim Clue
   m_TagString: Untagged
@@ -953,6 +954,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929635774}
   m_CullTransparentMesh: 1
+--- !u!114 &1929635779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929635774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c85b030fda68144a89bdbad7b1c5481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clueToAdd:
+    clueName: Chalkboard
+    icon: {fileID: -7439290634749555634, guid: e0d7247c423effe45b65083c29f490b1, type: 3}
+    gameObject: {fileID: 2034094419}
+    description: 
+  clueButton: {fileID: 1929635776}
 --- !u!1 &2034094419
 GameObject:
   m_ObjectHideFlags: 0
