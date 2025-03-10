@@ -44,13 +44,16 @@ public class ClueCounter : MonoBehaviour
         // Check for ending
         if (clueCount >= 3)// edit to 9 after prototype
         {
-            SceneManager.LoadScene(endingSceneName); 
+            SceneManager.UnloadSceneAsync("Map");
+            SceneManager.UnloadSceneAsync("GameUI");
+            SceneManager.LoadScene(endingSceneName, LoadSceneMode.Single);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(endingSceneName));
             return;
         }
     }
 
     private void UpdateClueDisplay()
     {
-        cluesText.text = $"{clueCount}/9 Clues Found";
+        cluesText.text = $"{clueCount}/3 Clues Found";
     }
 }
