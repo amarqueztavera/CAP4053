@@ -57,10 +57,9 @@ public class PuzzleSceneSwapper : MonoBehaviour
         Scene mapScene = SceneManager.GetSceneByName("Map");
         foreach (GameObject obj in mapScene.GetRootGameObjects())
         {
+            Debug.Log("Map objects disabled");
             obj.SetActive(false);
         }
-
-        //SwapCameras(true);
     }
 
     public void ReturnToMap()
@@ -84,27 +83,14 @@ public class PuzzleSceneSwapper : MonoBehaviour
         if (mapSceneRef.isLoaded)
         {
             SceneManager.SetActiveScene(mapSceneRef);
+
+            // Re-enable Map scene objects
+            Scene mapScene = SceneManager.GetSceneByName("Map");
+            foreach (GameObject obj in mapScene.GetRootGameObjects())
+            {
+                Debug.Log("Map objects re-enabled");
+                obj.SetActive(true);
+            }
         }
-
-        //SwapCameras(false);
     }
-
-    //public Camera puzzleCamera;
-    //public Camera mapCamera;
-
-    //private void SwapCameras(bool isPuzzleSceneActive)
-    //{
-    //    Debug.Log("swapped cameras");
-    //    if (isPuzzleSceneActive)
-    //    {
-    //        puzzleCamera.gameObject.SetActive(true);
-    //        mapCamera.gameObject.SetActive(false);
-    //    }
-    //    else
-    //    {
-    //        puzzleCamera.gameObject.SetActive(false);
-    //        mapCamera.gameObject.SetActive(true);
-    //    }
-    //}
-
 }

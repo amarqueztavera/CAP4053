@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class QuickExit : MonoBehaviour
+public class QuickExit : MonoBehaviour, IPointerClickHandler
 {
-    public void ExitToMainGame()
+    public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("BUTTON CLICKED");
         if (PuzzleSceneSwapper.Instance != null)
         {
             Debug.Log("Exiting scene and returning to main game.");
