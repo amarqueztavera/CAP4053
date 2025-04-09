@@ -74,6 +74,7 @@ public class SlidingJigsaw : MonoBehaviour
     public Clue clueToAdd; // Assign in Inspector
 
     private Camera puzzleCamera;
+    public string puzzleID; // Unique ID
 
     void Update()
     { 
@@ -107,6 +108,9 @@ public class SlidingJigsaw : MonoBehaviour
             // Add clue and return to game
             Debug.Log("Clue Added!");
             InventoryManager.Instance.AddClue(clueToAdd);
+
+            // Save completion state
+            SaveSystem.MarkPuzzleComplete(puzzleID);
             return;
         }
 
