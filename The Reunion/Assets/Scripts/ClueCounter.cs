@@ -6,14 +6,49 @@ using UnityEngine.SceneManagement;
 public class ClueCounter : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private int cluesRequiredForEnding = 3; // Set to 9 for final game
     public string endingSceneName = "Thank_you_Scene"; // Name of ending scene
 
     [Header("UI")]
-    public TMP_Text cluesText;
+    [SerializeField] private TMP_Text cluesText;
+
+    // Singleton pattern for easy access
+    public static ClueCounter Instance { get; private set; }
+
 
     public SuspicionManager suspicionManager;
-    private int clueCount = 0;
+    private int _clueCount;
 
+    public int ClueCount
+    {
+        get => _clueCount;
+        private set
+        {
+            _clueCount = value;
+            UpdateClueDisplay();
+            CheckActProgression();
+            CheckForEnding();
+        }
+    }
+
+    private void Awake()
+    {
+        // Singleton setup
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddClue()
+    {
+        ClueCount = Mathf.Clamp(ClueCount + 1, 0, cluesRequiredForEnding);
+    }
 
     private void Start()
     {
@@ -24,36 +59,59 @@ public class ClueCounter : MonoBehaviour
         }
     }
 
-    // When a clue is collected
-    public void AddClue()
+    private void CheckActProgression()
     {
-        clueCount++;
-        UpdateClueDisplay();
+        // Prototype progression: 1 clue = Act 2, 2 clues = Act 3
+        int currentAct = Mathf.Clamp(ClueCount + 1, 1, 3);
 
-
-        // Calculate current act (1-3) based on clues collected
-        //int currentAct = Mathf.Clamp((clueCount-1 / 3) + 1, 1, 3); // 0-2: Act 1, 3-5: Act 2, 6-8: Act 3
-
-        // for prototype act 2 starts after 1 clue, act 3 starts after 2.
-        //int currentAct = Mathf.Clamp((clueCount - 1) / 1 + 1, 1, 3); 
-        int currentAct = Mathf.Clamp(clueCount + 1, 1, 3);
-        SuspicionManager.Instance.SetAct(currentAct);
-
-        DoorLockController.UpdateAllLocks(currentAct); // Update door locks
-
-        // Check for ending
-        if (clueCount >= 3)// edit to 9 after prototype
+        if (SuspicionManager.Instance != null)
         {
-            SceneManager.UnloadSceneAsync("Map");
-            SceneManager.UnloadSceneAsync("GameUI");
-            SceneManager.LoadScene(endingSceneName, LoadSceneMode.Single);
-            //SceneManager.SetActiveScene(SceneManager.GetSceneByName(endingSceneName));
-            return;
+            SuspicionManager.Instance.SetAct(currentAct);
         }
+        else
+        {
+            Debug.LogError("SuspicionManager instance not found!");
+        }
+
+        DoorLockController.UpdateAllLocks(currentAct);
+    }
+
+    private void CheckForEnding()
+    {
+        if (ClueCount >= cluesRequiredForEnding)
+        {
+            LoadEndingScene();
+        }
+    }
+
+    private void LoadEndingScene()
+    {
+        SceneManager.LoadScene(endingSceneName, LoadSceneMode.Single);
+
+        // Cleanup persistent objects if needed
+        if (SuspicionManager.Instance != null)
+            Destroy(SuspicionManager.Instance.gameObject);
+
+        Destroy(gameObject); // Destroy the clue counter
     }
 
     private void UpdateClueDisplay()
     {
-        cluesText.text = $"{clueCount}/3 Clues Found";
+        if (cluesText != null)
+        {
+            cluesText.text = $"{ClueCount}/{cluesRequiredForEnding} Clues Found";
+        }
+        else
+        {
+            Debug.LogWarning("Clues Text reference is missing!");
+        }
+    }
+
+    // For debugging purposes
+    [ContextMenu("Reset Clue Counter")]
+    private void ResetCounter()
+    {
+        ClueCount = 0;
+        UpdateClueDisplay();
     }
 }
