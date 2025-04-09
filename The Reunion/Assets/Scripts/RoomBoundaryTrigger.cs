@@ -8,6 +8,12 @@ public class RoomBoundaryTrigger : MonoBehaviour
     public GameObject[] roomInteractables; // Assign puzzles/clues in this room
     private bool playerInRoom = false;
 
+    private void Start()
+    {
+        // Ensure all interactables' colliders are disabled when the scene starts
+        SetInteractablesState(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(playerTag) && other.GetComponent<PlayerMovement>() != null) // Check if it's the main player
