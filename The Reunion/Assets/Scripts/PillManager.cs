@@ -6,7 +6,6 @@ public class PillManager : MonoBehaviour
 {
     [Header("Clue Settings")]
     public Clue clueToAdd; // Assign in Inspector
-    public string puzzleID; // Unique ID
 
     public static PillManager Instance;
     public GameObject winText;
@@ -58,9 +57,6 @@ public class PillManager : MonoBehaviour
         // Add clue and return to game
         Debug.Log("Clue Added!");
         InventoryManager.Instance.AddClue(clueToAdd);
-
-        // Save completion state
-        SaveSystem.MarkPuzzleComplete(puzzleID);
 
         return true; // All colors have been sorted correctly
     }
