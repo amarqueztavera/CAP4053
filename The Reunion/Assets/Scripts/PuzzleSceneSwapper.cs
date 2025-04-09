@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class PuzzleSceneSwapper : MonoBehaviour
 {
@@ -51,6 +52,15 @@ public class PuzzleSceneSwapper : MonoBehaviour
         // Set puzzle as active scene
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(puzzleScene));
         _currentPuzzleScene = puzzleScene;
+
+        // Disable Map scene objects
+        Scene mapScene = SceneManager.GetSceneByName("Map");
+        foreach (GameObject obj in mapScene.GetRootGameObjects())
+        {
+            obj.SetActive(false);
+        }
+
+        //SwapCameras(true);
     }
 
     public void ReturnToMap()
@@ -75,5 +85,26 @@ public class PuzzleSceneSwapper : MonoBehaviour
         {
             SceneManager.SetActiveScene(mapSceneRef);
         }
+
+        //SwapCameras(false);
     }
+
+    //public Camera puzzleCamera;
+    //public Camera mapCamera;
+
+    //private void SwapCameras(bool isPuzzleSceneActive)
+    //{
+    //    Debug.Log("swapped cameras");
+    //    if (isPuzzleSceneActive)
+    //    {
+    //        puzzleCamera.gameObject.SetActive(true);
+    //        mapCamera.gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        puzzleCamera.gameObject.SetActive(false);
+    //        mapCamera.gameObject.SetActive(true);
+    //    }
+    //}
+
 }

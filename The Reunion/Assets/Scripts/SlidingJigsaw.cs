@@ -73,6 +73,8 @@ public class SlidingJigsaw : MonoBehaviour
     [Header("Clue Settings")]
     public Clue clueToAdd; // Assign in Inspector
 
+    private Camera puzzleCamera;
+
     void Update()
     { 
         // Shuffle once at the start, but not again
@@ -113,8 +115,12 @@ public class SlidingJigsaw : MonoBehaviour
         // On click send out ray to see if we click a piece
         if (Input.GetMouseButtonDown(0))
         {
+
+            // Assign the puzzle scene's camera
+            puzzleCamera = GameObject.FindWithTag("PuzzleCamera").GetComponent<Camera>();
+
             Debug.Log("Mouse clicked!");
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(puzzleCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit)
             {
                 // Go through the list, the index tells us the position
