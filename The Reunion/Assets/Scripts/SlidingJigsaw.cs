@@ -77,8 +77,78 @@ public class SlidingJigsaw : MonoBehaviour
     public string puzzleID; // Unique ID
 
     void Update()
-    { 
-        // Shuffle once at the start, but not again
+    {
+        //// Shuffle once at the start, but not again
+        //if (!hasShuffled && !shuffling)
+        //{
+        //    hasShuffled = true;
+        //    shuffling = true;
+        //    StartCoroutine(WaitShuffle(0.5f));
+        //}
+
+        //// Check for completion
+        //if (!shuffling && CheckCompletion())
+        //{
+        //    isComplete = true; // Mark as completed
+
+        //    if (completeUI != null)
+        //    {
+        //        completeUI.SetActive(true); // Activates the entire UI box
+        //    }
+
+        //    return; // Stop further updates
+        //}
+
+        //// Prevent actions after completion
+        //if (isComplete)
+        //{
+        //    Debug.Log("Load back into game");
+        //    PuzzleSceneSwapper.Instance.ReturnToMap();
+
+        //    // Add clue and return to game
+        //    Debug.Log("Clue Added!");
+        //    InventoryManager.Instance.AddClue(clueToAdd);
+
+        //    // Save completion state
+        //    SaveSystem.MarkPuzzleComplete(puzzleID);
+        //    return;
+        //}
+
+
+
+        //// On click send out ray to see if we click a piece
+        //if (Input.GetMouseButtonDown(0))
+        //{
+
+        //    // Assign the puzzle scene's camera
+        //    puzzleCamera = GameObject.FindWithTag("PuzzleCamera").GetComponent<Camera>();
+
+        //    Debug.Log("Mouse clicked!");
+        //    RaycastHit2D hit = Physics2D.Raycast(puzzleCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        //    if (hit)
+        //    {
+        //        // Go through the list, the index tells us the position
+        //        Debug.Log("Hit: " + hit.collider.name);
+        //        for (int i = 0; i < pieces.Count; i++)
+        //        {
+        //            if (pieces[i] == hit.transform)
+        //            {
+        //                // Check each direction to see if valid move
+        //                // We break out on success so we don't carry on and swap back again
+        //                if (SwapIfValid(i, -size, size)) break;
+        //                if (SwapIfValid(i, +size, size)) break;
+        //                if (SwapIfValid(i, -1, 0)) break;
+        //                if (SwapIfValid(i, +1, size - 1)) break;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("No collider hit!");
+        //    }
+        //}
+
+        // Shuffle once at the start
         if (!hasShuffled && !shuffling)
         {
             hasShuffled = true;
@@ -86,69 +156,62 @@ public class SlidingJigsaw : MonoBehaviour
             StartCoroutine(WaitShuffle(0.5f));
         }
 
-        // Check for completion
-        if (!shuffling && CheckCompletion())
+        // Only check for completion if not already complete and not shuffling
+        if (!isComplete && !shuffling && CheckCompletion())
         {
-            isComplete = true; // Mark as completed
+            isComplete = true;
 
             if (completeUI != null)
             {
-                completeUI.SetActive(true); // Activates the entire UI box
+                completeUI.SetActive(true);
             }
 
-            return; // Stop further updates
-        }
-
-        // Prevent actions after completion
-        if (isComplete)
-        {
-            Debug.Log("Load back into game");
-            PuzzleSceneSwapper.Instance.ReturnToMap();
-
-            // Add clue and return to game
-            Debug.Log("Clue Added!");
-            InventoryManager.Instance.AddClue(clueToAdd);
-
-            // Save completion state
-            SaveSystem.MarkPuzzleComplete(puzzleID);
+            // Start coroutine to return after a delay
+            StartCoroutine(CompletePuzzle());
             return;
         }
 
-
-       
-        // On click send out ray to see if we click a piece
-        if (Input.GetMouseButtonDown(0))
+        // Handle input only if not complete
+        if (!isComplete && Input.GetMouseButtonDown(0))
         {
+            HandlePuzzleInput();
+        }
+    }
 
-            // Assign the puzzle scene's camera
-            puzzleCamera = GameObject.FindWithTag("PuzzleCamera").GetComponent<Camera>();
+    private IEnumerator CompletePuzzle()
+    {
+        // Wait a moment to show completion UI
+        yield return new WaitForSeconds(1.5f); // Adjust time as needed
 
-            Debug.Log("Mouse clicked!");
-            RaycastHit2D hit = Physics2D.Raycast(puzzleCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit)
-            {
-                // Go through the list, the index tells us the position
-                Debug.Log("Hit: " + hit.collider.name);
-                for (int i = 0; i < pieces.Count; i++)
-                {
-                    if (pieces[i] == hit.transform)
-                    {
-                        // Check each direction to see if valid move
-                        // We break out on success so we don't carry on and swap back again
-                        if (SwapIfValid(i, -size, size)) break;
-                        if (SwapIfValid(i, +size, size)) break;
-                        if (SwapIfValid(i, -1, 0)) break;
-                        if (SwapIfValid(i, +1, size - 1)) break;
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log("No collider hit!");
-            }
+        Debug.Log("Puzzle completed! Returning to map...");
+        PuzzleSceneSwapper.Instance.ReturnToMap();
+        InventoryManager.Instance.AddClue(clueToAdd);
+        SaveSystem.MarkPuzzleComplete(puzzleID);
+    }
+
+    private void HandlePuzzleInput()
+    {
+        if (puzzleCamera == null)
+        {
+            puzzleCamera = GameObject.FindWithTag("PuzzleCamera")?.GetComponent<Camera>();
+            if (puzzleCamera == null) return;
         }
 
-
+        RaycastHit2D hit = Physics2D.Raycast(puzzleCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (hit)
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+            for (int i = 0; i < pieces.Count; i++)
+            {
+                if (pieces[i] == hit.transform)
+                {
+                    if (SwapIfValid(i, -size, size)) break;
+                    if (SwapIfValid(i, +size, size)) break;
+                    if (SwapIfValid(i, -1, 0)) break;
+                    if (SwapIfValid(i, +1, size - 1)) break;
+                }
+            }
+        }
     }
 
 
