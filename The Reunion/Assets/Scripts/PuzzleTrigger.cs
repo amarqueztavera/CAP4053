@@ -8,29 +8,18 @@ public class PuzzleTrigger : MonoBehaviour
     public string puzzleSceneName;
     public string puzzleID; // Unique identifier for this puzzle
 
-    [Header("Visual Feedback")]
-    public Color incompleteColor = Color.yellow; // Default color (yellow)
-    public Color completeColor = Color.green;    // Color when puzzle is done
-
     [Header("References")]
-    private SpriteRenderer spriteRenderer;
     private Collider2D interactionCollider;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         interactionCollider = GetComponent<Collider2D>();
 
         // Disable interaction if the puzzle is already completed
         if (SaveSystem.IsPuzzleComplete(puzzleID))
         {
             interactionCollider.enabled = false;
-            spriteRenderer.color = completeColor;
             Debug.Log($"Puzzle {puzzleID} is already completed. Disabling trigger.");
-        }
-        else
-        {
-            spriteRenderer.color = incompleteColor;
         }
     }
 
@@ -81,13 +70,5 @@ public class PuzzleTrigger : MonoBehaviour
             Debug.Log($"Attempting to load {puzzleSceneName}");
             PuzzleSceneSwapper.Instance.LoadPuzzleScene(puzzleSceneName);
         }
-    }
-
-    // Call this when the puzzle is completed
-    public void MarkAsComplete()
-    {
-        spriteRenderer.color = completeColor; // Change to green
-        interactionCollider.enabled = false; // Disable interaction
-        Debug.Log($"Puzzle {puzzleID} marked as complete (visual feedback applied).");
     }
 }
