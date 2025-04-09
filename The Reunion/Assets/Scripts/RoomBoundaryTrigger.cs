@@ -6,21 +6,24 @@ public class RoomBoundaryTrigger : MonoBehaviour
     [Header("Settings")]
     public string playerTag = "Player";
     public GameObject[] roomInteractables; // Assign puzzles/clues in this room
+    private bool playerInRoom = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(playerTag))
+        if (other.CompareTag(playerTag) && other.GetComponent<PlayerMovement>() != null) // Check if it's the main player
         {
             Debug.Log("Entered ROom");
+            playerInRoom = true;
             SetInteractablesState(true); // Enable when entering the room
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag(playerTag))
+        if (other.CompareTag(playerTag) && other.GetComponent<PlayerMovement>() != null)
         {
             Debug.Log("exit ROom");
+            playerInRoom = false;
             SetInteractablesState(false); // Disable when exiting the room
         }
     }
@@ -38,21 +41,8 @@ public class RoomBoundaryTrigger : MonoBehaviour
         }
     }
 
-    //private void SetInteractablesState(bool state)
-    //{
-    //    foreach (GameObject obj in roomInteractables)
-    //    {
-    //        // Enable the NON-TRIGGER collider for clicks
-    //        Collider2D clickCollider = obj.GetComponent<Collider2D>();
-    //        if (clickCollider != null && !clickCollider.isTrigger)
-    //        {
-    //            Debug.Log("click collider enabled");
-    //            clickCollider.enabled = state;
-    //        }
-
-    //        //// Optional: Toggle outline visibility
-    //        //Outline outline = obj.GetComponent<Outline>();
-    //        //if (outline != null) outline.enabled = state;
-    //    }
-    //}
+    public bool IsPlayerInRoom()
+    {
+        return playerInRoom;
+    }
 }
