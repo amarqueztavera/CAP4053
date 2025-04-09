@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 
 public class SlidingJigsaw : MonoBehaviour
 {
@@ -30,6 +32,7 @@ public class SlidingJigsaw : MonoBehaviour
                                                   0);
                 piece.localScale = ((2 * width) - gapThickness) * Vector3.one;
                 piece.name = $"{(row * size) + col}";
+
                 // We want an empty space in the bottom right.
                 if ((row == size - 1) && (col == size - 1))
                 {
@@ -70,12 +73,8 @@ public class SlidingJigsaw : MonoBehaviour
     [Header("Clue Settings")]
     public Clue clueToAdd; // Assign in Inspector
 
-    [Header("Clue Visuals")]
-    public Color collectedColor; // Outline removal color
-
     void Update()
-    {
-
+    { 
         // Shuffle once at the start, but not again
         if (!hasShuffled && !shuffling)
         {
@@ -103,63 +102,43 @@ public class SlidingJigsaw : MonoBehaviour
             Debug.Log("Load back into game");
             PuzzleSceneSwapper.Instance.ReturnToMap();
 
-            Debug.Log("disabled clue visuals");
-            GameObject chalkboard = GameObject.FindWithTag("Chalkboard");
-
-            if (chalkboard != null)
-            {
-                // Get the SpriteRenderer component
-                SpriteRenderer chalkboardRenderer = chalkboard.GetComponent<SpriteRenderer>();
-
-                // Get the BoxCollider2D component
-                BoxCollider2D chalkboardCollider = chalkboard.GetComponent<BoxCollider2D>();
-
-                if (chalkboardRenderer != null && chalkboardCollider != null)
-                {
-                    // Change color to remove outline (e.g., white)
-                    chalkboardRenderer.color = collectedColor;
-
-                    // Disable the collider
-                    chalkboardCollider.enabled = false;
-                }
-                else
-                {
-                    Debug.LogError("Missing components on chalkboard!");
-                }
-            }
-            else
-            {
-                Debug.LogError("Chalkboard not found! Check the tag.");
-            }
-
             // Add clue and return to game
             Debug.Log("Clue Added!");
             InventoryManager.Instance.AddClue(clueToAdd);
             return;
         }
-            
 
-        // Handle click events to move pieces
+
+       
+        // On click send out ray to see if we click a piece
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            Debug.Log("Mouse clicked!");
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit)
             {
-                Debug.Log("Clicked on: " + hit.transform.name);
+                // Go through the list, the index tells us the position
+                Debug.Log("Hit: " + hit.collider.name);
                 for (int i = 0; i < pieces.Count; i++)
                 {
                     if (pieces[i] == hit.transform)
                     {
-                        if (SwapIfValid(i, -size, size)) { break; }
-                        if (SwapIfValid(i, +size, size)) { break; }
-                        if (SwapIfValid(i, -1, 0)) { break; }
-                        if (SwapIfValid(i, +1, size - 1)) { break; }
+                        // Check each direction to see if valid move
+                        // We break out on success so we don't carry on and swap back again
+                        if (SwapIfValid(i, -size, size)) break;
+                        if (SwapIfValid(i, +size, size)) break;
+                        if (SwapIfValid(i, -1, 0)) break;
+                        if (SwapIfValid(i, +1, size - 1)) break;
                     }
                 }
             }
+            else
+            {
+                Debug.Log("No collider hit!");
+            }
         }
+
+
     }
 
 
