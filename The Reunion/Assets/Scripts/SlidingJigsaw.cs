@@ -70,6 +70,9 @@ public class SlidingJigsaw : MonoBehaviour
     [Header("Clue Settings")]
     public Clue clueToAdd; // Assign in Inspector
 
+    [Header("Clue Visuals")]
+    public Color collectedColor; // Outline removal color
+
     void Update()
     {
 
@@ -99,6 +102,35 @@ public class SlidingJigsaw : MonoBehaviour
         {
             Debug.Log("Load back into game");
             PuzzleSceneSwapper.Instance.ReturnToMap();
+
+            Debug.Log("disabled clue visuals");
+            GameObject chalkboard = GameObject.FindWithTag("Chalkboard");
+
+            if (chalkboard != null)
+            {
+                // Get the SpriteRenderer component
+                SpriteRenderer chalkboardRenderer = chalkboard.GetComponent<SpriteRenderer>();
+
+                // Get the BoxCollider2D component
+                BoxCollider2D chalkboardCollider = chalkboard.GetComponent<BoxCollider2D>();
+
+                if (chalkboardRenderer != null && chalkboardCollider != null)
+                {
+                    // Change color to remove outline (e.g., white)
+                    chalkboardRenderer.color = collectedColor;
+
+                    // Disable the collider
+                    chalkboardCollider.enabled = false;
+                }
+                else
+                {
+                    Debug.LogError("Missing components on chalkboard!");
+                }
+            }
+            else
+            {
+                Debug.LogError("Chalkboard not found! Check the tag.");
+            }
 
             // Add clue and return to game
             Debug.Log("Clue Added!");

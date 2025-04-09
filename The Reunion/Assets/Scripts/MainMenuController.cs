@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private string mapSceneName = "welcome_story";
+    public GameObject settingsMenuUI;
     //[SerializeField] private string uiSceneName = "GameUI";
 
     public void LoadGameScenes()
@@ -34,6 +35,17 @@ public class MainMenuController : MonoBehaviour
         //SceneManager.LoadSceneAsync("welcome_story", LoadSceneMode.Additive);
         //SceneManager.SetActiveScene(SceneManager.GetSceneByName(mapSceneName));
         //SceneManager.UnloadSceneAsync("Main Menu");
+    }
+
+    public void OpenSettings()
+    {
+        Debug.Log("settings button");
+        settingsMenuUI.SetActive(true);
+    }
+
+    public void BackToMainMenu()
+    {
+        settingsMenuUI.SetActive(false);
     }
 
     public void QuitGame()

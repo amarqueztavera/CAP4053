@@ -778,7 +778,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281097869}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -1278,10 +1278,11 @@ MonoBehaviour:
   piecePrefab: {fileID: 1476595762586591094, guid: 9952f73d70c3fa2439dedc0461d76da0, type: 3}
   completeUI: {fileID: 1590766725}
   clueToAdd:
-    clueName: 
-    icon: {fileID: 0}
-    gameObject: {fileID: 0}
+    clueName: chalkboard
+    icon: {fileID: 5062390320939746380, guid: 47decb729db54764db47ba584f34f46f, type: 3}
+    gameObject: {fileID: 1956114258}
     description: 
+  collectedColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
 --- !u!4 &1590780328
 Transform:
   m_ObjectHideFlags: 0
