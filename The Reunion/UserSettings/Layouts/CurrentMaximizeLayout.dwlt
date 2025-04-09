@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 51204
+  controlID: 57425
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 51205
+  controlID: 57426
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 51160
+  controlID: 57381
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 51150
+  controlID: 57365
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -222,8 +222,8 @@ MonoBehaviour:
     y: 0
     width: 576.8
     height: 742.4
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 7}
   m_Panes:
   - {fileID: 7}
@@ -270,7 +270,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3eddfdff2ce1fdffb6f1fffff0faffff58db000052e600007ee60000b4e70000dae7000046e800006ae800007ce80000a4e8000026e9000024ea0000d4ea0000d2f0000020f70000
+      m_ExpandedIDs: 3eddfdff2ce1fdffb6f1ffffeefafffff0faffff58db000052e600007ee60000b4e70000dae7000046e800006ae800007ce80000a4e8000026e9000024ea000076ea000090ea0000d4ea0000d2f0000020f70000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -862,9 +862,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 39.53199, y: -1.7900292, z: 0.84102803}
+    m_Target: {x: 24.209513, y: -5.688225, z: 0.8651141}
     speed: 2
-    m_Value: {x: 39.53199, y: -1.7900292, z: 0.84102803}
+    m_Value: {x: 24.209513, y: -5.688225, z: 0.8651141}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -914,9 +914,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 16.610542
+    m_Target: 14.200469
     speed: 2
-    m_Value: 16.610542
+    m_Value: 14.200469
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_Zoom: -1
   m_ScrollPosition: {x: 0, y: 0}
   m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: 00000000000000000000000000000000
+  m_SelectedSpriteRectGUID: 89abd7941ab288b70800000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
 --- !u!114 &11
 MonoBehaviour:
@@ -2102,8 +2102,8 @@ MonoBehaviour:
     y: 0
     width: 514.4
     height: 1004.80005
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
