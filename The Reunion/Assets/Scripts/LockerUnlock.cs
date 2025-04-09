@@ -10,6 +10,7 @@ public class LockerUnlock : MonoBehaviour
     public InputField inputField3;
     public Text resultText;
     public GameObject locker; // Reference to the locker
+    public string puzzleID; // Unique ID
 
     [Header("Clue Settings")]
     public Clue clueToAdd; // Assign in Inspector
@@ -52,6 +53,9 @@ public class LockerUnlock : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Debug.Log("Load back into game");
         PuzzleSceneSwapper.Instance.ReturnToMap();
+
+        // Save completion state
+        SaveSystem.MarkPuzzleComplete(puzzleID);
     }
 
     void UnlockLocker()
