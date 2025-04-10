@@ -14,6 +14,8 @@ public class ClueCounter : MonoBehaviour
 
     // Singleton pattern for easy access
     public static ClueCounter Instance { get; private set; }
+    private const string CLUE_COUNT_KEY = "PlayerClueCount";
+    private const string CLUES_REQUIRED_KEY = "CluesRequired";
 
 
     public SuspicionManager suspicionManager;
@@ -38,16 +40,12 @@ public class ClueCounter : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadClueCount(); // Load saved data on startup
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    public void AddClue()
-    {
-        ClueCount = Mathf.Clamp(ClueCount + 1, 0, cluesRequiredForEnding);
     }
 
     private void Start()
@@ -57,6 +55,20 @@ public class ClueCounter : MonoBehaviour
         {
             Debug.LogError("SuspicionManager not found on the same GameObject!");
         }
+    }
+
+    private void LoadClueCount()
+    {
+        _clueCount = PlayerPrefs.GetInt(CLUE_COUNT_KEY, 0);
+        cluesRequiredForEnding = PlayerPrefs.GetInt(CLUES_REQUIRED_KEY, 3);
+        UpdateClueDisplay();
+    }
+
+    public void AddClue()
+    {
+        ClueCount = Mathf.Clamp(ClueCount + 1, 0, cluesRequiredForEnding);
+        PlayerPrefs.SetInt(CLUE_COUNT_KEY, ClueCount);
+        PlayerPrefs.Save();
     }
 
     private void CheckActProgression()
@@ -88,6 +100,10 @@ public class ClueCounter : MonoBehaviour
     {
         SceneManager.LoadScene(endingSceneName, LoadSceneMode.Single);
 
+        // Clear saved data when ending is reached
+        PlayerPrefs.DeleteKey(CLUE_COUNT_KEY);
+        PlayerPrefs.DeleteKey(CLUES_REQUIRED_KEY);
+
         // Cleanup persistent objects if needed
         if (SuspicionManager.Instance != null)
             Destroy(SuspicionManager.Instance.gameObject);
@@ -111,6 +127,7 @@ public class ClueCounter : MonoBehaviour
     [ContextMenu("Reset Clue Counter")]
     private void ResetCounter()
     {
+        PlayerPrefs.DeleteKey(CLUE_COUNT_KEY);
         ClueCount = 0;
         UpdateClueDisplay();
     }
