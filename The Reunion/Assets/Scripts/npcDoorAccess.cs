@@ -1,5 +1,11 @@
 using UnityEngine;
 
+
+// In any script, you can access and modify the flags like this:
+// NPCStateManager.Instance.act1 = true;  // Door 1 is now accessible
+// NPCStateManager.Instance.act2 = false; // Door 2 is no longer accessible
+
+
 public class NPCStateManager : MonoBehaviour
 {
     // Singleton instance for easy access
@@ -12,15 +18,15 @@ public class NPCStateManager : MonoBehaviour
 
     void Awake()
     {
-        // Ensure there is only one instance of NPCStateManager
+        
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Optional: Keep this object between scenes
+            //DontDestroyOnLoad(gameObject);  
         }
         else
         {
-            Destroy(gameObject);  // If another instance exists, destroy this one
+            Destroy(gameObject);
         }
     }
 }
