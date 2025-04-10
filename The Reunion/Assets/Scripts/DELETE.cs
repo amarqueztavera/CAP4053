@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class DELETE : MonoBehaviour
 {
     [SerializeField] List<Transform> targets = new List<Transform>();
     public int wayPointIndex=0;
+
+    public bool isWalking = false;
 
     //[SerializeField] Transform target;
     NavMeshAgent agent;
@@ -22,14 +25,34 @@ public class DELETE : MonoBehaviour
     void Update()
     {
 
+        if (!isWalking) 
+        {
+            StartCoroutine(Walk());
+        }
+    }
+
+    IEnumerator Walk()
+    {
+        isWalking= true;
         agent.SetDestination(targets[wayPointIndex].position);
 
         Vector3 currentPosition = transform.position;
         var distance = Vector3.Distance(currentPosition, targets[wayPointIndex].position);
 
-        Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position +"Distance:"+ distance);
+        Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distance);
 
         if (distance <= 1.0f)
+        {
             wayPointIndex++;
+
+            yield return new WaitForSeconds(3);
+        }
+
+        isWalking = false;
+
+        yield return null;
+
+
     }
+
 }
