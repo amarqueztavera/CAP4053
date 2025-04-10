@@ -6,10 +6,9 @@ using UnityEngine.AI;
 
 public class DELETE : MonoBehaviour
 {
-    public bool act1 = true;
-    public bool act2 = false;
-    public bool act3 = false;
-
+    //public bool act1 = true;
+    //public bool act2 = false;
+    //public bool act3 = false;
 
     [SerializeField] List<Transform> targets = new List<Transform>();
     public int wayPointIndex=0;
@@ -30,7 +29,6 @@ public class DELETE : MonoBehaviour
 
     void Update()
     {
-
         if (!isWalking) 
         {
             StartCoroutine(Walk());
@@ -72,16 +70,17 @@ public class DELETE : MonoBehaviour
 
     bool isValidWaypoint( int wayPointIndex)
     {
+
         string tag = targets[wayPointIndex].tag;
 
         Debug.Log("checking tag: "+ tag);
 
         if (tag == "act1 waypoint")
-            return act1;
+            return NPCStateManager.Instance.act1;
         if (tag == "act2 waypoint" )
-            return act2;
+            return NPCStateManager.Instance.act2;
         if (tag == "act3 waypoint") 
-            return act3;
+            return NPCStateManager.Instance.act3;
 
         return false;
     }
