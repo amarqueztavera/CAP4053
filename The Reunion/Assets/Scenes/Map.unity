@@ -12624,6 +12624,7 @@ GameObject:
   - component: {fileID: 963267975}
   - component: {fileID: 963267974}
   - component: {fileID: 963267976}
+  - component: {fileID: 963267977}
   m_Layer: 8
   m_Name: Decor
   m_TagString: Untagged
@@ -20418,6 +20419,22 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &963267977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963267972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &971828804 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1374930172018882266, guid: 608cc97f98e7b0b4fb5f50a5a1e9ba2e, type: 3}
