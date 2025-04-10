@@ -167,11 +167,12 @@ public class ClueCounter : MonoBehaviour
     }
 
     // For debugging purposes
-    [ContextMenu("Reset Clue Counter")]
-    private void ResetCounter()
+    [ContextMenu("Reset Progression")]
+    private void ResetProgression()
     {
         PlayerPrefs.DeleteKey(CLUE_COUNT_KEY);
+        PlayerPrefs.DeleteKey("CurrentAct");
         ClueCount = 0;
-        UpdateClueDisplay();
+        CheckActProgression();
     }
 }
