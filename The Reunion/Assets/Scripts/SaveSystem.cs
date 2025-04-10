@@ -16,4 +16,11 @@ public static class SaveSystem
     {
         return PlayerPrefs.GetInt(PUZZLE_PREFIX + puzzleID, 0) == 1;
     }
+
+    public static void ResetAllPuzzleProgress()
+    {
+        PlayerPrefs.DeleteAll(); // Clears all saved data
+        PlayerPrefs.Save();
+        Debug.Log("All puzzle progress reset.");
+    }
 }
