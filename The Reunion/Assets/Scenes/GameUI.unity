@@ -5298,6 +5298,7 @@ GameObject:
   - component: {fileID: 2118088821}
   - component: {fileID: 2118088822}
   - component: {fileID: 2118088823}
+  - component: {fileID: 2118088824}
   m_Layer: 0
   m_Name: GameUIGameObject
   m_TagString: Untagged
@@ -5446,6 +5447,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistentUIScene: GameUI
   mapScene: Map
+--- !u!114 &2118088824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118088815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4dc5a163870c04d97a91ec3b575539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2121966663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5359016375789611686, guid: 6b507dd8add91074aa238411b4f4cbf3, type: 3}

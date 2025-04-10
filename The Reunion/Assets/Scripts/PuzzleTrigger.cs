@@ -16,21 +16,43 @@ public class PuzzleTrigger : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D interactionCollider;
 
+    //void Start()
+    //{
+    //    spriteRenderer = GetComponent<SpriteRenderer>();
+    //    interactionCollider = GetComponent<Collider2D>();
+
+    //    // Disable interaction if the puzzle is already completed
+    //    if (SaveSystem.IsPuzzleComplete(puzzleID))
+    //    {
+    //        interactionCollider.enabled = false;
+    //        spriteRenderer.color = completeColor;
+    //        Debug.Log($"Puzzle {puzzleID} is already completed. Disabling trigger.");
+    //    }
+    //    else
+    //    {
+    //        spriteRenderer.color = incompleteColor;
+    //    }
+    //}
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         interactionCollider = GetComponent<Collider2D>();
+        RefreshPuzzleState();
+    }
 
-        // Disable interaction if the puzzle is already completed
+    public void RefreshPuzzleState()
+    {
         if (SaveSystem.IsPuzzleComplete(puzzleID))
         {
-            interactionCollider.enabled = false;
-            spriteRenderer.color = completeColor;
             Debug.Log($"Puzzle {puzzleID} is already completed. Disabling trigger.");
+            spriteRenderer.color = completeColor;
+            interactionCollider.enabled = false;
         }
         else
         {
             spriteRenderer.color = incompleteColor;
+            interactionCollider.enabled = true;
         }
     }
 
@@ -65,22 +87,48 @@ public class PuzzleTrigger : MonoBehaviour
         }
     }
 
+    //void OnMouseDown()
+    //{
+    //    // Early exit if the puzzle is already completed
+    //    if (SaveSystem.IsPuzzleComplete(puzzleID)) return;
+
+    //    if (Camera.main.GetComponent<PhysicsRaycaster>() == null)
+    //    {
+    //        Debug.LogError("Add PhysicsRaycaster to Main Camera!");
+    //        return;
+    //    }
+
+    //    if (!string.IsNullOrEmpty(puzzleSceneName))
+    //    {
+    //        Debug.Log($"Attempting to load {puzzleSceneName}");
+    //        PuzzleSceneSwapper.Instance.LoadPuzzleScene(puzzleSceneName);
+    //    }
+    //}
+
     void OnMouseDown()
     {
-        // Early exit if the puzzle is already completed
         if (SaveSystem.IsPuzzleComplete(puzzleID)) return;
+        if (string.IsNullOrEmpty(puzzleSceneName)) return;
 
-        if (Camera.main.GetComponent<PhysicsRaycaster>() == null)
+        Debug.Log($"Loading puzzle: {puzzleSceneName}");
+        TryLoadPuzzle();
+    }
+
+    private void TryLoadPuzzle()
+    {
+        if (PuzzleSceneSwapper.Instance == null)
         {
-            Debug.LogError("Add PhysicsRaycaster to Main Camera!");
+            Debug.LogError("PuzzleSceneSwapper instance missing!");
             return;
         }
 
-        if (!string.IsNullOrEmpty(puzzleSceneName))
+        if (!Application.CanStreamedLevelBeLoaded(puzzleSceneName))
         {
-            Debug.Log($"Attempting to load {puzzleSceneName}");
-            PuzzleSceneSwapper.Instance.LoadPuzzleScene(puzzleSceneName);
+            Debug.LogError($"Scene {puzzleSceneName} not in build settings!");
+            return;
         }
+
+        PuzzleSceneSwapper.Instance.LoadPuzzleScene(puzzleSceneName);
     }
 
     // Call this when the puzzle is completed

@@ -183,10 +183,15 @@ public class SlidingJigsaw : MonoBehaviour
         // Wait a moment to show completion UI
         yield return new WaitForSeconds(1.5f); // Adjust time as needed
 
+        // Save everything before leaving
+        SaveSystem.MarkPuzzleComplete(puzzleID);
+        InventoryManager.Instance.AddClue(clueToAdd);
+
+        // Force immediate save
+        PlayerPrefs.Save();
+
         Debug.Log("Puzzle completed! Returning to map...");
         PuzzleSceneSwapper.Instance.ReturnToMap();
-        InventoryManager.Instance.AddClue(clueToAdd);
-        SaveSystem.MarkPuzzleComplete(puzzleID);
     }
 
     private void HandlePuzzleInput()

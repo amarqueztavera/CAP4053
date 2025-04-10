@@ -14,6 +14,9 @@ public class ClueCounter : MonoBehaviour
 
     // Singleton pattern for easy access
     public static ClueCounter Instance { get; private set; }
+    private const string CLUE_COUNT_KEY = "PlayerClueCount";
+    private const string CLUES_REQUIRED_KEY = "CluesRequired";
+    private const string CURRENT_ACT_KEY = "CurrentAct";
 
 
     public SuspicionManager suspicionManager;
@@ -38,16 +41,23 @@ public class ClueCounter : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Initialize with default values for new game
+            if (!PlayerPrefs.HasKey(CLUE_COUNT_KEY))
+            {
+                PlayerPrefs.SetInt(CLUE_COUNT_KEY, 0);
+                PlayerPrefs.SetInt(CURRENT_ACT_KEY, 1); // Default to Act 1 for new games
+                PlayerPrefs.Save();
+            }
+
+            // Load saved data on startup
+            LoadClueCount(); 
+            InitializeActProgression();
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    public void AddClue()
-    {
-        ClueCount = Mathf.Clamp(ClueCount + 1, 0, cluesRequiredForEnding);
     }
 
     private void Start()
@@ -59,14 +69,43 @@ public class ClueCounter : MonoBehaviour
         }
     }
 
+    private void LoadClueCount()
+    {
+        _clueCount = PlayerPrefs.GetInt(CLUE_COUNT_KEY, 0);
+        cluesRequiredForEnding = PlayerPrefs.GetInt(CLUES_REQUIRED_KEY, 3);
+        UpdateClueDisplay();
+    }
+
+    public void AddClue()
+    {
+        ClueCount = Mathf.Clamp(ClueCount + 1, 0, cluesRequiredForEnding);
+        PlayerPrefs.SetInt(CLUE_COUNT_KEY, ClueCount);
+        PlayerPrefs.Save();
+    }
+
     private void CheckActProgression()
     {
-        // Prototype progression: 1 clue = Act 2, 2 clues = Act 3
-        int currentAct = Mathf.Clamp(ClueCount + 1, 1, 3);
+        //// Prototype progression: 1 clue = Act 2, 2 clues = Act 3
+        //int currentAct = Mathf.Clamp(ClueCount + 1, 1, 3);
+
+        //if (SuspicionManager.Instance != null)
+        //{
+        //    SuspicionManager.Instance.SetAct(currentAct);
+        //}
+        //else
+        //{
+        //    Debug.LogError("SuspicionManager instance not found!");
+        //}
+
+        //DoorLockController.UpdateAllLocks(currentAct);
+
+        // Get the current clue count (will use saved data automatically)
+        int currentAct = CalculateCurrentAct();
 
         if (SuspicionManager.Instance != null)
         {
             SuspicionManager.Instance.SetAct(currentAct);
+            PlayerPrefs.SetInt("CurrentAct", currentAct); // Save current act
         }
         else
         {
@@ -74,6 +113,43 @@ public class ClueCounter : MonoBehaviour
         }
 
         DoorLockController.UpdateAllLocks(currentAct);
+    }
+
+    private int CalculateCurrentAct()
+    {
+        //// Use the saved clue count to determine act
+        //int savedClues = PlayerPrefs.GetInt(CLUE_COUNT_KEY, 0);
+
+        //// Your progression logic (1 clue = Act 2, 2 clues = Act 3, etc.)
+        //return Mathf.Clamp(savedClues + 1, 1, 3);
+
+
+        // New game starts at Act 1 (0 clues)
+        // 1 clue = Act 2, 2 clues = Act 3
+        return Mathf.Clamp(ClueCount + 1, 1, 3);
+    }
+
+    private void InitializeActProgression()
+    {
+        //// Load saved act progression when game starts
+        //if (PlayerPrefs.HasKey("CurrentAct"))
+        //{
+        //    int savedAct = PlayerPrefs.GetInt("CurrentAct");
+        //    SuspicionManager.Instance?.SetAct(savedAct);
+        //    DoorLockController.UpdateAllLocks(savedAct);
+        //}
+        //else
+        //{
+        //    // Initialize with current clue count if no save exists
+
+        //    CheckActProgression();
+        //}
+
+        // Always start at Act 1 for new games, use saved value otherwise
+        int startingAct = PlayerPrefs.GetInt(CURRENT_ACT_KEY, 1); // Default to 1 if not found
+
+        SuspicionManager.Instance?.SetAct(startingAct);
+        DoorLockController.UpdateAllLocks(startingAct);
     }
 
     private void CheckForEnding()
@@ -87,6 +163,10 @@ public class ClueCounter : MonoBehaviour
     private void LoadEndingScene()
     {
         SceneManager.LoadScene(endingSceneName, LoadSceneMode.Single);
+
+        // Clear saved data when ending is reached
+        PlayerPrefs.DeleteKey(CLUE_COUNT_KEY);
+        PlayerPrefs.DeleteKey(CLUES_REQUIRED_KEY);
 
         // Cleanup persistent objects if needed
         if (SuspicionManager.Instance != null)
@@ -108,10 +188,17 @@ public class ClueCounter : MonoBehaviour
     }
 
     // For debugging purposes
-    [ContextMenu("Reset Clue Counter")]
-    private void ResetCounter()
+    [ContextMenu("Reset Progression")]
+    public void ResetAllProgress()
     {
+        PlayerPrefs.DeleteKey(CLUE_COUNT_KEY);
+        PlayerPrefs.DeleteKey(CURRENT_ACT_KEY);
+        PlayerPrefs.DeleteKey(CLUES_REQUIRED_KEY);
+
         ClueCount = 0;
-        UpdateClueDisplay();
+        PlayerPrefs.SetInt(CURRENT_ACT_KEY, 1); // Reset to Act 1
+        PlayerPrefs.Save();
+
+        CheckActProgression(); // This will update to Act 1
     }
 }
