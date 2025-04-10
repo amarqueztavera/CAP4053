@@ -40,7 +40,10 @@ public class ClueCounter : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadClueCount(); // Load saved data on startup
+
+            // Load saved data on startup
+            LoadClueCount(); 
+            InitializeActProgression();
         }
         else
         {
@@ -73,12 +76,27 @@ public class ClueCounter : MonoBehaviour
 
     private void CheckActProgression()
     {
-        // Prototype progression: 1 clue = Act 2, 2 clues = Act 3
-        int currentAct = Mathf.Clamp(ClueCount + 1, 1, 3);
+        //// Prototype progression: 1 clue = Act 2, 2 clues = Act 3
+        //int currentAct = Mathf.Clamp(ClueCount + 1, 1, 3);
+
+        //if (SuspicionManager.Instance != null)
+        //{
+        //    SuspicionManager.Instance.SetAct(currentAct);
+        //}
+        //else
+        //{
+        //    Debug.LogError("SuspicionManager instance not found!");
+        //}
+
+        //DoorLockController.UpdateAllLocks(currentAct);
+
+        // Get the current clue count (will use saved data automatically)
+        int currentAct = CalculateCurrentAct();
 
         if (SuspicionManager.Instance != null)
         {
             SuspicionManager.Instance.SetAct(currentAct);
+            PlayerPrefs.SetInt("CurrentAct", currentAct); // Save current act
         }
         else
         {
@@ -86,6 +104,31 @@ public class ClueCounter : MonoBehaviour
         }
 
         DoorLockController.UpdateAllLocks(currentAct);
+    }
+
+    private int CalculateCurrentAct()
+    {
+        // Use the saved clue count to determine act
+        int savedClues = PlayerPrefs.GetInt(CLUE_COUNT_KEY, 0);
+
+        // Your progression logic (1 clue = Act 2, 2 clues = Act 3, etc.)
+        return Mathf.Clamp(savedClues + 1, 1, 3);
+    }
+
+    private void InitializeActProgression()
+    {
+        // Load saved act progression when game starts
+        if (PlayerPrefs.HasKey("CurrentAct"))
+        {
+            int savedAct = PlayerPrefs.GetInt("CurrentAct");
+            SuspicionManager.Instance?.SetAct(savedAct);
+            DoorLockController.UpdateAllLocks(savedAct);
+        }
+        else
+        {
+            // Initialize with current clue count if no save exists
+            CheckActProgression();
+        }
     }
 
     private void CheckForEnding()
