@@ -4,6 +4,7 @@ using Kinnly;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Tilemaps;
 
 public class DELETE : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class DELETE : MonoBehaviour
 
     NavMeshAgent agent;
 
+
+    public Tilemap wallTilemap;
 
     [SerializeField] Transform player;
     [SerializeField] float visionRange = 10f;
@@ -49,9 +52,11 @@ public class DELETE : MonoBehaviour
         Vector3 currentPosition = transform.position;
         var distance = Vector3.Distance(currentPosition, targets[wayPointIndex].position);
 
+        var distaceToPlayer = Vector3.Distance(currentPosition, player.position);
+
         //Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distance);
 
-        if (PlayerInSight())
+        if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=5)
         {
             Debug.Log("chase");
             agent.SetDestination(player.position);
@@ -69,42 +74,50 @@ public class DELETE : MonoBehaviour
 
     }
 
-    bool PlayerInSight()
+    public bool HasLineOfSight(Vector3 npcWorldPos, Vector3 playerWorldPos, Tilemap wallTilemap)
     {
-        Debug.Log("LOOKING FOR PLAYER");
-        Vector3 currentPosition = transform.position;
-        currentPosition.z = 0f;
-        float distance = Vector3.Distance(currentPosition, player.position);
+        Vector3Int npcCell = wallTilemap.WorldToCell(npcWorldPos);
+        Vector3Int playerCell = wallTilemap.WorldToCell(playerWorldPos);
 
-        // Check if the player is within a certain distance
-        if (distance <= 5.0f)
+        foreach (Vector3Int pos in GetLine(npcCell, playerCell))
         {
-            // Perform a raycast from NPC to Player to check for obstacles with the "Wall" tag
-            RaycastHit2D hit = Physics2D.Raycast(currentPosition, (player.position - currentPosition).normalized, distance);
-            Debug.DrawRay(currentPosition, (player.position - currentPosition).normalized * distance, Color.red);
-            // If the ray hits something within the distance
-            if (hit.collider != null && hit.collider.CompareTag("Wall"))
+            if (wallTilemap.HasTile(pos)) // You can fine-tune what counts as a wall
             {
-                // Check if the object hit by the ray has the "Wall" tag
-           
-                // An object with the "Wall" tag is blocking the view
-                Debug.Log("Player is blocked by a wall");
-                return false;  // Return false if the player is blocked by a wall
-                
+                return false; // Wall in the way
             }
-
-            // If no wall is detected, return true
-
-            Debug.Log("player pos" + player.position+ "NPC position: "+ transform.position+ "wall position");
-            return true;
         }
-        else
-        {
-            // If the player is too far, return false
-            return false;
-        }
+        return true; // Clear line of sight
     }
 
+    public IEnumerable<Vector3Int> GetLine(Vector3Int from, Vector3Int to)
+    {
+        int x0 = from.x, y0 = from.y;
+        int x1 = to.x, y1 = to.y;
+
+        int dx = Mathf.Abs(x1 - x0);
+        int dy = Mathf.Abs(y1 - y0);
+        int sx = x0 < x1 ? 1 : -1;
+        int sy = y0 < y1 ? 1 : -1;
+        int err = dx - dy;
+
+        while (true)
+        {
+            yield return new Vector3Int(x0, y0, from.z);
+
+            if (x0 == x1 && y0 == y1) break;
+            int e2 = 2 * err;
+            if (e2 > -dy)
+            {
+                err -= dy;
+                x0 += sx;
+            }
+            if (e2 < dx)
+            {
+                err += dx;
+                y0 += sy;
+            }
+        }
+    }
 
     //// Create a sphere to detect objects in the player layer
     //Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
