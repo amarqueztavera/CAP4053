@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Kinnly;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -22,11 +23,13 @@ public class DELETE : MonoBehaviour
     bool playerOnNavMesh = true;
     public float radiusCheck = 1.0f;
     [SerializeField] Transform player;
-    [SerializeField] float visionRange = 10f;
-    [SerializeField] float visionAngle = 45f;
+    //[SerializeField] float visionRange = 10f;
+    //[SerializeField] float visionAngle = 45f;
     public LayerMask playerLayer;
-    public float detectionRadius = 5f;
+    public float detectionRadius = 10f;
 
+
+    public TextMeshProUGUI caughtMessage;
 
     void Start()
     {
@@ -58,16 +61,21 @@ public class DELETE : MonoBehaviour
 
         var distaceToPlayer = Vector3.Distance(currentPosition, new Vector3(player.position.x, player.position.y,0));
 
-        Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distaceToPlayer);
+        //Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distaceToPlayer);
 
-        if (distaceToPlayer <= 1f)
+        
+        if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=detectionRadius && playerOnNavMesh && NPCStateManager.Instance.maxSuspicion)
         {
-            Debug.Log("PLAYER CAUGHT");
-            player.position = new Vector3(33,-11,0);
-        }
-        if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=5 && playerOnNavMesh && NPCStateManager.Instance.maxSuspicion)
-        {
-            Debug.Log("chase");
+            if (distaceToPlayer <= 1f)
+            {
+                //Debug.Log("PLAYER CAUGHT");
+                player.position = new Vector3(33, -11, 0);
+                NPCStateManager.Instance.maxSuspicion = false;
+                StartCoroutine(ShowCaughtMessage());
+
+            }
+
+            //Debug.Log("chase");
             agent.SetDestination(player.position);
         }
         if (distanceToWaypoint <= 1.0f)
@@ -172,6 +180,14 @@ public class DELETE : MonoBehaviour
             return NPCStateManager.Instance.act3;
 
         return false;
+    }
+
+     IEnumerator ShowCaughtMessage()
+    {
+        caughtMessage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        caughtMessage.gameObject.SetActive(false);
+
     }
 
 }
