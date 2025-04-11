@@ -17,8 +17,10 @@ public class DELETE : MonoBehaviour
     NavMeshAgent agent;
 
 
-    public Tilemap wallTilemap;
 
+    public Tilemap wallTilemap;
+    bool playerOnNavMesh = true;
+    public float radiusCheck = 1.2f;
     [SerializeField] Transform player;
     [SerializeField] float visionRange = 10f;
     [SerializeField] float visionAngle = 45f;
@@ -37,6 +39,7 @@ public class DELETE : MonoBehaviour
 
     void Update()
     {
+        IsOnNavMesh();
         if (!isWalking) 
         {
             StartCoroutine(Walk());
@@ -56,7 +59,7 @@ public class DELETE : MonoBehaviour
 
         //Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distance);
 
-        if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=5)
+        if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=5 && playerOnNavMesh)
         {
             Debug.Log("chase");
             agent.SetDestination(player.position);
@@ -119,17 +122,21 @@ public class DELETE : MonoBehaviour
         }
     }
 
-    //// Create a sphere to detect objects in the player layer
-    //Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
+    void OnDrawGizmos()
+    {
+        //Debug.Log("CHECK RADIUS GIZMO:"+radiusCheck);  
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(player.position, radiusCheck);
+    }
 
-    //// If there are any objects detected in the radius, we assume the player is detected
-    //foreach (var hitCollider in hitColliders)
-    //{
-    //        //player = hitCollider.transform; // Set the player reference
-    //        return true; // Player is in sight
-    //}
-
-
+    public void IsOnNavMesh()
+    {
+        Vector3 position= player.position;
+        //Debug.Log("CHECK RADIUS MESH: "+ radiusCheck);
+        NavMeshHit hit;
+        Debug.Log(NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas));
+        playerOnNavMesh = NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas);
+    }
 
     int selectWaypointIndex()
     {
