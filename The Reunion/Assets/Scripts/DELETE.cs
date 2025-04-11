@@ -20,7 +20,7 @@ public class DELETE : MonoBehaviour
 
     public Tilemap wallTilemap;
     bool playerOnNavMesh = true;
-    public float radiusCheck = 1.2f;
+    public float radiusCheck = 1.0f;
     [SerializeField] Transform player;
     [SerializeField] float visionRange = 10f;
     [SerializeField] float visionAngle = 45f;
@@ -132,7 +132,7 @@ public class DELETE : MonoBehaviour
     public void IsOnNavMesh()
     {
         Vector3 position= player.position;
-        //Debug.Log("CHECK RADIUS MESH: "+ radiusCheck);
+        Debug.Log("CHECK RADIUS MESH: "+ radiusCheck);
         NavMeshHit hit;
         Debug.Log(NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas));
         playerOnNavMesh = NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas);
