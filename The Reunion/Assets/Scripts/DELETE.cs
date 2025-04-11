@@ -73,6 +73,7 @@ public class DELETE : MonoBehaviour
     {
         Debug.Log("LOOKING FOR PLAYER");
         Vector3 currentPosition = transform.position;
+        currentPosition.z = 0f;
         float distance = Vector3.Distance(currentPosition, player.position);
 
         // Check if the player is within a certain distance
@@ -80,7 +81,7 @@ public class DELETE : MonoBehaviour
         {
             // Perform a raycast from NPC to Player to check for obstacles with the "Wall" tag
             RaycastHit2D hit = Physics2D.Raycast(currentPosition, (player.position - currentPosition).normalized, distance);
-
+            Debug.DrawRay(currentPosition, (player.position - currentPosition).normalized * distance, Color.red);
             // If the ray hits something within the distance
             if (hit.collider != null && hit.collider.CompareTag("Wall"))
             {
@@ -93,6 +94,8 @@ public class DELETE : MonoBehaviour
             }
 
             // If no wall is detected, return true
+
+            Debug.Log("player pos" + player.position+ "NPC position: "+ transform.position+ "wall position");
             return true;
         }
         else
