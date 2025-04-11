@@ -53,18 +53,24 @@ public class DELETE : MonoBehaviour
         agent.SetDestination(targets[wayPointIndex].position);
 
         Vector3 currentPosition = transform.position;
-        var distance = Vector3.Distance(currentPosition, targets[wayPointIndex].position);
+        //DISTANCE TO WAYPOINT
+        var distanceToWaypoint = Vector3.Distance(currentPosition, targets[wayPointIndex].position);
 
-        var distaceToPlayer = Vector3.Distance(currentPosition, player.position);
+        var distaceToPlayer = Vector3.Distance(currentPosition, new Vector3(player.position.x, player.position.y,0));
 
-        //Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distance);
+        Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distaceToPlayer);
 
-        if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=5 && playerOnNavMesh)
+        if (distaceToPlayer <= 1f)
+        {
+            Debug.Log("PLAYER CAUGHT");
+            player.position = new Vector3(33,-11,0);
+        }
+        if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=5 && playerOnNavMesh && NPCStateManager.Instance.maxSuspicion)
         {
             Debug.Log("chase");
             agent.SetDestination(player.position);
         }
-        if (distance <= 1.0f)
+        if (distanceToWaypoint <= 1.0f)
         {
             wayPointIndex = selectWaypointIndex();
             yield return new WaitForSeconds(3);
@@ -135,9 +141,9 @@ public class DELETE : MonoBehaviour
     public void IsOnNavMesh()
     {
         Vector3 position= player.position;
-        Debug.Log("CHECK RADIUS MESH: "+ radiusCheck);
+        //Debug.Log("CHECK RADIUS MESH: "+ radiusCheck);
         NavMeshHit hit;
-        Debug.Log(NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas));
+        //Debug.Log(NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas));
         playerOnNavMesh = NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas);
     }
 

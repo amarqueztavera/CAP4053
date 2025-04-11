@@ -16,6 +16,8 @@ public class NPCStateManager : MonoBehaviour
     public bool act2 = false;
     public bool act3 = false;
 
+    public bool maxSuspicion = false;
+
     void Awake()
     {
         
