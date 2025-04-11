@@ -16,13 +16,14 @@ public class DELETE : MonoBehaviour
     public bool isWalking = false;
 
     NavMeshAgent agent;
-
+    Vector3 target;
+    [SerializeField] Transform player;
 
 
     public Tilemap wallTilemap;
     bool playerOnNavMesh = true;
     public float radiusCheck = 1.0f;
-    [SerializeField] Transform player;
+    
     //[SerializeField] float visionRange = 10f;
     //[SerializeField] float visionAngle = 45f;
     public LayerMask playerLayer;
@@ -37,12 +38,17 @@ public class DELETE : MonoBehaviour
         agent.updateRotation =  false;
         agent.updateUpAxis = false;
 
+        //select and set the first waypoint to go to
         wayPointIndex = selectWaypointIndex();
+        target = targets[wayPointIndex].position;
     }
 
     void Update()
     {
+        //makes sure that the player is always on the navmesh
         IsOnNavMesh();
+
+        //makes npc walk to target
         if (!isWalking) 
         {
             StartCoroutine(Walk());
@@ -53,11 +59,13 @@ public class DELETE : MonoBehaviour
     {
 
         isWalking = true;
-        agent.SetDestination(targets[wayPointIndex].position);
+
+        agent.SetDestination(target);
 
         Vector3 currentPosition = transform.position;
-        //DISTANCE TO WAYPOINT
-        var distanceToWaypoint = Vector3.Distance(currentPosition, targets[wayPointIndex].position);
+
+        //DISTANCE TO WAYPOINT or players last location
+        var distanceToTarget = Vector3.Distance(currentPosition, target);
 
         var distaceToPlayer = Vector3.Distance(currentPosition, new Vector3(player.position.x, player.position.y,0));
 
@@ -76,11 +84,15 @@ public class DELETE : MonoBehaviour
             }
 
             //Debug.Log("chase");
-            agent.SetDestination(player.position);
+            target = player.position;
+            agent.SetDestination(target);
         }
-        if (distanceToWaypoint <= 1.0f)
+
+        //target has been reached
+        if (distanceToTarget <= 1.0f)
         {
             wayPointIndex = selectWaypointIndex();
+            target = targets[wayPointIndex].position;
             yield return new WaitForSeconds(3);
         }
 
