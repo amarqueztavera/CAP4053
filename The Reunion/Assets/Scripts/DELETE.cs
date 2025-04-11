@@ -9,27 +9,27 @@ using UnityEngine.Tilemaps;
 
 public class DELETE : MonoBehaviour
 {
-
+    
+    //list of all the npc waypoints
     [SerializeField] List<Transform> targets = new List<Transform>();
     public int wayPointIndex=0;
-
     public bool isWalking = false;
 
+    // references to the navmesh agent, the target wher the npc should walk to, and the player
     NavMeshAgent agent;
     Vector3 target;
+    bool targetIsWaypoint= true;
     [SerializeField] Transform player;
 
-
+    //walls, bool to keep track if player is near navmesh, and a buffer of how far the player can be off the navmesh
     public Tilemap wallTilemap;
     bool playerOnNavMesh = true;
     public float radiusCheck = 1.0f;
-    
-    //[SerializeField] float visionRange = 10f;
-    //[SerializeField] float visionAngle = 45f;
-    public LayerMask playerLayer;
+
+    //how far the npc can see
     public float detectionRadius = 10f;
 
-
+    //reference to the pop up that will show when the plaer gets caught
     public TextMeshProUGUI caughtMessage;
 
     void Start()
@@ -62,19 +62,23 @@ public class DELETE : MonoBehaviour
 
         agent.SetDestination(target);
 
+        //npc's position
         Vector3 currentPosition = transform.position;
 
-        //DISTANCE TO WAYPOINT or players last location
+        //DISTANCE TO  TARGET aka waypoint or players last location
         var distanceToTarget = Vector3.Distance(currentPosition, target);
 
+        //distance to the player from the npc at all times
         var distaceToPlayer = Vector3.Distance(currentPosition, new Vector3(player.position.x, player.position.y,0));
 
         //Debug.Log("NPC POS: " + currentPosition + "Target pos:" + targets[wayPointIndex].position + "Distance:" + distaceToPlayer);
 
-        
+        //check if there are no wall between the player and npc, and the ditance to the player is less then the npc's vision (detection radius) , player must be on navmesh (must be reachable), suspicion meter msut be at the max
         if (HasLineOfSight( transform.position, player.position,  wallTilemap) && distaceToPlayer<=detectionRadius && playerOnNavMesh && NPCStateManager.Instance.maxSuspicion)
         {
-            if (distaceToPlayer <= 1f)
+            
+            //npc caught the player
+            if (distaceToPlayer <= 1.0f)
             {
                 //Debug.Log("PLAYER CAUGHT");
                 player.position = new Vector3(33, -11, 0);
@@ -83,26 +87,34 @@ public class DELETE : MonoBehaviour
 
             }
 
-            //Debug.Log("chase");
+            //set the npc's target to the last player location the npc saw
             target = player.position;
+            targetIsWaypoint = false;
+            //go to target
             agent.SetDestination(target);
         }
 
-        //target has been reached
+        //target has been reached, can be the waypoint or last instance of the player
         if (distanceToTarget <= 1.0f)
         {
+            //get ne waypoint to patrol to
             wayPointIndex = selectWaypointIndex();
             target = targets[wayPointIndex].position;
-            yield return new WaitForSeconds(3);
+
+            //wait at waypoint for 3 secs
+            if (targetIsWaypoint) 
+                yield return new WaitForSeconds(3);
+
+            targetIsWaypoint = true;
         }
 
         isWalking = false;
-
         yield return null;
 
 
     }
 
+    //checks if the player is in the line of sight of the npc, there cant be walls inbetween
     public bool HasLineOfSight(Vector3 npcWorldPos, Vector3 playerWorldPos, Tilemap wallTilemap)
     {
         Vector3Int npcCell = wallTilemap.WorldToCell(npcWorldPos);
@@ -110,12 +122,15 @@ public class DELETE : MonoBehaviour
 
         foreach (Vector3Int pos in GetLine(npcCell, playerCell))
         {
-            if (wallTilemap.HasTile(pos)) // You can fine-tune what counts as a wall
+            if (wallTilemap.HasTile(pos))
             {
-                return false; // Wall in the way
+                // Wall in the way
+                return false; 
             }
         }
-        return true; // Clear line of sight
+        
+        // Clear line of sight
+        return true; 
     }
 
     public IEnumerable<Vector3Int> GetLine(Vector3Int from, Vector3Int to)
@@ -148,16 +163,19 @@ public class DELETE : MonoBehaviour
         }
     }
 
+    //shows us the vision radius of the npcs, and the max distance the player can be off of the navmesh
     void OnDrawGizmos()
     {
-        //Debug.Log("CHECK RADIUS GIZMO:"+radiusCheck);  
+        //max distance off navmesh
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(player.position, radiusCheck);
 
+        //npc vision
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
+    //returns tru if player is close eniugh to the navmesh (aka the npc can still reach the player)
     public void IsOnNavMesh()
     {
         Vector3 position= player.position;
@@ -167,6 +185,7 @@ public class DELETE : MonoBehaviour
         playerOnNavMesh = NavMesh.SamplePosition(position, out hit, radiusCheck, NavMesh.AllAreas);
     }
 
+    //selects a valid waypoint, must be a waypoint to a room that has been unlocked
     int selectWaypointIndex()
     {
         wayPointIndex = Random.Range(0, targets.Count);
@@ -177,6 +196,7 @@ public class DELETE : MonoBehaviour
         return wayPointIndex;
     }
 
+    //check if waypoint is in an unlocked room
     bool isValidWaypoint( int wayPointIndex)
     {
 
@@ -194,6 +214,7 @@ public class DELETE : MonoBehaviour
         return false;
     }
 
+    //shows a message when the player gets caught
      IEnumerator ShowCaughtMessage()
     {
         caughtMessage.gameObject.SetActive(true);
