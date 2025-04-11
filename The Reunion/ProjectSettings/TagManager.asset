@@ -11,6 +11,8 @@ TagManager:
   - act2 waypoint
   - act3 waypoint
   - act1 waypoint
+  - Tag
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - GridLayer
   - Lock
   - Boundaries
-  - 
+  - Wall
   - 
   - 
   - 
