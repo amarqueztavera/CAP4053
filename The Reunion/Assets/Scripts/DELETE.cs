@@ -127,6 +127,9 @@ public class DELETE : MonoBehaviour
         //Debug.Log("CHECK RADIUS GIZMO:"+radiusCheck);  
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(player.position, radiusCheck);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
     public void IsOnNavMesh()
