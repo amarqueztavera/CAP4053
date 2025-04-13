@@ -30,7 +30,7 @@ public class DELETE : MonoBehaviour
     public float detectionRadius = 10f;
 
     //reference to the pop up that will show when the plaer gets caught
-    public TextMeshProUGUI caughtMessage;
+    public TextMeshProUGUI caughtMessage , notAgainMessage;
 
     void Start()
     {
@@ -218,7 +218,9 @@ public class DELETE : MonoBehaviour
      IEnumerator ShowCaughtMessage()
     {
         caughtMessage.gameObject.SetActive(true);
+        notAgainMessage.gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
+        notAgainMessage.gameObject.SetActive(false);
         caughtMessage.gameObject.SetActive(false);
 
     }
