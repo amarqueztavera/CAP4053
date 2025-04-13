@@ -41,6 +41,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Thank_you_Scene.unity
     guid: eeb7cec71f5534fbca7035e9871be1d9
+  - enabled: 1
+    path: Assets/Scenes/End Clue Review.unity
+    guid: 2521df794c9e37f4fb084dfb35af98b8
+  - enabled: 1
+    path: Assets/Scenes/End Good.unity
+    guid: eb047ea85ef292e4faa57e23c7a7b65c
+  - enabled: 1
+    path: Assets/Scenes/End Neutral.unity
+    guid: 28b3c7656290c824980ee6488ebf4664
+  - enabled: 1
+    path: Assets/Scenes/End Bad.unity
+    guid: 5d674a831ec63254f89a172a97474472
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
