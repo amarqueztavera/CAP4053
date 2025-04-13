@@ -14,6 +14,18 @@ public class Dialogue : MonoBehaviour
     public GameObject continueButton;
     public float wordSpeed;
     public bool playerIsClose;
+
+
+
+    [Header("Conditional Dialogues")]
+    public string[] act1Dialogue;
+    public string[] act2Dialogue;
+    public string[] act3Dialogue;
+
+    //private int condition1Index = 0;
+    //private int condition2Index = 0;
+    //private int condition3Index = 0;
+
     void Start()
     {
         
@@ -22,7 +34,15 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E) && playerIsClose)
+        if (NPCStateManager.Instance.act3 == true)
+            dialogue = act3Dialogue;
+        else if (NPCStateManager.Instance.act2 == true)
+            dialogue = act2Dialogue;
+        else if(NPCStateManager.Instance.act1 == true)
+            dialogue = act1Dialogue;
+        
+
+        if (Input.GetKeyUp(KeyCode.E) && playerIsClose && !NPCStateManager.Instance.maxSuspicion)
         {
             if (dialoguePanel.activeInHierarchy)
             {
