@@ -9,6 +9,7 @@ public class SuspicionManager : MonoBehaviour
     [Header("UI References")]
     public Slider suspicionMeter;
     public TMP_Text suspicionText;
+    public Image handle; 
 
     [Header("Suspicion Settings")]
     [Tooltip("Base suspicion increase per second")]
@@ -44,20 +45,42 @@ public class SuspicionManager : MonoBehaviour
     void Initialize()
     {
         suspicionMeter.maxValue = 100;
-        StartCoroutine(UpdateSuspicion());
+        suspicionMeter.interactable = false;
+
+        // Make handle non-interactive but fully visible
+        if (handle != null)
+        {
+            handle.raycastTarget = false;
+        }
+        else
+        {
+            Debug.LogWarning("Handle Image reference missing in SuspicionManager");
+        }
+
+        Debug.Log("Initializing suspicion manager");
+        suspicionCoroutine = StartCoroutine(UpdateSuspicion());
+
+        // Verify coroutine started
+        if (suspicionCoroutine == null)
+        {
+            Debug.LogError("Failed to start suspicion coroutine!");
+        }
     }
 
     IEnumerator UpdateSuspicion()
     {
         while (true)
         {
+            // Debug log to verify the coroutine is running
+            Debug.Log("Suspicion coroutine running");
+
             float multiplier = actMultipliers[currentAct - 1];
             float rate = baseSuspicionRate * multiplier;
 
             // Debug logs to track values
-            //Debug.Log($"Current Act: {currentAct}");
-            //Debug.Log($"Multiplier: {multiplier}");
-            //Debug.Log($"Rate: {rate}");
+            Debug.Log($"Current Act: {currentAct}");
+            Debug.Log($"Multiplier: {multiplier}");
+            Debug.Log($"Rate: {rate}");
 
             if (isInReunionArea)
             {
@@ -84,8 +107,27 @@ public class SuspicionManager : MonoBehaviour
 
     void UpdateUI()
     {
+        if (suspicionMeter == null)
+        {
+            Debug.LogError("Suspicion Meter reference is null!");
+            return;
+        }
+
         suspicionMeter.value = currentSuspicion;
-        suspicionText.text = $"Suspicion: {(int)currentSuspicion}%";
+
+        if (suspicionText != null)
+        {
+            suspicionText.text = $"Suspicion: {(int)currentSuspicion}%";
+        }
+        else
+        {
+            Debug.LogError("Suspicion Text reference is null!");
+        }
+
+        // Visual verification
+        Debug.Log($"UI Updated - Value: {suspicionMeter.value}, Text: {suspicionText.text}");
+
+
     }
 
     public void IncreaseSuspicion(float amount)
