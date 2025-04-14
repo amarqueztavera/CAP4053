@@ -94,101 +94,6 @@ public class DELETE : MonoBehaviour
                !ReunionArea.PlayerIsInside;
     }
 
-
-    //IEnumerator Walk()
-    //{
-    //    isWalking = true;
-    //    agent.SetDestination(target);
-
-    //    while (true)
-    //    {
-    //        float distanceToTarget = Vector3.Distance(transform.position, target);
-    //        float distanceToPlayer = Vector3.Distance(transform.position, NPCStateManager.Instance.PlayerTransform.position);
-
-    //        // Skip chasing if player is in reunion area
-
-    //        if (CanChasePlayer() &&
-    //        HasLineOfSight(transform.position, player.position, wallTilemap))
-    //        {
-    //            // Only chase if all conditions are met
-    //            target = player.position;
-    //            timeSinceLastSighting = 0f;
-    //            agent.SetDestination(target);
-    //        }
-    //        //if (NPCStateManager.Instance.maxSuspicion &&
-    //        //    !SuspicionManager.Instance.IsInReunionArea)
-    //        //{
-    //        //    if (HasLineOfSight(transform.position, player.position, wallTilemap))
-    //        //    {
-    //        //        //target = player.position;
-    //        //        //timeSinceLastSighting = 0f;
-
-    //        //        // Only chase if player is outside reunion area
-    //        //        if (!IsPositionInReunionArea(player.position))
-    //        //        {
-    //        //            target = player.position;
-
-    //        //            agent.SetDestination(target);
-    //        //        }
-    //        //    }
-    //        //    else
-    //        //    {
-    //        //        timeSinceLastSighting += Time.deltaTime;
-    //        //    }
-    //        //}
-
-    //        // Chase behavior
-    //        if (NPCStateManager.Instance.maxSuspicion)
-    //        {
-    //            if (HasLineOfSight(transform.position, NPCStateManager.Instance.PlayerTransform.position, wallTilemap))
-    //            {
-    //                target = NPCStateManager.Instance.PlayerTransform.position;
-    //                timeSinceLastSighting = 0f;
-    //                agent.SetDestination(target);
-    //            }
-    //            else
-    //            {
-    //                timeSinceLastSighting += Time.deltaTime;
-
-    //                // Return to patrol after investigation time
-    //                if (timeSinceLastSighting > investigationTime)
-    //                {
-    //                    targetIsWaypoint = true;
-    //                    wayPointIndex = selectWaypointIndex();
-    //                    target = targets[wayPointIndex].position;
-    //                }
-    //            }
-
-    //            // Catch player
-    //            if (distanceToPlayer <= 1f)
-    //            {
-    //                CatchPlayer();
-    //                yield break;
-    //            }
-    //        }
-
-    //        // Reached target
-    //        if (distanceToTarget <= 1f)
-    //        {
-    //            if (targetIsWaypoint)
-    //            {
-    //                yield return new WaitForSeconds(3);
-    //                wayPointIndex = selectWaypointIndex();
-    //                target = targets[wayPointIndex].position;
-    //            }
-    //            else
-    //            {
-    //                targetIsWaypoint = true;
-    //                wayPointIndex = selectWaypointIndex();
-    //                target = targets[wayPointIndex].position;
-    //            }
-    //        }
-
-    //        agent.SetDestination(target);
-    //        yield return null;
-    //    }
-    //}
-
     IEnumerator Walk()
     {
         isWalking = true;
@@ -196,54 +101,44 @@ public class DELETE : MonoBehaviour
 
         while (true)
         {
-            Vector3 currentPosition = transform.position;
-            float distanceToTarget = Vector3.Distance(currentPosition, target);
-            float distanceToPlayer = Vector3.Distance(currentPosition, NPCStateManager.Instance.PlayerTransform.position);
+            float distanceToTarget = Vector3.Distance(transform.position, target);
+            float distanceToPlayer = Vector3.Distance(transform.position, NPCStateManager.Instance.PlayerTransform.position);
 
-            //---- CHASE LOGIC ----//
-            if (ShouldChasePlayer())
+            // Chase logic
+            if (NPCStateManager.Instance.maxSuspicion && !SuspicionManager.Instance.IsInReunionArea)
             {
-                bool canSeePlayer = HasLineOfSight(currentPosition, NPCStateManager.Instance.PlayerTransform.position, wallTilemap);
-
-                if (canSeePlayer)
+                if (HasLineOfSight(transform.position, NPCStateManager.Instance.PlayerTransform.position, wallTilemap))
                 {
-                    // ACTIVE CHASE
                     target = NPCStateManager.Instance.PlayerTransform.position;
                     timeSinceLastSighting = 0f;
                     agent.speed = chaseSpeed;
 
-                    // CATCH PLAYER
-                    if (distanceToPlayer <= catchDistance)
+                    agent.SetDestination(target);
+
+                    if (distanceToPlayer <= 1f)
                     {
                         CatchPlayer();
                         yield break;
                     }
                 }
-                else
+                else if (timeSinceLastSighting > investigationTime)
                 {
-                    // INVESTIGATION MODE
-                    timeSinceLastSighting += Time.deltaTime;
-
-                    if (timeSinceLastSighting > investigationTime)
-                    {
-                        ReturnToPatrol();
-                    }
+                    ReturnToPatrol();
                 }
             }
-            //---- END CHASE LOGIC ----//
 
-            //---- PATROL LOGIC ----//
-            if (distanceToTarget <= waypointArrivalDistance)
+            // Patrol logic
+            if (distanceToTarget <= 1f)
             {
                 if (targetIsWaypoint)
                 {
-                    // WAIT AT WAYPOINT
-                    yield return new WaitForSeconds(waypointWaitTime);
-                    ReturnToPatrol();
+                    yield return new WaitForSeconds(3);
+                    wayPointIndex = selectWaypointIndex();
+                    target = targets[wayPointIndex].position;
+                    agent.speed = patrolSpeed;
                 }
                 else
                 {
-                    // RETURN TO PATROL AFTER INVESTIGATION
                     ReturnToPatrol();
                 }
             }
@@ -253,13 +148,6 @@ public class DELETE : MonoBehaviour
         }
     }
 
-    private bool ShouldChasePlayer()
-    {
-        return NPCStateManager.Instance.maxSuspicion &&
-               !SuspicionManager.Instance.IsInReunionArea &&
-               SuspicionManager.Instance.CanSuspicionIncrease;
-    }
-
     private void ReturnToPatrol()
     {
         targetIsWaypoint = true;
@@ -267,21 +155,6 @@ public class DELETE : MonoBehaviour
         target = targets[wayPointIndex].position;
         agent.speed = patrolSpeed;
     }
-
-    //private bool IsPositionInReunionArea(Vector3 position)
-    //{
-    //    // Implement your reunion area check here
-    //    // Example: Check if position is within reunion area bounds
-    //    Collider2D[] colliders = Physics2D.OverlapPointAll(position);
-    //    foreach (Collider2D collider in colliders)
-    //    {
-    //        if (collider.CompareTag("ReunionArea"))
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
 
     void CatchPlayer()
     {
@@ -451,7 +324,6 @@ public class DELETE : MonoBehaviour
         {
             StopCoroutine(Walk());
         }
-
         // Restart patrol
         StartCoroutine(Walk());
     }

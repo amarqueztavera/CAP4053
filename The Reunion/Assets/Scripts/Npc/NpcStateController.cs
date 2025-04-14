@@ -84,9 +84,18 @@ public class NPCStateManager : MonoBehaviour
 
         if (!suspicious)
         {
-            // When leaving alert state:
+            // Clear chase state
             lastPlayerPosition = Vector3.zero;
-            ForceAllNPCsToPatrol();
+
+            // Reset all NPCs
+            var npcs = FindObjectsByType<DELETE>(FindObjectsSortMode.None);
+            foreach (var npc in npcs)
+            {
+                if (npc.isActiveAndEnabled)
+                {
+                    npc.ResetToPatrol();
+                }
+            }
         }
     }
 
