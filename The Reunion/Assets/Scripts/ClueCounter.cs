@@ -7,7 +7,7 @@ public class ClueCounter : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private int cluesRequiredForEnding = 3; // Set to 9 for final game
-    public string endingSceneName = "Thank_you_Scene"; // Name of ending scene
+    public string endingSceneName = "End Scene"; // Name of ending scene
 
     [Header("UI")]
     [SerializeField] private TMP_Text cluesText;
