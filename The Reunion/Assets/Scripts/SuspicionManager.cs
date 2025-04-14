@@ -23,7 +23,7 @@ public class SuspicionManager : MonoBehaviour
     public float[] actMultipliers = { 1f, 1.5f, 2f }; // Multipliers for acts 1, 2, 3
 
     [Header("Reunion Area Settings")]
-    [SerializeField] private float reunionAreaCooldown = 2f; // Prevent immediate re-triggering
+    [SerializeField] private float reunionAreaCooldown = 2f; // Time after leaving when suspicion won't increase
     private float _lastReunionExitTime;
 
     private bool _isInReunionArea = false;
@@ -35,7 +35,7 @@ public class SuspicionManager : MonoBehaviour
     // getter for checking if player is in reunion area
     public bool IsInReunionArea { get; private set; }
 
-    public bool CanSuspicionIncrease
+    public bool IsInCooldown
     {
         get
         {
@@ -62,7 +62,6 @@ public class SuspicionManager : MonoBehaviour
     void Initialize()
     {
         suspicionMeter.maxValue = 100;
-        //suspicionMeter.interactable = false;
 
         // Make handle non-interactive
         if (handle != null)
@@ -84,73 +83,33 @@ public class SuspicionManager : MonoBehaviour
         }
     }
 
-    IEnumerator UpdateSuspicion()
+    private IEnumerator UpdateSuspicion()
     {
-        //while (true)
-        //{
-        //    // Debug log to verify the coroutine is running
-        //    Debug.Log("Suspicion coroutine running");
-
-        //    float multiplier = actMultipliers[currentAct - 1];
-        //    float rate = baseSuspicionRate * multiplier;
-
-        //    // Debug logs to track values
-        //    Debug.Log($"Current Act: {currentAct}");
-        //    Debug.Log($"Multiplier: {multiplier}");
-        //    Debug.Log($"Rate: {rate}");
-
-        //    if (isInReunionArea)
-        //    {
-        //        //currentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseRate * Time.deltaTime);
-        //        currentSuspicion = 0; // suspicion drops to 0 instead of having down time
-        //    }
-        //    else
-        //    {
-        //        currentSuspicion = Mathf.Min(100, currentSuspicion + rate * Time.deltaTime);
-        //    }
-
-        //    UpdateUI();
-
-        //    // Check for max suspicion
-        //    if (currentSuspicion >= 100)
-        //    {
-        //        TriggerAlert();
-        //        yield break;
-        //    }
-
-        //    yield return null;
-        //}
-
-        //while (true)
-        //{
-        //    if (!IsInReunionArea && !NPCStateManager.Instance.maxSuspicion)
-        //    {
-        //        float multiplier = actMultipliers[currentAct - 1];
-        //        float rate = baseSuspicionRate * multiplier;
-        //        currentSuspicion = Mathf.Min(100, currentSuspicion + rate * Time.deltaTime);
-        //        UpdateUI();
-
-        //        if (currentSuspicion >= 100)
-        //        {
-        //            TriggerAlert();
-        //            yield break;
-        //        }
-        //    }
-        //    yield return null;
-        //}
-
         while (true)
         {
-            if (!IsInReunionArea && CanSuspicionIncrease && !NPCStateManager.Instance.maxSuspicion)
+            if (!IsInReunionArea) // Only increase when outside reunion area
             {
-                float rate = baseSuspicionRate * actMultipliers[currentAct - 1];
-                currentSuspicion = Mathf.Min(100, currentSuspicion + rate * Time.deltaTime);
-                UpdateUI();
-
-                if (currentSuspicion >= 100)
+                if (!NPCStateManager.Instance.maxSuspicion) // Only increase if not in alert state
                 {
-                    TriggerAlert();
-                    yield break;
+                    float multiplier = actMultipliers[currentAct - 1];
+                    float rate = baseSuspicionRate * multiplier;
+                    currentSuspicion = Mathf.Min(100, currentSuspicion + rate * Time.deltaTime);
+                    UpdateUI();
+
+                    if (currentSuspicion >= 100)
+                    {
+                        TriggerAlert();
+                        yield break;
+                    }
+                }
+            }
+            else // Inside reunion area
+            {
+                // Keep resetting to 0 while in safe zone
+                if (currentSuspicion > 0)
+                {
+                    currentSuspicion = 0;
+                    UpdateUI();
                 }
             }
             yield return null;
@@ -197,47 +156,23 @@ public class SuspicionManager : MonoBehaviour
 
     public void SetReunionArea(bool isInArea)
     {
-        // Don't process if state isn't changing
-        if (IsInReunionArea == isInArea) return;
-
         IsInReunionArea = isInArea;
 
         if (IsInReunionArea)
         {
-            // Entering reunion area
-            currentSuspicion = 0f;
+            // Immediately reset when entering
+            currentSuspicion = 0;
             UpdateUI();
-
             NPCStateManager.Instance.SetMaxSuspicion(false);
-
-            Debug.Log("Entered reunion area - suspicion reset");
         }
-        else
+
+        // Always restart coroutine when state changes
+        if (suspicionCoroutine != null)
         {
-            // Exiting reunion area
-            _lastReunionExitTime = Time.time;
-            //StartCoroutine(ReunionAreaCooldown());
-            Debug.Log("Left reunion area - suspicion can rise");
+            StopCoroutine(suspicionCoroutine);
         }
+        suspicionCoroutine = StartCoroutine(UpdateSuspicion());
     }
-
-    private IEnumerator ReunionAreaCooldown()
-    {
-        yield return new WaitForSeconds(reunionAreaCooldown);
-
-        // Restart coroutine if needed
-        if (suspicionCoroutine == null)
-        {
-            suspicionCoroutine = StartCoroutine(UpdateSuspicion());
-        }
-    }
-
-    //void TriggerAlert()
-    //{
-    //    Debug.Log("Suspicion maxed! NPCs are alerted.");
-    //    // Add NPC alert logic here (e.g., trigger AI search)
-    //    StopCoroutine(suspicionCoroutine);
-    //}
 
     void TriggerAlert()
     {
@@ -278,9 +213,9 @@ public class SuspicionManager : MonoBehaviour
     public void ResetFromCaught()
     {
         currentSuspicion = 0f;
+        _lastReunionExitTime = Time.time; // Start cooldown
         UpdateUI();
 
-        // Restart the coroutine if it's not running
         if (suspicionCoroutine == null)
         {
             suspicionCoroutine = StartCoroutine(UpdateSuspicion());
