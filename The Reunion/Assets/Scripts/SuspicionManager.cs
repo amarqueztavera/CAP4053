@@ -45,9 +45,9 @@ public class SuspicionManager : MonoBehaviour
     void Initialize()
     {
         suspicionMeter.maxValue = 100;
-        suspicionMeter.interactable = false;
+        //suspicionMeter.interactable = false;
 
-        // Make handle non-interactive but fully visible
+        // Make handle non-interactive
         if (handle != null)
         {
             handle.raycastTarget = false;
