@@ -10,7 +10,7 @@ public class SuspicionManager : MonoBehaviour
     [Header("UI References")]
     public Slider suspicionMeter;
     public TMP_Text suspicionText;
-    public Image handle; 
+    public Image handle;
 
     [Header("Suspicion Settings")]
     [Tooltip("Base suspicion increase per second")]
@@ -22,11 +22,27 @@ public class SuspicionManager : MonoBehaviour
     public int currentAct = 1; // 1, 2, or 3
     public float[] actMultipliers = { 1f, 1.5f, 2f }; // Multipliers for acts 1, 2, 3
 
-    private bool isInReunionArea = false;
+    [Header("Reunion Area Settings")]
+    [SerializeField] private float reunionAreaCooldown = 2f; // Prevent immediate re-triggering
+    private float _lastReunionExitTime;
+
+    private bool _isInReunionArea = false;
     private Coroutine suspicionCoroutine;
 
     public static SuspicionManager Instance;
     public static event System.Action<int> OnActChanged;
+
+    // getter for checking if player is in reunion area
+    public bool IsInReunionArea { get; private set; }
+
+    public bool CanSuspicionIncrease
+    {
+        get
+        {
+            return Time.time > _lastReunionExitTime + reunionAreaCooldown;
+        }
+    }
+
 
     void Awake()
     {
@@ -70,38 +86,73 @@ public class SuspicionManager : MonoBehaviour
 
     IEnumerator UpdateSuspicion()
     {
+        //while (true)
+        //{
+        //    // Debug log to verify the coroutine is running
+        //    Debug.Log("Suspicion coroutine running");
+
+        //    float multiplier = actMultipliers[currentAct - 1];
+        //    float rate = baseSuspicionRate * multiplier;
+
+        //    // Debug logs to track values
+        //    Debug.Log($"Current Act: {currentAct}");
+        //    Debug.Log($"Multiplier: {multiplier}");
+        //    Debug.Log($"Rate: {rate}");
+
+        //    if (isInReunionArea)
+        //    {
+        //        //currentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseRate * Time.deltaTime);
+        //        currentSuspicion = 0; // suspicion drops to 0 instead of having down time
+        //    }
+        //    else
+        //    {
+        //        currentSuspicion = Mathf.Min(100, currentSuspicion + rate * Time.deltaTime);
+        //    }
+
+        //    UpdateUI();
+
+        //    // Check for max suspicion
+        //    if (currentSuspicion >= 100)
+        //    {
+        //        TriggerAlert();
+        //        yield break;
+        //    }
+
+        //    yield return null;
+        //}
+
+        //while (true)
+        //{
+        //    if (!IsInReunionArea && !NPCStateManager.Instance.maxSuspicion)
+        //    {
+        //        float multiplier = actMultipliers[currentAct - 1];
+        //        float rate = baseSuspicionRate * multiplier;
+        //        currentSuspicion = Mathf.Min(100, currentSuspicion + rate * Time.deltaTime);
+        //        UpdateUI();
+
+        //        if (currentSuspicion >= 100)
+        //        {
+        //            TriggerAlert();
+        //            yield break;
+        //        }
+        //    }
+        //    yield return null;
+        //}
+
         while (true)
         {
-            // Debug log to verify the coroutine is running
-            Debug.Log("Suspicion coroutine running");
-
-            float multiplier = actMultipliers[currentAct - 1];
-            float rate = baseSuspicionRate * multiplier;
-
-            // Debug logs to track values
-            Debug.Log($"Current Act: {currentAct}");
-            Debug.Log($"Multiplier: {multiplier}");
-            Debug.Log($"Rate: {rate}");
-
-            if (isInReunionArea)
+            if (!IsInReunionArea && CanSuspicionIncrease && !NPCStateManager.Instance.maxSuspicion)
             {
-                //currentSuspicion = Mathf.Max(0, currentSuspicion - suspicionDecreaseRate * Time.deltaTime);
-                currentSuspicion = 0; // suspicion drops to 0 instead of having down time
-            }
-            else
-            {
+                float rate = baseSuspicionRate * actMultipliers[currentAct - 1];
                 currentSuspicion = Mathf.Min(100, currentSuspicion + rate * Time.deltaTime);
+                UpdateUI();
+
+                if (currentSuspicion >= 100)
+                {
+                    TriggerAlert();
+                    yield break;
+                }
             }
-
-            UpdateUI();
-
-            // Check for max suspicion
-            if (currentSuspicion >= 100)
-            {
-                TriggerAlert();
-                yield break;
-            }
-
             yield return null;
         }
     }
@@ -146,7 +197,39 @@ public class SuspicionManager : MonoBehaviour
 
     public void SetReunionArea(bool isInArea)
     {
-        isInReunionArea = isInArea;
+        // Don't process if state isn't changing
+        if (IsInReunionArea == isInArea) return;
+
+        IsInReunionArea = isInArea;
+
+        if (IsInReunionArea)
+        {
+            // Entering reunion area
+            currentSuspicion = 0f;
+            UpdateUI();
+
+            NPCStateManager.Instance.SetMaxSuspicion(false);
+
+            Debug.Log("Entered reunion area - suspicion reset");
+        }
+        else
+        {
+            // Exiting reunion area
+            _lastReunionExitTime = Time.time;
+            //StartCoroutine(ReunionAreaCooldown());
+            Debug.Log("Left reunion area - suspicion can rise");
+        }
+    }
+
+    private IEnumerator ReunionAreaCooldown()
+    {
+        yield return new WaitForSeconds(reunionAreaCooldown);
+
+        // Restart coroutine if needed
+        if (suspicionCoroutine == null)
+        {
+            suspicionCoroutine = StartCoroutine(UpdateSuspicion());
+        }
     }
 
     //void TriggerAlert()
@@ -184,5 +267,23 @@ public class SuspicionManager : MonoBehaviour
     {
         currentSuspicion = 0f;
         UpdateUI();
+
+        // Restart the coroutine if it's not running
+        if (suspicionCoroutine == null)
+        {
+            suspicionCoroutine = StartCoroutine(UpdateSuspicion());
+        }
+    }
+
+    public void ResetFromCaught()
+    {
+        currentSuspicion = 0f;
+        UpdateUI();
+
+        // Restart the coroutine if it's not running
+        if (suspicionCoroutine == null)
+        {
+            suspicionCoroutine = StartCoroutine(UpdateSuspicion());
+        }
     }
 }

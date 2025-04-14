@@ -63,7 +63,7 @@ public class NPCStateManager : MonoBehaviour
 
     void Awake()
     {
-        
+
         if (Instance == null)
         {
             Instance = this;
@@ -78,10 +78,27 @@ public class NPCStateManager : MonoBehaviour
 
     public void SetMaxSuspicion(bool suspicious)
     {
+        if (maxSuspicion == suspicious) return;
+
         maxSuspicion = suspicious;
+
         if (!suspicious)
         {
+            // When leaving alert state:
             lastPlayerPosition = Vector3.zero;
+            ForceAllNPCsToPatrol();
+        }
+    }
+
+    public void ForceAllNPCsToPatrol()
+    {
+        var npcs = FindObjectsByType<DELETE>(FindObjectsSortMode.None);
+        foreach (var npc in npcs)
+        {
+            if (npc.isActiveAndEnabled)
+            {
+                npc.ResetToPatrol();
+            }
         }
     }
 
@@ -147,6 +164,16 @@ public class NPCStateManager : MonoBehaviour
         {
             lastPlayerPosition = PlayerTransform.position;
             UpdateNPCNavigation();
+        }
+    }
+
+    public void ResetAllNPCs()
+    {
+        maxSuspicion = false;
+        var npcs = FindObjectsByType<DELETE>(FindObjectsSortMode.None);
+        foreach (var npc in npcs)
+        {
+            npc.ResetFromCaught();
         }
     }
 }
