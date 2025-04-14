@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using System.Runtime.CompilerServices;
+using Kinnly;
 
 public class SuspicionManager : MonoBehaviour
 {
@@ -148,10 +149,40 @@ public class SuspicionManager : MonoBehaviour
         isInReunionArea = isInArea;
     }
 
+    //void TriggerAlert()
+    //{
+    //    Debug.Log("Suspicion maxed! NPCs are alerted.");
+    //    // Add NPC alert logic here (e.g., trigger AI search)
+    //    StopCoroutine(suspicionCoroutine);
+    //}
+
     void TriggerAlert()
     {
         Debug.Log("Suspicion maxed! NPCs are alerted.");
-        // Add NPC alert logic here (e.g., trigger AI search)
-        StopCoroutine(suspicionCoroutine);
+        NPCStateManager.Instance.SetMaxSuspicion(true);
+        currentSuspicion = 100f;
+        UpdateUI();
+
+        // Alert all NPCs
+        NPCStateManager.Instance.AlertAllNPCs();
+
+        // Start cooldown coroutine
+        StartCoroutine(SuspensionCooldown());
+    }
+
+    private IEnumerator SuspensionCooldown()
+    {
+        yield return new WaitForSeconds(10f); // 10 second alert duration
+
+        if (currentSuspicion < 100f)
+        {
+            NPCStateManager.Instance.SetMaxSuspicion(false);
+        }
+    }
+
+    public void ResetSuspicion()
+    {
+        currentSuspicion = 0f;
+        UpdateUI();
     }
 }
