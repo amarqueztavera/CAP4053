@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,14 +9,16 @@ public class Dialogue : MonoBehaviour
 
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
-    public string[] dialogue;
+    private string[] dialogue;
     private int index;
 
     public GameObject continueButton;
     public float wordSpeed;
     public bool playerIsClose;
 
+    public bool canTalk= true;
 
+    public string[] randomDialogue;
 
     [Header("Conditional Dialogues")]
     public string[] act1Dialogue;
@@ -34,15 +37,30 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (NPCStateManager.Instance.act3 == true)
+        if (NPCStateManager.Instance.act3 == true && act3Dialogue.Length > 0)
+        {
+            canTalk = true;
             dialogue = act3Dialogue;
-        else if (NPCStateManager.Instance.act2 == true)
+        }
+        else if (NPCStateManager.Instance.act2 == true && act2Dialogue.Length > 0)
+        {
+            canTalk = true;
             dialogue = act2Dialogue;
-        else if(NPCStateManager.Instance.act1 == true)
+        }
+        else if (NPCStateManager.Instance.act1 == true && act1Dialogue.Length > 0)
+        {
+            canTalk = true;
             dialogue = act1Dialogue;
-        
+        }
+        else if (randomDialogue.Length > 0)
+        {
+            canTalk=true;
+            dialogue = randomDialogue;
+        }
+        else
+            canTalk = false;
 
-        if (Input.GetKeyUp(KeyCode.E) && playerIsClose && !NPCStateManager.Instance.maxSuspicion)
+        if (Input.GetKeyUp(KeyCode.E) && playerIsClose && !NPCStateManager.Instance.maxSuspicion && canTalk)
         {
             if (dialoguePanel.activeInHierarchy)
             {
