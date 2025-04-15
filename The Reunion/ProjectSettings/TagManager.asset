@@ -15,6 +15,8 @@ TagManager:
   - Wall
   - ReunionArea
   - Puzzle
+  - Cell
+  - Dot
   layers:
   - Default
   - TransparentFX
@@ -63,6 +65,12 @@ TagManager:
     locked: 0
   - name: NPC
     uniqueID: 3342715685
+    locked: 0
+  - name: Cells
+    uniqueID: 1336834859
+    locked: 0
+  - name: Dots
+    uniqueID: 1899026511
     locked: 0
   m_RenderingLayers:
   - Default
