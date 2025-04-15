@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using TMPro;
 
+
+
 public class InventoryManager : MonoBehaviour
 {
     public List<Clue> clues = new List<Clue>(); // List to store collected clues
@@ -14,6 +16,39 @@ public class InventoryManager : MonoBehaviour
     public ClueCounter clueCounter;
 
     public static InventoryManager Instance;
+
+    // Save the current inventory clues to PlayerPrefs
+    public void SaveInventoryToPrefs()
+    {
+        List<string> clueIDs = new List<string>();
+        foreach (Clue clue in clues)
+        {
+            clueIDs.Add(clue.clueName); // assuming clueName is unique ID
+        }
+        SaveSystem.SaveInventory(clueIDs);
+    }
+
+    // Load the inventory from PlayerPrefs
+    public void LoadInventoryFromSave()
+    {
+        List<string> clueIDs = SaveSystem.LoadInventory();
+        clues.Clear();
+
+        foreach (string clueID in clueIDs)
+        {
+            Clue loadedClue = ClueDatabase.Instance.GetClueByName(clueID);
+            if (loadedClue != null)
+            {
+                clues.Add(loadedClue);
+            }
+            else
+            {
+                Debug.LogWarning($"Clue '{clueID}' not found in ClueDatabase!");
+            }
+        }
+
+        UpdateInventoryUI();
+    }
 
     private void Awake()
     {
@@ -28,11 +63,7 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        // Hide the tooltip at the start
-        //if (tooltipUI != null)
-        //{
-        //    tooltipUI.SetActive(false);
-        //}
+        LoadInventoryFromSave();
     }
 
     // Add a clue to the inventory
@@ -56,36 +87,11 @@ public class InventoryManager : MonoBehaviour
 
         clues.Add(clue); // Add the clue to the list
         UpdateInventoryUI(); // Update the inventory UI
-        Destroy(clue.gameObject); // Remove the clue from the game world
         clueCounter.AddClue(); // Update clue counter
+        SaveInventoryToPrefs(); // Save after adding clue
+        Destroy(clue.gameObject); // Remove the clue from the game world
         return true;
     }
-
-    // Update the inventory UI
-    //private void UpdateInventoryUI()
-    //{
-    //    for (int i = 0; i < inventorySlots.Length; i++)
-    //    {
-    //        if (i < clues.Count)
-    //        {
-    //            // Set the icon of the slot to the clue's icon
-    //            inventorySlots[i].GetComponent<Image>().sprite = clues[i].icon;
-    //            inventorySlots[i].GetComponent<Image>().color = Color.white; // Make the slot visible
-
-    //            // Add EventTrigger to the slot for tooltip functionality
-    //            AddEventTrigger(inventorySlots[i], i);
-    //        }
-    //        else
-    //        {
-    //            // Clear the slot if it's empty
-    //            inventorySlots[i].GetComponent<Image>().sprite = null;
-    //            inventorySlots[i].GetComponent<Image>().color = Color.clear; // Make the slot transparent
-
-    //            // Remove EventTrigger if the slot is empty
-    //            RemoveEventTrigger(inventorySlots[i]);
-    //        }
-    //    }
-    //}
 
     private void UpdateInventoryUI()
     {
@@ -107,46 +113,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-
-    //// Remove EventTrigger from a slot
-    //private void RemoveEventTrigger(GameObject slot)
-    //{
-    //    EventTrigger trigger = slot.GetComponent<EventTrigger>();
-    //    if (trigger != null)
-    //    {
-    //        trigger.triggers.Clear(); // Clear all triggers
-    //    }
-    //}
-
-    ////Add EventTrigger to a slot
-    //private void AddEventTrigger(GameObject slot, int index)
-    //{
-    //    EventTrigger trigger = slot.GetComponent<EventTrigger>();
-    //    if (trigger == null)
-    //    {
-    //        trigger = slot.AddComponent<EventTrigger>();
-    //    }
-    //    else
-    //    {
-    //        trigger.triggers.Clear(); // avoids duplicates
-    //    }
-
-    //    // Create a new entry for the PointerEnter event
-    //    EventTrigger.Entry entryEnter = new EventTrigger.Entry
-    //    {
-    //        eventID = EventTriggerType.PointerEnter
-    //    };
-    //    entryEnter.callback.AddListener((data) => { OnPointerEnterSlot(index); });
-    //    trigger.triggers.Add(entryEnter);
-
-    //    // Create a new entry for the PointerExit event
-    //    EventTrigger.Entry entryExit = new EventTrigger.Entry
-    //    {
-    //        eventID = EventTriggerType.PointerExit
-    //    };
-    //    entryExit.callback.AddListener((data) => { OnPointerExitSlot(); });
-    //    trigger.triggers.Add(entryExit);
-    //}
 
     private void RemoveEventTrigger(GameObject slot)
     {

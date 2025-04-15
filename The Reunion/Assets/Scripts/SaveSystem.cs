@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public static class SaveSystem
 {
     private const string PUZZLE_PREFIX = "Puzzle_";
+    private const string INVENTORY_KEY = "Inventory";
 
     // Save a puzzle as completed
     public static void MarkPuzzleComplete(string puzzleID)
@@ -22,5 +25,30 @@ public static class SaveSystem
         PlayerPrefs.DeleteAll(); // Clears all saved data
         PlayerPrefs.Save();
         Debug.Log("All puzzle progress reset.");
+    }
+
+    // Inventory saving
+    public static void SaveInventory(List<string> clueIDs)
+    {
+        // Joins all clue IDs into one comma-separated string
+        string serializedInventory = string.Join(",", clueIDs);
+        PlayerPrefs.SetString(INVENTORY_KEY, serializedInventory);
+        PlayerPrefs.Save();
+        Debug.Log($"Inventory saved: {serializedInventory}");
+    }
+
+    public static List<string> LoadInventory()
+    {
+        string serializedInventory = PlayerPrefs.GetString(INVENTORY_KEY, "");
+        return string.IsNullOrEmpty(serializedInventory)
+            ? new List<string>()
+            : serializedInventory.Split(',').ToList();
+    }
+
+    public static void ResetInventory()
+    {
+        PlayerPrefs.DeleteKey(INVENTORY_KEY);
+        PlayerPrefs.Save();
+        Debug.Log("Inventory reset.");
     }
 }
