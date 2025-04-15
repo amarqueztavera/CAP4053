@@ -85,21 +85,6 @@ public class ClueCounter : MonoBehaviour
 
     private void CheckActProgression()
     {
-        //// Prototype progression: 1 clue = Act 2, 2 clues = Act 3
-        //int currentAct = Mathf.Clamp(ClueCount + 1, 1, 3);
-
-        //if (SuspicionManager.Instance != null)
-        //{
-        //    SuspicionManager.Instance.SetAct(currentAct);
-        //}
-        //else
-        //{
-        //    Debug.LogError("SuspicionManager instance not found!");
-        //}
-
-        //DoorLockController.UpdateAllLocks(currentAct);
-
-        // Get the current clue count (will use saved data automatically)
         int currentAct = CalculateCurrentAct();
 
         if (SuspicionManager.Instance != null)
@@ -131,20 +116,6 @@ public class ClueCounter : MonoBehaviour
 
     private void InitializeActProgression()
     {
-        //// Load saved act progression when game starts
-        //if (PlayerPrefs.HasKey("CurrentAct"))
-        //{
-        //    int savedAct = PlayerPrefs.GetInt("CurrentAct");
-        //    SuspicionManager.Instance?.SetAct(savedAct);
-        //    DoorLockController.UpdateAllLocks(savedAct);
-        //}
-        //else
-        //{
-        //    // Initialize with current clue count if no save exists
-
-        //    CheckActProgression();
-        //}
-
         // Always start at Act 1 for new games, use saved value otherwise
         int startingAct = PlayerPrefs.GetInt(CURRENT_ACT_KEY, 1); // Default to 1 if not found
 
