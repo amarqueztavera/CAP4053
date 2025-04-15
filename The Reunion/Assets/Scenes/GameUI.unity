@@ -5540,7 +5540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0/3 Clues Found
+  m_text: 0/5 Clues Found
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6063,7 +6063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00ab804e2280fd4b9136b2a1287a8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cluesRequiredForEnding: 3
+  cluesRequiredForEnding: 5
   endingSceneName: End Scene
   cluesText: {fileID: 1992922459}
   suspicionManager: {fileID: 2118088820}
@@ -6140,7 +6140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allClues:
   - clueName: Chalkboard
-    icon: {fileID: 5062390320939746380, guid: 47decb729db54764db47ba584f34f46f, type: 3}
+    icon: {fileID: -7439290634749555634, guid: e0d7247c423effe45b65083c29f490b1, type: 3}
     gameObject: {fileID: 0}
     description: This is a test description! Found near a door. Someone must've left
       a secret message.
