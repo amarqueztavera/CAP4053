@@ -1,142 +1,131 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FlowGame : MonoBehaviour
 {
-    [Header("Game Settings")]
+    [Header("Line Settings")]
     public float lineThickness = 0.2f;
     public float clickRadius = 0.5f;
-    
-    [Header("Debug Settings")]
-    public bool showColliders = true;
-    public bool verboseLogging = true;
-    
-    private Dictionary<Color, Transform> startDots = new Dictionary<Color, Transform>();
-    private Dictionary<Color, Transform> endDots = new Dictionary<Color, Transform>();
-    private Dictionary<Color, List<Vector2Int>> colorPaths = new Dictionary<Color, List<Vector2Int>>();
+
+    private readonly Dictionary<Color, (Vector2Int start, Vector2Int end)> dotPositions = new()
+    {
+        { Color.red,    (new Vector2Int(0,4), new Vector2Int(1,0)) },
+        { Color.blue,   (new Vector2Int(2,0), new Vector2Int(2,3)) },
+        { Color.green,  (new Vector2Int(1,1), new Vector2Int(2,4)) },
+        { Color.yellow, (new Vector2Int(4,4), new Vector2Int(3,1)) },
+        { Color.magenta,(new Vector2Int(3,0), new Vector2Int(4,3)) }
+    };
+
+    private readonly Dictionary<Color, List<Vector2Int>> correctPaths = new()
+    {
+        { Color.red,     new List<Vector2Int> { new(0,4), new(0,3), new(0,2), new(0,1), new(0,0), new(1,0) } },
+        { Color.green,   new List<Vector2Int> { new(1,1), new(1,2), new(1,3), new(1,4), new(2,4) } },
+        { Color.blue,    new List<Vector2Int> { new(2,0), new(2,1), new(2,2), new(2,3) } },
+        { Color.magenta, new List<Vector2Int> { new(3,0), new(4,0), new(4,1), new(4,2), new(4,3) } },
+        { Color.yellow,  new List<Vector2Int> { new(3,1), new(3,2), new(3,3), new(3,4), new(4,4) } },
+    };
+
+    private Dictionary<Color, Transform> startDots = new();
+    private Dictionary<Color, Transform> endDots = new();
+    private Dictionary<Color, List<Vector3>> colorPaths = new();
     private Color selectedColor;
     private bool isDrawing = false;
-    private Vector2Int lastGridPos;
 
     void Start()
     {
-        Log("Initializing game...");
-        FindAllDots();
+        InitializeDots();
         InitializeColorPaths();
-        Log($"Found {startDots.Count} color pairs to connect");
-        CheckLayerSetup();
+        //CenterCamera();
     }
 
-    void Update()
+    void InitializeDots()
     {
-        if (showColliders)
+        foreach (GameObject dot in GameObject.FindGameObjectsWithTag("Dot"))
         {
-            DrawDebugColliders();
-        }
+            Vector2Int pos = new(
+                Mathf.RoundToInt(dot.transform.position.x),
+                Mathf.RoundToInt(dot.transform.position.y)
+            );
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Log("Mouse button down - attempting to start drawing");
-            TryStartDrawing();
-        }
-        else if (Input.GetMouseButton(0) && isDrawing)
-        {
-            ContinueDrawing();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            Log("Mouse button up - stopping drawing");
-            StopDrawing();
+            foreach (var kvp in dotPositions)
+            {
+                if (pos == kvp.Value.start)
+                {
+                    startDots[kvp.Key] = dot.transform;
+                    dot.GetComponent<SpriteRenderer>().color = kvp.Key;
+                }
+                else if (pos == kvp.Value.end)
+                {
+                    endDots[kvp.Key] = dot.transform;
+                    dot.GetComponent<SpriteRenderer>().color = kvp.Key;
+                }
+            }
         }
     }
 
     void InitializeColorPaths()
     {
         colorPaths.Clear();
-        foreach (var color in startDots.Keys)
+        var allColors = startDots.Keys.Union(endDots.Keys);
+        foreach (var color in allColors)
         {
-            colorPaths[color] = new List<Vector2Int>();
-            Log($"Initialized path for color: {color}");
+            colorPaths[color] = new List<Vector3>();
         }
     }
 
-    void FindAllDots()
+    /*void CenterCamera()
     {
-        startDots.Clear();
-        endDots.Clear();
+        Camera.main.orthographicSize = 3.5f;
+        Camera.main.transform.position = new Vector3(2.5f, 2.5f, -10f);
+    }*/
 
-        SpriteRenderer[] allRenderers = FindObjectsOfType<SpriteRenderer>();
-        Log($"Scanning {allRenderers.Length} SpriteRenderers for dots...");
-        
-        foreach (SpriteRenderer sr in allRenderers)
-        {
-            if (sr.gameObject.CompareTag("Dot"))
-            {
-                Color dotColor = sr.color;
-                Log($"Found dot with color: {dotColor} at {sr.transform.position}");
-                
-                if (!startDots.ContainsKey(dotColor))
-                {
-                    startDots[dotColor] = sr.transform;
-                    Log($"Registered as START dot for color {dotColor}");
-                }
-                else if (!endDots.ContainsKey(dotColor))
-                {
-                    endDots[dotColor] = sr.transform;
-                    Log($"Registered as END dot for color {dotColor}");
-                }
-            }
-        }
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) TryStartDrawing();
+        else if (Input.GetMouseButton(0) && isDrawing) ContinueDrawing();
+        else if (Input.GetMouseButtonUp(0)) StopDrawing();
     }
 
     void TryStartDrawing()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Log($"Checking click at world position: {mousePos}");
+        Collider2D hit = Physics2D.OverlapPoint(mousePos);
 
-        int dotLayerMask = 1 << LayerMask.NameToLayer("Dots");
-        Collider2D[] dotHits = Physics2D.OverlapCircleAll(mousePos, clickRadius, dotLayerMask);
-        
-        Log($"Found {dotHits.Length} dot colliders at click position");
-        
-        foreach (Collider2D hit in dotHits)
+        if (hit != null && hit.CompareTag("Dot"))
         {
-            if (hit != null && hit.CompareTag("Dot"))
+            SpriteRenderer sr = hit.GetComponent<SpriteRenderer>();
+            if (sr != null && (startDots.ContainsKey(sr.color) || endDots.ContainsKey(sr.color)))
             {
-                Log($"Hit dot: {hit.name} at {hit.transform.position}");
-                
-                SpriteRenderer sr = hit.GetComponent<SpriteRenderer>();
-                if (sr != null && startDots.ContainsKey(sr.color))
-                {
-                    selectedColor = sr.color;
-                    isDrawing = true;
-                    Log($"Started drawing path for color: {selectedColor}");
-                    ClearPath(selectedColor);
-                    lastGridPos = GetGridPosition(hit.transform.position);
-                    AddToPath(selectedColor, lastGridPos);
-                    return;
-                }
+                selectedColor = sr.color;
+                isDrawing = true;
+                ClearPath(selectedColor);
+                colorPaths[selectedColor].Add(hit.transform.position);
             }
         }
-        
-        LogWarning("No valid dot clicked. Possible issues:");
-        LogWarning($"- Dot layer: {LayerMask.LayerToName(LayerMask.NameToLayer("Dots"))}");
-        LogWarning($"- Collider enabled: {(dotHits.Length > 0 ? dotHits[0].enabled.ToString() : "no hits")}");
     }
 
     void ContinueDrawing()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Transform currentCell = GetCellUnderMouse(mousePos);
-        
-        if (currentCell != null)
+        Collider2D hit = Physics2D.OverlapPoint(mousePos);
+
+        if (hit != null && hit.CompareTag("Cell"))
         {
-            Vector2Int gridPos = GetGridPosition(currentCell.position);
-            if (gridPos != lastGridPos && IsValidMove(gridPos))
+            Vector3 cellCenter = new(
+                Mathf.Round(mousePos.x),
+                Mathf.Round(mousePos.y),
+                0
+            );
+
+            if (colorPaths[selectedColor].Count == 0 ||
+                Vector3.Distance(colorPaths[selectedColor][^1], cellCenter) > 0.1f)
             {
-                Log($"Adding point to path: {gridPos}");
-                AddToPath(selectedColor, gridPos);
-                lastGridPos = gridPos;
+                if (IsValidMove(cellCenter))
+                {
+                    colorPaths[selectedColor].Add(cellCenter);
+                    DrawPaths();
+                }
             }
         }
     }
@@ -144,187 +133,96 @@ public class FlowGame : MonoBehaviour
     void StopDrawing()
     {
         if (!isDrawing) return;
-        
+
         isDrawing = false;
-        Log($"Finished drawing path for color: {selectedColor}");
+
+        if (!IsPathCorrect(selectedColor))
+        {
+            Debug.Log($"Incorrect path for {selectedColor}. Clearing.");
+            ClearPath(selectedColor);
+        }
+
         CheckWinCondition();
     }
 
-    Transform GetCellUnderMouse(Vector2 mousePos)
+    bool IsValidMove(Vector3 position)
     {
-        int cellLayerMask = 1 << LayerMask.NameToLayer("Cells");
-        Collider2D[] hits = Physics2D.OverlapCircleAll(mousePos, clickRadius, cellLayerMask);
-        
-        foreach (Collider2D hit in hits)
-        {
-            if (hit.CompareTag("Cell"))
-                return hit.transform;
-        }
-        
-        LogWarning($"No cell found at {mousePos}");
-        return null;
-    }
-
-    Vector2Int GetGridPosition(Vector3 worldPos)
-    {
-        return new Vector2Int(Mathf.RoundToInt(worldPos.x), Mathf.RoundToInt(worldPos.y));
-    }
-
-    bool IsValidMove(Vector2Int gridPos)
-    {
-        if (!colorPaths.ContainsKey(selectedColor)) 
-        {
-            LogWarning($"No path exists for color: {selectedColor}");
-            return false;
-        }
-
         if (colorPaths[selectedColor].Count > 0)
         {
-            Vector2Int lastPos = colorPaths[selectedColor][colorPaths[selectedColor].Count - 1];
-            if (Mathf.Abs(gridPos.x - lastPos.x) + Mathf.Abs(gridPos.y - lastPos.y) != 1)
-            {
-                Log($"Position {gridPos} is not adjacent to last position {lastPos}");
-                return false;
-            }
+            Vector3 lastPos = colorPaths[selectedColor][^1];
+            if (Vector3.Distance(lastPos, position) > 1.1f) return false;
         }
 
         foreach (var path in colorPaths)
         {
-            if (path.Key != selectedColor && path.Value.Contains(gridPos))
-            {
-                Log($"Position {gridPos} is already in another path");
-                return false;
-            }
+            if (path.Key != selectedColor && path.Value.Contains(position)) return false;
         }
 
         return true;
     }
 
-    void AddToPath(Color color, Vector2Int pos)
+    bool IsPathCorrect(Color color)
     {
-        if (!colorPaths.ContainsKey(color))
-            colorPaths[color] = new List<Vector2Int>();
-        
-        colorPaths[color].Add(pos);
-        DrawPaths();
-    }
+        if (!colorPaths.ContainsKey(color)) return false;
+        List<Vector3> drawn = colorPaths[color];
+        List<Vector2Int> correct = correctPaths[color];
 
-    void ClearPath(Color color)
-    {
-        if (colorPaths.ContainsKey(color))
-            colorPaths[color].Clear();
-        
-        DrawPaths();
+        if (drawn.Count != correct.Count) return false;
+
+        for (int i = 0; i < correct.Count; i++)
+        {
+            Vector2Int expected = correct[i];
+            Vector2Int drawnPoint = new Vector2Int(Mathf.RoundToInt(drawn[i].x), Mathf.RoundToInt(drawn[i].y));
+
+            if (drawnPoint != expected)
+                return false;
+        }
+
+        return true;
     }
 
     void DrawPaths()
     {
-        LineRenderer[] oldLines = FindObjectsOfType<LineRenderer>();
-        foreach (LineRenderer line in oldLines)
+        foreach (LineRenderer line in FindObjectsOfType<LineRenderer>())
         {
-            if (line.gameObject.name == "Line")
-                Destroy(line.gameObject);
+            Destroy(line.gameObject);
         }
 
         foreach (var kvp in colorPaths)
         {
             if (kvp.Value.Count < 2) continue;
 
-            GameObject lineObj = new GameObject("Line");
+            GameObject lineObj = new($"Line_{kvp.Key}");
             LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+            lr.positionCount = kvp.Value.Count;
+            lr.SetPositions(kvp.Value.ToArray());
             lr.startWidth = lineThickness;
             lr.endWidth = lineThickness;
-            lr.material = new Material(Shader.Find("Sprites/Default")) { color = kvp.Key };
             lr.useWorldSpace = true;
-
-            Vector3[] positions = new Vector3[kvp.Value.Count];
-            for (int i = 0; i < kvp.Value.Count; i++)
-            {
-                positions[i] = new Vector3(kvp.Value[i].x, kvp.Value[i].y, 0);
-            }
-            lr.positionCount = positions.Length;
-            lr.SetPositions(positions);
+            lr.material = new Material(Shader.Find("Sprites/Default"));
+            lr.startColor = kvp.Key;
+            lr.endColor = kvp.Key;
+            lr.numCapVertices = 8;
         }
+    }
+
+    void ClearPath(Color color)
+    {
+        if (colorPaths.ContainsKey(color)) colorPaths[color].Clear();
+        DrawPaths();
     }
 
     void CheckWinCondition()
     {
-        if (startDots.Count != endDots.Count)
+        foreach (var color in correctPaths.Keys)
         {
-            LogWarning($"Mismatched start/end dots: {startDots.Count} starts vs {endDots.Count} ends");
-            return;
-        }
-
-        foreach (Color color in startDots.Keys)
-        {
-            if (!colorPaths.ContainsKey(color) || colorPaths[color].Count == 0)
+            if (!IsPathCorrect(color))
             {
-                Log($"No path exists for color: {color}");
-                return;
-            }
-
-            Vector2Int lastPos = colorPaths[color][colorPaths[color].Count - 1];
-            Vector2Int endPos = GetGridPosition(endDots[color].position);
-            
-            if (lastPos != endPos)
-            {
-                Log($"Path for {color} doesn't reach end. Last: {lastPos}, End: {endPos}");
+                Debug.Log($"Path not complete or incorrect for {color}");
                 return;
             }
         }
 
-        Log("YOU WIN! All paths connected correctly!");
-    }
-
-    void DrawDebugColliders()
-    {
-        foreach (var dot in GameObject.FindGameObjectsWithTag("Dot"))
-        {
-            CircleCollider2D collider = dot.GetComponent<CircleCollider2D>();
-            if (collider != null)
-            {
-                GizmosUtils.DrawWireCircle(
-                    dot.transform.position, 
-                    collider.radius, 
-                    Color.green,
-                    0.1f
-                );
-            }
-        }
-    }
-
-    void CheckLayerSetup()
-    {
-        GameObject testDot = GameObject.FindWithTag("Dot");
-        if (testDot != null)
-        {
-            Log($"Dot layer: {testDot.layer} ({LayerMask.LayerToName(testDot.layer)})");
-            Log($"Collider radius: {testDot.GetComponent<CircleCollider2D>()?.radius ?? -1f}");
-        }
-    }
-
-    void Log(string message)
-    {
-        if (verboseLogging) Debug.Log($"[FlowGame] {message}");
-    }
-
-    void LogWarning(string message)
-    {
-        Debug.LogWarning($"[FlowGame] {message}");
-    }
-}
-
-public static class GizmosUtils
-{
-    public static void DrawWireCircle(Vector3 center, float radius, Color color, float duration = 0.1f)
-    {
-        Vector3 prevPos = center + new Vector3(radius, 0, 0);
-        for (int i = 0; i <= 30; i++)
-        {
-            float angle = (float)i / 30 * Mathf.PI * 2;
-            Vector3 newPos = center + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-            Debug.DrawLine(prevPos, newPos, color, duration);
-            prevPos = newPos;
-        }
+        Debug.Log("YOU WIN! All paths connected correctly!");
     }
 }
