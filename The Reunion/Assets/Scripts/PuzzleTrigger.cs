@@ -16,35 +16,33 @@ public class PuzzleTrigger : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D interactionCollider;
 
-    //void Start()
-    //{
-    //    spriteRenderer = GetComponent<SpriteRenderer>();
-    //    interactionCollider = GetComponent<Collider2D>();
 
-    //    // Disable interaction if the puzzle is already completed
-    //    if (SaveSystem.IsPuzzleComplete(puzzleID))
-    //    {
-    //        interactionCollider.enabled = false;
-    //        spriteRenderer.color = completeColor;
-    //        Debug.Log($"Puzzle {puzzleID} is already completed. Disabling trigger.");
-    //    }
-    //    else
-    //    {
-    //        spriteRenderer.color = incompleteColor;
-    //    }
-    //}
+    void OnEnable()
+    {
+        ClueEventManager.OnPuzzleCompleted += HandlePuzzleCompleted;
+        RefreshPuzzleState();
+    }
+
+    void OnDisable()
+    {
+        ClueEventManager.OnPuzzleCompleted -= HandlePuzzleCompleted;
+    }
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         interactionCollider = GetComponent<Collider2D>();
         RefreshPuzzleState();
+
+        Debug.Log($"PuzzleTrigger ({puzzleID}) initialized. Completed: {SaveSystem.IsPuzzleComplete(puzzleID)}");
     }
 
     public void RefreshPuzzleState()
     {
         if (SaveSystem.IsPuzzleComplete(puzzleID))
         {
+            MarkAsComplete();
+
             Debug.Log($"Puzzle {puzzleID} is already completed. Disabling trigger.");
             spriteRenderer.color = completeColor;
             interactionCollider.enabled = false;
@@ -53,6 +51,8 @@ public class PuzzleTrigger : MonoBehaviour
         {
             spriteRenderer.color = incompleteColor;
             interactionCollider.enabled = true;
+
+            Debug.Log($"PuzzleTrigger ({puzzleID}) set to incomplete (yellow).");
         }
     }
 
@@ -71,39 +71,21 @@ public class PuzzleTrigger : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log("Hit: " + hit.collider.name);
-                Debug.Log("Hit layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+                //Debug.Log("Hit: " + hit.collider.name);
+                //Debug.Log("Hit layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
 
                 if (hit.collider.gameObject == gameObject && !string.IsNullOrEmpty(puzzleSceneName))
                 {
-                    Debug.Log($"Clicked {name}! Loading {puzzleSceneName}");
+                    //Debug.Log($"Clicked {name}! Loading {puzzleSceneName}");
                     PuzzleSceneSwapper.Instance.LoadPuzzleScene(puzzleSceneName);
                 }
             }
             else
             {
-                Debug.Log("No collider hit.");
+                //Debug.Log("No collider hit.");
             }
         }
     }
-
-    //void OnMouseDown()
-    //{
-    //    // Early exit if the puzzle is already completed
-    //    if (SaveSystem.IsPuzzleComplete(puzzleID)) return;
-
-    //    if (Camera.main.GetComponent<PhysicsRaycaster>() == null)
-    //    {
-    //        Debug.LogError("Add PhysicsRaycaster to Main Camera!");
-    //        return;
-    //    }
-
-    //    if (!string.IsNullOrEmpty(puzzleSceneName))
-    //    {
-    //        Debug.Log($"Attempting to load {puzzleSceneName}");
-    //        PuzzleSceneSwapper.Instance.LoadPuzzleScene(puzzleSceneName);
-    //    }
-    //}
 
     void OnMouseDown()
     {
@@ -138,4 +120,19 @@ public class PuzzleTrigger : MonoBehaviour
         interactionCollider.enabled = false; // Disable interaction
         Debug.Log($"Puzzle {puzzleID} marked as complete (visual feedback applied).");
     }
+
+    private void HandlePuzzleCompleted(string completedPuzzleID)
+    {
+        Debug.Log($"PuzzleTrigger ({puzzleID}) received event for puzzle {completedPuzzleID}.");
+
+        if (completedPuzzleID == puzzleID)
+        {
+            MarkAsComplete();
+        }
+        else
+        {
+            Debug.Log($"PuzzleTrigger ({puzzleID}) ignored event for '{completedPuzzleID}'.");
+        }
+    }
+
 }

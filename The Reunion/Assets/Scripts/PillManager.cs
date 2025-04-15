@@ -52,15 +52,20 @@ public class PillManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Load back into game");
-        PuzzleSceneSwapper.Instance.ReturnToMap();
-
-        // Add clue and return to game
-        Debug.Log("Clue Added!");
-        InventoryManager.Instance.AddClue(clueToAdd);
-
         // Save completion state
         SaveSystem.MarkPuzzleComplete(puzzleID);
+
+        // Trigger event to update puzzle object immediately
+        ClueEventManager.PuzzleCompleted(puzzleID);
+
+        // Add clue and return to game
+        InventoryManager.Instance.AddClue(clueToAdd);
+
+        // Force immediate save
+        PlayerPrefs.Save();
+
+        Debug.Log("Load back into game");
+        PuzzleSceneSwapper.Instance.ReturnToMap();
 
         return true; // All colors have been sorted correctly
     }

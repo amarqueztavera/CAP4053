@@ -233,16 +233,16 @@ public class DELETE : MonoBehaviour
     }
 
     //shows us the vision radius of the npcs, and the max distance the player can be off of the navmesh
-    void OnDrawGizmos()
-    {
-        //max distance off navmesh
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(NPCStateManager.Instance.PlayerTransform.position, radiusCheck);
+    //void OnDrawGizmos()
+    //{
+    //    //max distance off navmesh
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(NPCStateManager.Instance.PlayerTransform.position, radiusCheck);
 
-        //npc vision
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
+    //    //npc vision
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    //}
 
     //returns tru if player is close eniugh to the navmesh (aka the npc can still reach the player)
     public void IsOnNavMesh()

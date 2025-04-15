@@ -51,11 +51,18 @@ public class LockerUnlock : MonoBehaviour
     {
         UnlockLocker();
         yield return new WaitForSeconds(1f);
-        Debug.Log("Load back into game");
-        PuzzleSceneSwapper.Instance.ReturnToMap();
 
         // Save completion state
         SaveSystem.MarkPuzzleComplete(puzzleID);
+
+        // Trigger event to update puzzle object immediately
+        ClueEventManager.PuzzleCompleted(puzzleID);
+
+        // Force immediate save
+        PlayerPrefs.Save();
+
+        Debug.Log("Load back into game");
+        PuzzleSceneSwapper.Instance.ReturnToMap();
     }
 
     void UnlockLocker()
@@ -64,7 +71,6 @@ public class LockerUnlock : MonoBehaviour
         Debug.Log("Locker has been unlocked!");
 
         // Add clue and return to game
-        Debug.Log("Clue Added!");
         InventoryManager.Instance.AddClue(clueToAdd);
     }
 
