@@ -33,7 +33,7 @@ public class PiecesScript : MonoBehaviour
                     {
                         Debug.Log("All pieces are in the right position!");
                         // Add code to handle the completion of the puzzle here
-                        yield return new WaitForSeconds(1.5f); // Adjust time as needed
+                        /*yield return new WaitForSeconds(1.5f); // Adjust time as needed
 
                         // Save everything before leaving
                         SaveSystem.MarkPuzzleComplete(puzzleID);
@@ -43,7 +43,7 @@ public class PiecesScript : MonoBehaviour
                         PlayerPrefs.Save();
 
                         Debug.Log("Puzzle completed! Returning to map...");
-                        PuzzleSceneSwapper.Instance.ReturnToMap();
+                        PuzzleSceneSwapper.Instance.ReturnToMap();*/
                     }
                 } 
             }
