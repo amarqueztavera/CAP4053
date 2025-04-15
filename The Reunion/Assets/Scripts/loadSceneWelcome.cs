@@ -15,10 +15,15 @@ public class loadSceneWelcome : MonoBehaviour
         StartCoroutine(LoadScenesAdditively());
     }
 
-   /* public void LoadGameScenes()
+    /* public void LoadGameScenes()
+     {
+         StartCoroutine(LoadScenesAdditively());
+     }*/
+
+    public void LoadGameScenes()
     {
         StartCoroutine(LoadScenesAdditively());
-    }*/
+    }
 
     private IEnumerator LoadScenesAdditively()
     {
