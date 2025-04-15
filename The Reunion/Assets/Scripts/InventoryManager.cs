@@ -33,10 +33,10 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         // Hide the tooltip at the start
-        if (tooltipUI != null)
-        {
-            tooltipUI.SetActive(false);
-        }
+        //if (tooltipUI != null)
+        //{
+        //    tooltipUI.SetActive(false);
+        //}
     }
 
     // Add a clue to the inventory
@@ -101,7 +101,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Add EventTrigger to a slot
+    //Add EventTrigger to a slot
     private void AddEventTrigger(GameObject slot, int index)
     {
         EventTrigger trigger = slot.GetComponent<EventTrigger>();
@@ -131,7 +131,7 @@ public class InventoryManager : MonoBehaviour
         trigger.triggers.Add(entryExit);
     }
 
-    // Called when the pointer enters a slot
+    //Called when the pointer enters a slot
     // Tooltip is bugging and flashes when hovering over item in inventory
     private void OnPointerEnterSlot(int index)
     {
@@ -146,7 +146,7 @@ public class InventoryManager : MonoBehaviour
 
             tooltipUI.transform.position = new Vector2(
                 slotPosition.x + slotWidth + 10f, // Offset to the right
-                slotPosition.y 
+                slotPosition.y
             );
 
             tooltipUI.SetActive(true);
