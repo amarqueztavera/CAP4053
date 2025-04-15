@@ -4,10 +4,12 @@ using TMPro;
 
 public class ClueDetailPanel : MonoBehaviour
 {
+    public GameObject clueDetailPanel;
     public Image clueImage;
     public TMP_Text clueNameText;
     public TMP_Text clueDescText;
     public Button closeButton;
+    
 
     public static ClueDetailPanel Instance;
 
@@ -16,13 +18,14 @@ public class ClueDetailPanel : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
 
-        gameObject.SetActive(false); // Hide panel on load
+        clueDetailPanel.SetActive(false); // Hide panel on load
 
         if (closeButton != null)
         {
@@ -36,11 +39,11 @@ public class ClueDetailPanel : MonoBehaviour
         clueNameText.text = clueName;
         clueDescText.text = clueDescription;
 
-        gameObject.SetActive(true);
+        clueDetailPanel.SetActive(true);
     }
 
     public void HidePanel()
     {
-        gameObject.SetActive(false);
+        clueDetailPanel.SetActive(false);
     }
 }
