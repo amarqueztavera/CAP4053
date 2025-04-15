@@ -2470,12 +2470,8 @@ MonoBehaviour:
   inputField3: {fileID: 1139233156}
   resultText: {fileID: 1112262848}
   locker: {fileID: 1346764504}
+  clueID: Locker
   puzzleID: Locker
-  clueToAdd:
-    clueName: Locker
-    icon: {fileID: 198538158556077393, guid: a396395c2cea9bd4994e7fc1213f5daf, type: 3}
-    gameObject: {fileID: 0}
-    description: There must be something useful inside this locker. Look carefully!
 --- !u!4 &1892880290
 Transform:
   m_ObjectHideFlags: 0

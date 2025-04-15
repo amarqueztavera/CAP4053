@@ -10,10 +10,10 @@ public class LockerUnlock : MonoBehaviour
     public InputField inputField3;
     public Text resultText;
     public GameObject locker; // Reference to the locker
-    public string puzzleID; // Unique ID
 
     [Header("Clue Settings")]
-    public Clue clueToAdd; // Assign in Inspector
+    public string clueID; // Just type the clue ID/name here
+    public string puzzleID; // Unique ID
 
     private string correctCode1 = "08";
     private string correctCode2 = "09";
@@ -51,11 +51,18 @@ public class LockerUnlock : MonoBehaviour
     {
         UnlockLocker();
         yield return new WaitForSeconds(1f);
-        Debug.Log("Load back into game");
-        PuzzleSceneSwapper.Instance.ReturnToMap();
 
         // Save completion state
         SaveSystem.MarkPuzzleComplete(puzzleID);
+
+        // Trigger event to update puzzle object immediately
+        ClueEventManager.PuzzleCompleted(puzzleID);
+
+        // Force immediate save
+        PlayerPrefs.Save();
+
+        Debug.Log("Load back into game");
+        PuzzleSceneSwapper.Instance.ReturnToMap();
     }
 
     void UnlockLocker()
@@ -63,9 +70,17 @@ public class LockerUnlock : MonoBehaviour
         locker.SetActive(false); // Hide the locker when unlocked
         Debug.Log("Locker has been unlocked!");
 
-        // Add clue and return to game
-        Debug.Log("Clue Added!");
-        InventoryManager.Instance.AddClue(clueToAdd);
+        // Add clue to inventory
+        Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+        if (clueFromDB != null)
+        {
+            InventoryManager.Instance.AddClue(clueFromDB);
+            Debug.Log($"Clue '{clueID}' added from database.");
+        }
+        else
+        {
+            Debug.LogError($"Clue '{clueID}' NOT found in database!");
+        }
     }
 
     // 🔹 New Method for Exiting Without Adding Clue

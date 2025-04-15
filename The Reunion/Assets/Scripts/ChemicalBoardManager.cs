@@ -50,6 +50,10 @@ public class ChemicalBoardManager : MonoBehaviour
         }
     }
 
+    [Header("Clue Settings")]
+    //public Clue clueToAdd; // Assign in Inspector
+    public string clueID; // Just type the clue ID/name here
+    public string puzzleID; // Unique ID
     void CheckPath()
     {
         bool[,] visited = new bool[rows, columns];
@@ -66,6 +70,29 @@ public class ChemicalBoardManager : MonoBehaviour
             ShowResult("SUCCESS: Chemical reached the flask!", Color.green);
             foreach (PipeTile tile in solutionPath)
                 tile.HighlightPath(true);
+            // Save everything before leaving
+            SaveSystem.MarkPuzzleComplete(puzzleID);
+
+            // Trigger event to update puzzle object immediately
+            ClueEventManager.PuzzleCompleted(puzzleID);
+
+            // Add clue to inventory
+            Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+            if (clueFromDB != null)
+            {
+                InventoryManager.Instance.AddClue(clueFromDB);
+                Debug.Log($"Clue '{clueID}' added from database.");
+            }
+            else
+            {
+                Debug.LogError($"Clue '{clueID}' NOT found in database!");
+            }
+
+            // Force immediate save
+            PlayerPrefs.Save();
+
+            Debug.Log("Puzzle completed! Returning to map...");
+            PuzzleSceneSwapper.Instance.ReturnToMap();
         }
         else
         {

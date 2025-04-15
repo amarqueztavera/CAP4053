@@ -1278,12 +1278,7 @@ MonoBehaviour:
   gameTransform: {fileID: 614770526}
   piecePrefab: {fileID: 1476595762586591094, guid: 9952f73d70c3fa2439dedc0461d76da0, type: 3}
   completeUI: {fileID: 1590766725}
-  clueToAdd:
-    clueName: Chalkboard
-    icon: {fileID: 5062390320939746380, guid: 47decb729db54764db47ba584f34f46f, type: 3}
-    gameObject: {fileID: 0}
-    description: This is a test description! Found near a door. Someone must've left
-      a secret message.
+  clueID: Chalkboard
   puzzleID: Chalkboard
 --- !u!4 &1590780328
 Transform:

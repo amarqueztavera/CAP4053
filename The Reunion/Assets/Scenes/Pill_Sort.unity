@@ -653,11 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a2e2bac4849c94f907b112de1fabf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueToAdd:
-    clueName: Pills
-    icon: {fileID: 3584907460382716065, guid: 18a2d556251205b438ca4a83bccd4c00, type: 3}
-    gameObject: {fileID: 0}
-    description: A bottle of pills? Could the he have overdosed?
+  clueID: Pills
   puzzleID: Pills
   winText: {fileID: 51325174}
 --- !u!4 &345600928
