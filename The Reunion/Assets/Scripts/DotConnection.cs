@@ -186,6 +186,6 @@ public class DotConnection : MonoBehaviour
     bool IsAdjacent(Vector2Int pos1, Vector2Int pos2)
     {
         return Mathf.Abs(pos1.x - pos2.x) <= 1 && Mathf.Abs(pos1.y - pos2.y) <= 1 && 
-               !(Mathf.Abs(pos1.x - pos2.x) == 1 && Mathf.Abs(pos1.y - pos2.y) == 1); // No diagonals
+               !(Mathf.Abs(pos1.x - pos2.x) == 1 && Mathf.Abs(pos1.y - pos2.y) == 1); // No diagonals!
     }
 }
