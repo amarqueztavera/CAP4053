@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PillManager : MonoBehaviour
 {
     [Header("Clue Settings")]
-    public Clue clueToAdd; // Assign in Inspector
+    public string clueID; // Just type the clue ID/name here
     public string puzzleID; // Unique ID
 
     public static PillManager Instance;
@@ -58,8 +58,17 @@ public class PillManager : MonoBehaviour
         // Trigger event to update puzzle object immediately
         ClueEventManager.PuzzleCompleted(puzzleID);
 
-        // Add clue and return to game
-        InventoryManager.Instance.AddClue(clueToAdd);
+        // Add clue to inventory
+        Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+        if (clueFromDB != null)
+        {
+            InventoryManager.Instance.AddClue(clueFromDB);
+            Debug.Log($"Clue '{clueID}' added from database.");
+        }
+        else
+        {
+            Debug.LogError($"Clue '{clueID}' NOT found in database!");
+        }
 
         // Force immediate save
         PlayerPrefs.Save();

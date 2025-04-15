@@ -71,7 +71,8 @@ public class SlidingJigsaw : MonoBehaviour
     private bool hasShuffled = false; // Ensure shuffle happens only once
 
     [Header("Clue Settings")]
-    public Clue clueToAdd; // Assign in Inspector
+    //public Clue clueToAdd; // Assign in Inspector
+    public string clueID; // Just type the clue ID/name here
 
     private Camera puzzleCamera;
     public string puzzleID; // Unique ID
@@ -120,7 +121,16 @@ public class SlidingJigsaw : MonoBehaviour
         ClueEventManager.PuzzleCompleted(puzzleID);
 
         // Add clue to inventory
-        InventoryManager.Instance.AddClue(clueToAdd);
+        Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+        if (clueFromDB != null)
+        {
+            InventoryManager.Instance.AddClue(clueFromDB);
+            Debug.Log($"Clue '{clueID}' added from database.");
+        }
+        else
+        {
+            Debug.LogError($"Clue '{clueID}' NOT found in database!");
+        }
 
         // Force immediate save
         PlayerPrefs.Save();
