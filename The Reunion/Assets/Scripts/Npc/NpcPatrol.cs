@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class DELETE : MonoBehaviour
 {
@@ -96,13 +97,24 @@ public class DELETE : MonoBehaviour
 
     IEnumerator Walk()
     {
+        yield return null;
+
         isWalking = true;
+        agent.isStopped = false;
         agent.SetDestination(target);
 
         while (true)
         {
             float distanceToTarget = Vector3.Distance(transform.position, target);
             float distanceToPlayer = Vector3.Distance(transform.position, NPCStateManager.Instance.PlayerTransform.position);
+
+            // Additional check for stuck agents
+            //if (agent.isStopped || !agent.hasPath)
+            //{
+            //    Debug.LogWarning($"NPC {name} was stuck - forcing reset");
+            //    ForceReset();
+            //    yield break;
+            //}
 
             // Chase logic
             if (NPCStateManager.Instance.maxSuspicion && !SuspicionManager.Instance.IsInReunionArea)
@@ -259,7 +271,7 @@ public class DELETE : MonoBehaviour
 
         string tag = targets[wayPointIndex].tag;
 
-        Debug.Log("checking tag: " + tag);
+        //Debug.Log("checking tag: " + tag);
 
         if (tag == "act1 waypoint")
             return NPCStateManager.Instance.act1;
@@ -303,7 +315,7 @@ public class DELETE : MonoBehaviour
         targetIsWaypoint = true;
         wayPointIndex = selectWaypointIndex();
         target = targets[wayPointIndex].position;
-    
+
         // Force path update
         if (isWalking)
         {
@@ -327,4 +339,74 @@ public class DELETE : MonoBehaviour
         // Restart patrol
         StartCoroutine(Walk());
     }
+
+    public void ForceReset()
+    {
+        // Stop all movement immediately
+        if (isWalking)
+        {
+            StopCoroutine(Walk());
+            isWalking = false;
+        }
+
+        // Reset navigation components
+        if (agent != null)
+        {
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
+            agent.isStopped = true;
+        }
+
+        // Get new patrol target
+        wayPointIndex = selectWaypointIndex();
+        target = targets[wayPointIndex].position;
+        targetIsWaypoint = true;
+
+        // Restart movement system
+        StartCoroutine(InitializePatrol());
+    }
+
+    private IEnumerator InitializePatrol()
+    {
+        // Wait for NavMesh system to stabilize
+        yield return new WaitForEndOfFrame();
+
+        if (agent != null)
+        {
+            agent.speed = patrolSpeed;
+            agent.SetDestination(target);
+            agent.isStopped = false;
+        }
+
+        isWalking = false; // Allow Walk() to restart
+        StartCoroutine(Walk());
+
+        //Debug.Log($"NPC {name} initialized at {target}");
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        ForceReset(); // Reset when enabled
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MapScene") // Your main scene name
+        {
+            // Delay reset to ensure scene is ready
+            StartCoroutine(DelayedSceneReset());
+        }
+    }
+
+    private IEnumerator DelayedSceneReset()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ForceReset();
+    }
+
 }

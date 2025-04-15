@@ -178,11 +178,20 @@ public class NPCStateManager : MonoBehaviour
 
     public void ResetAllNPCs()
     {
-        maxSuspicion = false;
         var npcs = FindObjectsByType<DELETE>(FindObjectsSortMode.None);
         foreach (var npc in npcs)
         {
-            npc.ResetFromCaught();
+            if (npc.isActiveAndEnabled)
+            {
+                // Full cleanup before reset
+                npc.StopAllCoroutines();
+                npc.isWalking = false;
+                npc.ForceReset();
+            }
         }
+
+        // Reset global state
+        maxSuspicion = false;
+        lastPlayerPosition = Vector3.zero;
     }
 }

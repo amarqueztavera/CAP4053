@@ -65,31 +65,45 @@ public class PuzzleSceneSwapper : MonoBehaviour
     public void ReturnToMap()
     {
         Debug.Log("return");
+        //// Reset NPCs before unloading puzzle
+        //NPCStateManager.Instance.ResetAllNPCs();
+
         StartCoroutine(UnloadPuzzleAndReturn());
+
     }
 
     private IEnumerator UnloadPuzzleAndReturn()
     {
-        Debug.Log("back to game");
+        Debug.Log("Returning to game");
         if (!string.IsNullOrEmpty(_currentPuzzleScene))
         {
-            // Unload puzzle scene
             AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(_currentPuzzleScene);
             yield return new WaitUntil(() => unloadOp.isDone);
         }
 
-        // Reactivate persistent map scene
         Scene mapSceneRef = SceneManager.GetSceneByName(mapScene);
         if (mapSceneRef.isLoaded)
         {
-            SceneManager.SetActiveScene(mapSceneRef);
-
-            // Re-enable Map scene objects
-            Scene mapScene = SceneManager.GetSceneByName("Map");
-            foreach (GameObject obj in mapScene.GetRootGameObjects())
+            // Reactivate map scene objects
+            foreach (GameObject obj in mapSceneRef.GetRootGameObjects())
             {
-                Debug.Log("Map objects re-enabled");
                 obj.SetActive(true);
+            }
+
+            // Wait one frame to ensure scene is fully loaded
+            yield return null;
+
+            // Force reset NPCs after scene is ready
+            NPCStateManager.Instance.ResetAllNPCs();
+
+            // Explicitly restart NPC patrols
+            var npcs = FindObjectsByType<DELETE>(FindObjectsSortMode.None);
+            foreach (var npc in npcs)
+            {
+                if (npc.isActiveAndEnabled)
+                {
+                    npc.ForceReset();
+                }
             }
         }
     }

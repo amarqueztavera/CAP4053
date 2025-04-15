@@ -136,7 +136,7 @@ public class SuspicionManager : MonoBehaviour
         }
 
         // Visual verification
-        Debug.Log($"UI Updated - Value: {suspicionMeter.value}, Text: {suspicionText.text}");
+        //Debug.Log($"UI Updated - Value: {suspicionMeter.value}, Text: {suspicionText.text}");
 
 
     }
