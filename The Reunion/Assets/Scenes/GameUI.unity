@@ -6144,6 +6144,43 @@ MonoBehaviour:
     gameObject: {fileID: 0}
     description: This is a test description! Found near a door. Someone must've left
       a secret message.
+  - clueName: Pills
+    icon: {fileID: 3584907460382716065, guid: 18a2d556251205b438ca4a83bccd4c00, type: 3}
+    gameObject: {fileID: 0}
+    description: These are pills. Were these the principals? Could he have overdosed
+      or been drugged?
+  - clueName: Locker
+    icon: {fileID: 198538158556077393, guid: a396395c2cea9bd4994e7fc1213f5daf, type: 3}
+    gameObject: {fileID: 0}
+    description: There must be something useful in here. Look carefully.
+  - clueName: Journal
+    icon: {fileID: 2004232101495086770, guid: 9a997a122f202ed4c86e007ff27e50c8, type: 3}
+    gameObject: {fileID: 0}
+    description: '*Write something here*'
+  - clueName: Backpack
+    icon: {fileID: -6415490079858998490, guid: e3648709dd8329d4792bde977b0a643f, type: 3}
+    gameObject: {fileID: 0}
+    description: '*Write something here*'
+  - clueName: Potions
+    icon: {fileID: -8485995304713028149, guid: 6a3b55fc837777e4595939376f2a2b2c, type: 3}
+    gameObject: {fileID: 0}
+    description: '*Write something here*'
+  - clueName: Dagger
+    icon: {fileID: 1872732258777413398, guid: cdaf63e5bd2f8a5498c11b2017dfc8e0, type: 3}
+    gameObject: {fileID: 0}
+    description: '*Write something here*'
+  - clueName: Computer
+    icon: {fileID: 1152356169552002576, guid: 6e0679bdca3553940889aec3da1d6bc2, type: 3}
+    gameObject: {fileID: 0}
+    description: '*Write something here*'
+  - clueName: Note
+    icon: {fileID: -4982748490546177601, guid: 49ff9e9ab51db4a5594cfbe701383661, type: 3}
+    gameObject: {fileID: 0}
+    description: '*Write something here*'
+  - clueName: Rope
+    icon: {fileID: 8662384261516989540, guid: c9cc663c8f1276e4fb023a7f037f45a3, type: 3}
+    gameObject: {fileID: 0}
+    description: '*Write something here*'
 --- !u!1 &2121966663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5359016375789611686, guid: 6b507dd8add91074aa238411b4f4cbf3, type: 3}
