@@ -25,6 +25,9 @@ public class FinalChoiceManager : MonoBehaviour
 
     public TextMeshProUGUI resultText;
 
+    public bool weaponCorrect;
+    public bool suspectCorrect;
+
     void Start()
     {
         // Disable the submit button until both selections are made
@@ -41,6 +44,8 @@ public class FinalChoiceManager : MonoBehaviour
     public void SelectSuspect1() => SelectSuspect(1);
     public void SelectSuspect2() => SelectSuspect(2);
     public void SelectSuspect3() => SelectSuspect(3);
+
+
 
     void SelectWeapon(int index)
     {
@@ -77,8 +82,8 @@ public class FinalChoiceManager : MonoBehaviour
     {
         Debug.Log("Submit pressed");
 
-        bool weaponCorrect = selectedWeaponIndex == correctWeaponIndex;
-        bool suspectCorrect = selectedSuspectIndex == correctSuspectIndex;
+        weaponCorrect = selectedWeaponIndex == correctWeaponIndex;
+        suspectCorrect = selectedSuspectIndex == correctSuspectIndex;
 
         int score = 0;
         if (weaponCorrect) score++;
@@ -113,7 +118,12 @@ public class FinalChoiceManager : MonoBehaviour
         }
         else if (score == 1)
         {
-            SceneManager.LoadScene("End Neutral");
+            if(weaponCorrect && !suspectCorrect){
+                SceneManager.LoadScene("End Neutral Weapon");
+            }
+            else if(!weaponCorrect && suspectCorrect){
+                SceneManager.LoadScene("End Neautral Suspect");
+            }
         }
         else
         {

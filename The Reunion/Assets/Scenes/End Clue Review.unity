@@ -322,7 +322,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Potion
+  m_Text: Chemicals
 --- !u!222 &65437355
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -401,7 +401,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Locker Description
+  m_Text: "Oh, can\u2019t believe that combination worked. There\u2019s a confiscated
+    tablet here with a video of a student talking. She is interrupted by the librarian
+    saying \u201CHey, you! You know there\u2019s no phones allowed for freshmen!\u201D
+    This was right outside of Dr. Mell\u2019s classroom\u2026\u201D"
 --- !u!222 &74976410
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -524,7 +527,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Journal Description
+  m_Text: "\u201CThis is the librarian\u2019s journal! It has a list of names from
+    the staff\u2026 Dr. Mell\u2019s is crossed out.\u201D"
 --- !u!222 &134903733
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -986,7 +990,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dagger Description
+  m_Text: A knife! I thought only plastic knives were allowed in school grounds.
+    Things sure changed around here.
 --- !u!222 &303251099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1660,7 +1665,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pills Description
+  m_Text: "Tranquilizer - Property of Nurse\u2019s Office."
 --- !u!222 &1025809713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1739,7 +1744,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Chalkboard Description
+  m_Text: "\u201CWhat a strange chalkboard\u2026 You rearrange the pieces to reveal
+    a half-erased message: \u201CPromotion decision on\u2026.\u201D.  This is Mr.
+    Kelly\u2019s classroom. Wonder if he got the position\u2026\u201D "
 --- !u!222 &1036631214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1968,7 +1975,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Potion Description
+  m_Text: "Next to the chemicals is a request form signed by Mr. Kelly. Wonder what
+    he\u2019d need chemicals for."
 --- !u!222 &1133312869
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2508,7 +2516,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Note Description
+  m_Text: "After finding a broken note and piecing it back together, it reads \u201CDr.
+    Mell, we need to discuss the missing funds ASAP - Principal\u201D "
 --- !u!222 &1458304764
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2816,7 +2825,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Computer Description
+  m_Text: "That was a fun game. Oh, Mr. Kelly\u2019s recently deleted emails are
+    open\u2026 \u201CDr. Mell, we need to talk. I\u2019ll meet you after school is
+    out.\u201D"
 --- !u!222 &1609099044
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2974,7 +2985,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Backpack Description
+  m_Text: "There\u2019s a form for \u201CMr. Kelly\u2019s Complicated Knots and Survival\u201D
+    after school course\u2026 I hope whichever student forgot their backpack will
+    be able to sign up in time."
 --- !u!222 &1770299251
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3440,7 +3453,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rope Description
+  m_Text: "Why would there be rope in a school\u2026?"
 --- !u!222 &2027132483
 CanvasRenderer:
   m_ObjectHideFlags: 0
