@@ -2158,6 +2158,8 @@ MonoBehaviour:
   correctWeaponIndex: 1
   correctSuspectIndex: 2
   resultText: {fileID: 219415378}
+  weaponCorrect: 0
+  suspectCorrect: 0
 --- !u!4 &960701023
 Transform:
   m_ObjectHideFlags: 0
@@ -4280,7 +4282,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Teacher
+  m_Text: Mr. Kelly
 --- !u!222 &1819434885
 CanvasRenderer:
   m_ObjectHideFlags: 0
