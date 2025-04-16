@@ -10,6 +10,8 @@ public class PiecesScript : MonoBehaviour
     public bool InRightPosition; 
     public bool Selected;
     public int correctCount = 0;
+    [Header("Clue Settings")]
+    public string clueID = "Computer"; // The ID of the clue to be added
     void Start()
     { 
         RightPosition = transform.position;
@@ -33,17 +35,25 @@ public class PiecesScript : MonoBehaviour
                     {
                         Debug.Log("All pieces are in the right position!");
                         // Add code to handle the completion of the puzzle here
-                        /*yield return new WaitForSeconds(1.5f); // Adjust time as needed
+                        //yield return new WaitForSeconds(1.5f); // Adjust time as needed
 
-                        // Save everything before leaving
-                        SaveSystem.MarkPuzzleComplete(puzzleID);
-                        InventoryManager.Instance.AddClue(clueToAdd);
+                        SaveSystem.MarkPuzzleComplete(clueID); 
+                        ClueEventManager.PuzzleCompleted(clueID); 
+                        Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+                        if (clueFromDB != null)
+                        {
+                            InventoryManager.Instance.AddClue(clueFromDB);
+                            Debug.Log($"Clue '{clueID}' added from database.");
+                        }
+                        else {
+                            Debug.LogError($"Clue '{clueID}' NOT found in database!");
+                        }
 
                         // Force immediate save
                         PlayerPrefs.Save();
 
                         Debug.Log("Puzzle completed! Returning to map...");
-                        PuzzleSceneSwapper.Instance.ReturnToMap();*/
+                        PuzzleSceneSwapper.Instance.ReturnToMap();
                     }
                 } 
             }

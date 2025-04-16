@@ -14,6 +14,9 @@ public class DotConnection : MonoBehaviour
     private bool isDrawing = false;
     private int successfulConnections = 0;
     private const int WIN_CONDITION = 5;
+    [Header("Clue Settings")]
+    public string clueID = "note"; // The ID of the clue to be added
+
 
     void Start()
     {
@@ -150,6 +153,27 @@ public class DotConnection : MonoBehaviour
         if (successfulConnections >= WIN_CONDITION)
         {
             Debug.Log("You win!");
+            Debug.Log("All pieces are in the right position!");
+                        // Add code to handle the completion of the puzzle here
+                        //yield return new WaitForSeconds(1.5f); // Adjust time as needed
+
+                        SaveSystem.MarkPuzzleComplete(clueID); 
+                        ClueEventManager.PuzzleCompleted(clueID); 
+                        Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+                        if (clueFromDB != null)
+                        {
+                            InventoryManager.Instance.AddClue(clueFromDB);
+                            Debug.Log($"Clue '{clueID}' added from database.");
+                        }
+                        else {
+                            Debug.LogError($"Clue '{clueID}' NOT found in database!");
+                        }
+
+                        // Force immediate save
+                        PlayerPrefs.Save();
+
+                        Debug.Log("Puzzle completed! Returning to map...");
+                        PuzzleSceneSwapper.Instance.ReturnToMap();
             // You could add more win behavior here like showing a win screen
         }
     }
