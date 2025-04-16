@@ -72,7 +72,7 @@ public class ClueCounter : MonoBehaviour
     private void LoadClueCount()
     {
         _clueCount = PlayerPrefs.GetInt(CLUE_COUNT_KEY, 0);
-        cluesRequiredForEnding = PlayerPrefs.GetInt(CLUES_REQUIRED_KEY, 5);
+        cluesRequiredForEnding = PlayerPrefs.GetInt(CLUES_REQUIRED_KEY, 10);
         UpdateClueDisplay();
     }
 
