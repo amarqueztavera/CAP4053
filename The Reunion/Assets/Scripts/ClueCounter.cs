@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ClueCounter : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int cluesRequiredForEnding = 5; // Set to 9 for final game
+    [SerializeField] private int cluesRequiredForEnding = 10; // Set to 10 for final game
     public string endingSceneName = "End Scene"; // Name of ending scene
 
     [Header("UI")]
@@ -102,11 +102,11 @@ public class ClueCounter : MonoBehaviour
 
     private int CalculateCurrentAct()
     {
-        // New game starts at Act 1 (0–1 clues)
-        // 1 clues = Act 2, 2 clues = Act 3 (TEMPORARY FOR TESTING)
-        if (ClueCount >= 2)
+        // New game starts at Act 1 (0ï¿½1 clues)
+        // 3 clues = Act 2, 7 clues = Act 3 (TEMPORARY FOR TESTING)
+        if (ClueCount >= 7)
             return 3;
-        else if (ClueCount >= 1)
+        else if (ClueCount >= 3)
             return 2;
         else
             return 1;

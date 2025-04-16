@@ -6831,7 +6831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0/5 Clues Found
+  m_text: 0/10 Clues Found
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6858,7 +6858,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.05
+  m_fontSize: 32.6
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7355,7 +7355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00ab804e2280fd4b9136b2a1287a8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cluesRequiredForEnding: 5
+  cluesRequiredForEnding: 10
   endingSceneName: End Scene
   cluesText: {fileID: 1992922459}
   suspicionManager: {fileID: 2118088820}
@@ -7434,45 +7434,57 @@ MonoBehaviour:
   - clueName: Chalkboard
     icon: {fileID: -7439290634749555634, guid: e0d7247c423effe45b65083c29f490b1, type: 3}
     gameObject: {fileID: 0}
-    description: This is a test description! Found near a door. Someone must've left
-      a secret message.
+    description: "What a strange chalkboard\u2026 You rearrange the pieces to reveal
+      a half-erased message: \u201CPromotion decision on\u2026.\u201D.  This is Mr.
+      Kelly\u2019s classroom. Wonder if he got the position\u2026"
   - clueName: Pills
     icon: {fileID: 3584907460382716065, guid: 18a2d556251205b438ca4a83bccd4c00, type: 3}
     gameObject: {fileID: 0}
-    description: These are pills. Were these the principals? Could he have overdosed
-      or been drugged?
+    description: "Tranquilizer - Property of Nurse\u2019s Office....These are pills.
+      Were these the principals? Could he have overdosed or been drugged?"
   - clueName: Locker
     icon: {fileID: 198538158556077393, guid: a396395c2cea9bd4994e7fc1213f5daf, type: 3}
     gameObject: {fileID: 0}
-    description: There must be something useful in here. Look carefully.
+    description: "Oh, can\u2019t believe that combination worked. There\u2019s a
+      confiscated tablet here with a video of a student talking. She is interrupted
+      by the librarian saying \u201CHey, you! You know there\u2019s no phones allowed
+      for freshmen!\u201D This was right outside of Dr. Mell\u2019s classroom\u2026"
   - clueName: Journal
     icon: {fileID: 2004232101495086770, guid: 9a997a122f202ed4c86e007ff27e50c8, type: 3}
     gameObject: {fileID: 0}
-    description: '*Write something here*'
+    description: "This is the librarian\u2019s journal! It has a list of names from
+      the staff\u2026 Dr. Mell\u2019s is crossed out."
   - clueName: Backpack
     icon: {fileID: -6415490079858998490, guid: e3648709dd8329d4792bde977b0a643f, type: 3}
     gameObject: {fileID: 0}
-    description: '*Write something here*'
+    description: "There\u2019s a form for \u201CMr. Kelly\u2019s Complicated Knots
+      and Survival\u201D after school course\u2026 I hope whichever student forgot
+      their backpack will be able to sign up in time."
   - clueName: Potions
     icon: {fileID: -8485995304713028149, guid: 6a3b55fc837777e4595939376f2a2b2c, type: 3}
     gameObject: {fileID: 0}
-    description: '*Write something here*'
+    description: "Next to the chemicals is a request form signed by Mr. Kelly. Wonder
+      what he\u2019d need chemicals for."
   - clueName: Dagger
     icon: {fileID: 1872732258777413398, guid: cdaf63e5bd2f8a5498c11b2017dfc8e0, type: 3}
     gameObject: {fileID: 0}
-    description: '*Write something here*'
+    description: A knife! I thought only plastic knives were allowed in school grounds.
+      Things sure changed around here.
   - clueName: Computer
     icon: {fileID: 1152356169552002576, guid: 6e0679bdca3553940889aec3da1d6bc2, type: 3}
     gameObject: {fileID: 0}
-    description: '*Write something here*'
+    description: "That was a fun game. Oh, Mr. Kelly\u2019s recently deleted emails
+      are open\u2026 \u201CDr. Mell, we need to talk. I\u2019ll meet you after school
+      is out.\u201D"
   - clueName: Note
     icon: {fileID: -4982748490546177601, guid: 49ff9e9ab51db4a5594cfbe701383661, type: 3}
     gameObject: {fileID: 0}
-    description: '*Write something here*'
+    description: "After finding a broken note and piecing it back together, it reads
+      \u201CDr. Mell, we need to discuss the missing funds ASAP - Principa"
   - clueName: Rope
     icon: {fileID: 8662384261516989540, guid: c9cc663c8f1276e4fb023a7f037f45a3, type: 3}
     gameObject: {fileID: 0}
-    description: '*Write something here*'
+    description: "Why would there be rope in a school\u2026?"
 --- !u!114 &2118088827
 MonoBehaviour:
   m_ObjectHideFlags: 0
