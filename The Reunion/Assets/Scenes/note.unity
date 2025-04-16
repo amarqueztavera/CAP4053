@@ -149,8 +149,8 @@ Transform:
   m_GameObject: {fileID: 23092637}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -908.35004, y: -558.55, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.4694529}
+  m_LocalPosition: {x: -900.541, y: -552.244, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.4694529}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 528046303}
@@ -339,6 +339,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &104758091
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,8 +370,8 @@ Transform:
   m_GameObject: {fileID: 104758091}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -910.97003, y: -565.84, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -903.532, y: -560.487, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 868530123}
@@ -559,6 +560,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &121068390
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,8 +852,8 @@ Transform:
   m_GameObject: {fileID: 239386115}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -913.15, y: -555.9, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.4694529}
+  m_LocalPosition: {x: -906.021, y: -549.247, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.4694529}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 748054176}
@@ -1040,6 +1042,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &242037981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,8 +1073,8 @@ Transform:
   m_GameObject: {fileID: 242037981}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -900.61005, y: -565.88, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -891.705, y: -560.533, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 830052215}
@@ -1260,6 +1263,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &256134162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,8 +1294,8 @@ Transform:
   m_GameObject: {fileID: 256134162}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -903.13, y: -566.25, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -894.582, y: -560.951, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 505237854}
@@ -1480,6 +1484,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &259275733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,8 +1515,8 @@ Transform:
   m_GameObject: {fileID: 259275733}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -913.53, y: -563.62, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -906.455, y: -557.977, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 380093314}
@@ -1700,6 +1705,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &332120829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,8 +1736,8 @@ Transform:
   m_GameObject: {fileID: 332120829}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -913.15, y: -561.05, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -906.021, y: -555.071, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1835977177}
@@ -1920,6 +1926,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &375516241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,8 +1957,8 @@ Transform:
   m_GameObject: {fileID: 375516241}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -900.55005, y: -561.24, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -891.637, y: -555.286, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1542455801}
@@ -2140,6 +2147,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &375678332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,8 +2178,8 @@ Transform:
   m_GameObject: {fileID: 375678332}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -900.62, y: -556.02, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.4694529}
+  m_LocalPosition: {x: -891.716, y: -549.383, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.4694529}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1111921103}
@@ -2360,6 +2368,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &380093313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,8 +2660,8 @@ Transform:
   m_GameObject: {fileID: 453558306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -905.73004, y: -563.66, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -897.55, y: -558.022, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1742610087}
@@ -2841,6 +2850,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &474488217
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,8 +2881,8 @@ Transform:
   m_GameObject: {fileID: 474488217}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -905.72003, y: -561.18, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -897.539, y: -555.218, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1709664889}
@@ -3061,6 +3071,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &505237853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,8 +3363,8 @@ Transform:
   m_GameObject: {fileID: 567313595}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -913.52, y: -558.49, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.4694529}
+  m_LocalPosition: {x: -906.443, y: -552.176, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.4694529}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2072823824}
@@ -3542,6 +3553,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &576859440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3572,8 +3584,8 @@ Transform:
   m_GameObject: {fileID: 576859440}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -903.09, y: -563.75, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -894.536, y: -558.124, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1091059201}
@@ -3762,6 +3774,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &658407744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,8 +3892,8 @@ Transform:
   m_GameObject: {fileID: 728603120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -900.95, y: -553.41, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -892.093, y: -546.431, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2048580500}
@@ -4069,6 +4082,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &748054175
 GameObject:
   m_ObjectHideFlags: 0
@@ -4186,8 +4200,8 @@ Transform:
   m_GameObject: {fileID: 749651200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -913.15, y: -566.18, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -906.021, y: -560.872, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 121068391}
@@ -4376,6 +4390,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &770273674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4557,8 +4572,8 @@ Transform:
   m_GameObject: {fileID: 782909447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -910.93005, y: -563.67, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -903.487, y: -558.034, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 658407745}
@@ -4747,6 +4762,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &802789907
 GameObject:
   m_ObjectHideFlags: 0
@@ -4777,8 +4793,8 @@ Transform:
   m_GameObject: {fileID: 802789907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -903.2, y: -558.63, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -894.662, y: -552.334, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2142359171}
@@ -4967,6 +4983,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &817640267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,8 +5014,8 @@ Transform:
   m_GameObject: {fileID: 817640267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -908.34, y: -563.66, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -900.53, y: -558.022, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1911892654}
@@ -5187,6 +5204,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &830052214
 GameObject:
   m_ObjectHideFlags: 0
@@ -5354,12 +5372,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835135067}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.7052, y: 17.6504, z: 0}
-  m_LocalScale: {x: 2.8384, y: 3.2609, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -889.08167, y: -553.2935, z: 0}
+  m_LocalScale: {x: 7.5376596, y: 8.659652, z: 2.6556017}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1198410966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &868530122
 GameObject:
@@ -5565,8 +5583,8 @@ Transform:
   m_GameObject: {fileID: 876199392}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -908.33, y: -566.26, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -900.518, y: -560.962, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1393926276}
@@ -5755,6 +5773,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &894684204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5785,8 +5804,8 @@ Transform:
   m_GameObject: {fileID: 894684204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -910.95, y: -553.33, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -903.509, y: -546.341, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 408565738}
@@ -5975,6 +5994,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &983636577
 GameObject:
   m_ObjectHideFlags: 0
@@ -6092,8 +6112,8 @@ Transform:
   m_GameObject: {fileID: 1087057968}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -910.94, y: -555.93, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -903.498, y: -549.281, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1784497000}
@@ -6282,6 +6302,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1091059200
 GameObject:
   m_ObjectHideFlags: 0
@@ -6486,8 +6507,8 @@ Transform:
   m_GameObject: {fileID: 1165661770}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -900.92004, y: -563.73, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.4694526}
+  m_LocalPosition: {x: -892.059, y: -558.101, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.4694526}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 875921873}
@@ -6676,6 +6697,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1188911065
 GameObject:
   m_ObjectHideFlags: 0
@@ -6706,8 +6728,8 @@ Transform:
   m_GameObject: {fileID: 1188911065}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -903.16003, y: -561.16, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -894.616, y: -555.195, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1444403049}
@@ -6896,6 +6918,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1193061861
 GameObject:
   m_ObjectHideFlags: 0
@@ -7077,6 +7100,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 835135069}
   - {fileID: 728603121}
   - {fileID: 576859441}
   - {fileID: 817640268}
@@ -7113,6 +7137,7 @@ RectTransform:
   - {fileID: 1605284447}
   - {fileID: 1970369878}
   - {fileID: 1938927938}
+  - {fileID: 1822718167}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7237,8 +7262,8 @@ Transform:
   m_GameObject: {fileID: 1264395699}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -903.2, y: -556, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -894.662, y: -549.36, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1708724303}
@@ -7427,6 +7452,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1296722349
 GameObject:
   m_ObjectHideFlags: 0
@@ -7457,8 +7483,8 @@ Transform:
   m_GameObject: {fileID: 1296722349}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: -903.17004, y: -553.76, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -894.628, y: -546.827, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1422922755}
@@ -7647,6 +7673,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1310447667
 GameObject:
   m_ObjectHideFlags: 0
@@ -7677,8 +7704,8 @@ Transform:
   m_GameObject: {fileID: 1310447667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -905.75, y: -553.37, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.4694529}
+  m_LocalPosition: {x: -897.573, y: -546.386, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.4694529}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1789004858}
@@ -7867,6 +7894,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1393926275
 GameObject:
   m_ObjectHideFlags: 0
@@ -7984,8 +8012,8 @@ Transform:
   m_GameObject: {fileID: 1420994375}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -913.5139, y: -553.71436, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -906.436, y: -546.775, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 147506963}
@@ -8174,6 +8202,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1422922754
 GameObject:
   m_ObjectHideFlags: 0
@@ -8378,8 +8407,8 @@ Transform:
   m_GameObject: {fileID: 1453380372}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -910.92004, y: -561.1, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -903.475, y: -555.127, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 200543129}
@@ -8568,6 +8597,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1477389241
 GameObject:
   m_ObjectHideFlags: 0
@@ -8593,7 +8623,7 @@ Transform:
   m_GameObject: {fileID: 1477389241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.55, y: 13.73, z: -0.039502766}
+  m_LocalPosition: {x: 26.93, y: 14.49, z: -0.039502766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8629,8 +8659,8 @@ Transform:
   m_GameObject: {fileID: 1486981872}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -900.95, y: -558.64, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.4694526}
+  m_LocalPosition: {x: -892.093, y: -552.346, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.4694526}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1529784510}
@@ -8819,6 +8849,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1495382501
 GameObject:
   m_ObjectHideFlags: 0
@@ -9110,8 +9141,8 @@ Transform:
   m_GameObject: {fileID: 1566218488}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -905.76, y: -558.6, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -897.584, y: -552.3, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2022321679}
@@ -9300,6 +9331,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1605284446
 GameObject:
   m_ObjectHideFlags: 0
@@ -9330,8 +9362,8 @@ Transform:
   m_GameObject: {fileID: 1605284446}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -905.79004, y: -555.97003, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -897.619, y: -549.326, z: 0}
+  m_LocalScale: {x: 1.7129999, y: 1.6965001, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 558568592}
@@ -9520,6 +9552,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1700482586
 GameObject:
   m_ObjectHideFlags: 0
@@ -9550,8 +9583,8 @@ Transform:
   m_GameObject: {fileID: 1700482586}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -908.30005, y: -561.18, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -900.484, y: -555.218, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1226091391}
@@ -9740,6 +9773,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1708724302
 GameObject:
   m_ObjectHideFlags: 0
@@ -10205,8 +10239,8 @@ Transform:
   m_GameObject: {fileID: 1820567459}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -905.74005, y: -565.85, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -897.562, y: -560.499, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1193061862}
@@ -10395,6 +10429,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1822718165
 GameObject:
   m_ObjectHideFlags: 0
@@ -10475,12 +10510,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822718165}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.9136, y: 17.5488, z: 1.88}
-  m_LocalScale: {x: 0.65585715, y: 0.6515348, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -899.15063, y: -553.56335, z: 4.9925313}
+  m_LocalScale: {x: 1.7416954, y: 1.730217, z: 2.6556017}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1198410966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1824068762
 GameObject:
@@ -10512,8 +10547,8 @@ Transform:
   m_GameObject: {fileID: 1824068762}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: -908.34, y: -553.73, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -900.53, y: -546.793, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 422105304}
@@ -10702,6 +10737,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1835977176
 GameObject:
   m_ObjectHideFlags: 0
@@ -10906,8 +10942,8 @@ Transform:
   m_GameObject: {fileID: 1938927937}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -910.94, y: -558.54, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -903.498, y: -552.232, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1495382502}
@@ -11096,6 +11132,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &1970369877
 GameObject:
   m_ObjectHideFlags: 0
@@ -11126,8 +11163,8 @@ Transform:
   m_GameObject: {fileID: 1970369877}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -908.31, y: -556.05, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 2.469453}
+  m_LocalPosition: {x: -900.496, y: -549.417, z: 0}
+  m_LocalScale: {x: 1.6965001, y: 1.7129999, z: 2.469453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 983636578}
@@ -11316,6 +11353,7 @@ MonoBehaviour:
   InRightPosition: 0
   Selected: 0
   correctCount: 0
+  clueID: Computer
 --- !u!1 &2022321678
 GameObject:
   m_ObjectHideFlags: 0
@@ -11671,5 +11709,3 @@ SceneRoots:
   - {fileID: 770273677}
   - {fileID: 1198410966}
   - {fileID: 1477389242}
-  - {fileID: 1822718167}
-  - {fileID: 835135069}

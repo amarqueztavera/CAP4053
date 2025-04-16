@@ -71,12 +71,13 @@ public class PuzzleTrigger : MonoBehaviour
 
             if (hit.collider != null)
             {
-                //Debug.Log("Hit: " + hit.collider.name);
-                //Debug.Log("Hit layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+                Debug.Log("Hit: " + hit.collider.name);
+                Debug.Log("Hit layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+                Debug.Log($"Clicked {name}! puzzle scene: {puzzleSceneName}");
 
                 if (hit.collider.gameObject == gameObject && !string.IsNullOrEmpty(puzzleSceneName))
                 {
-                    //Debug.Log($"Clicked {name}! Loading {puzzleSceneName}");
+                    Debug.Log($"Clicked {name}! Loading {puzzleSceneName}");
                     PuzzleSceneSwapper.Instance.LoadPuzzleScene(puzzleSceneName);
                 }
             }
@@ -87,14 +88,21 @@ public class PuzzleTrigger : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    /*void OnMouseDown()
     {
         if (SaveSystem.IsPuzzleComplete(puzzleID)) return;
         if (string.IsNullOrEmpty(puzzleSceneName)) return;
 
         Debug.Log($"Loading puzzle: {puzzleSceneName}");
         TryLoadPuzzle();
-    }
+    }*/
+    void OnMouseDown()
+{
+    //if (SaveSystem.IsPuzzleComplete(puzzleID)) return;
+    if (string.IsNullOrEmpty(puzzleSceneName)) return;
+    Debug.Log($"Loading puzzle: {puzzleSceneName}");
+    TryLoadPuzzle();
+}
 
     private void TryLoadPuzzle()
     {
