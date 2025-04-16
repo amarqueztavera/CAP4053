@@ -122,7 +122,7 @@ public class FinalChoiceManager : MonoBehaviour
                 SceneManager.LoadScene("End Neutral Weapon");
             }
             else if(!weaponCorrect && suspectCorrect){
-                SceneManager.LoadScene("End Neautral Suspect");
+                SceneManager.LoadScene("End Neutral Suspect");
             }
         }
         else
