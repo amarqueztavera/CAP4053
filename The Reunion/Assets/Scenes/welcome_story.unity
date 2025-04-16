@@ -730,6 +730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 531597372}
   - component: {fileID: 531597371}
+  - component: {fileID: 531597373}
   m_Layer: 0
   m_Name: sceneSwap
   m_TagString: Untagged
@@ -744,7 +745,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531597370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0fd40c12e44c46ccae7c90baafa4476, type: 3}
   m_Name: 
@@ -766,6 +767,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 665347121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &531597373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531597370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4f5b7a82ddf4293b8d06aea7319767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapSceneName: Map
+  uiSceneName: GameUI
 --- !u!1 &665347116
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,16 +822,16 @@ PlayableDirector:
     value: {fileID: 33247483}
   - key: {fileID: -2363052444065738541, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
     value: {fileID: 1651964631}
-  - key: {fileID: 4837846365357515572, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
-    value: {fileID: 102463292}
   - key: {fileID: 330752520707069365, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
     value: {fileID: 1269030005}
-  - key: {fileID: 570867347959071258, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
-    value: {fileID: 531597370}
   - key: {fileID: -1180069835758035645, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
     value: {fileID: 0}
   - key: {fileID: 7431144962349170400, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 1795296742017494356, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
+    value: {fileID: 102463292}
+  - key: {fileID: 823320764777924350, guid: c9ade2de03eb54468b3cf194360e4cfd, type: 2}
+    value: {fileID: 531597370}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &665347118
