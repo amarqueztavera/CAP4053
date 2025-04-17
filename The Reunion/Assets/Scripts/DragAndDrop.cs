@@ -13,7 +13,7 @@ public class DragAndDrop : MonoBehaviour
     public float returnDelay = 1.5f; // Delay before returning to map
 
     [Header("Clue Settings")]
-    public string clueID = "note"; // The ID of the clue to be added
+    public string clueID = "Note"; // The ID of the clue to be added
 
     void Start()
     {
