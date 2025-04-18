@@ -15,7 +15,7 @@ public class DotConnection : MonoBehaviour
     private int successfulConnections = 0;
     private const int WIN_CONDITION = 5;
     [Header("Clue Settings")]
-    public string clueID = "note"; // The ID of the clue to be added
+    public string clueID = "Computer"; // The ID of the clue to be added
 
 
     void Start()
