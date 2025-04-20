@@ -35,7 +35,7 @@ public class DELETE : MonoBehaviour
 
 
     [Header("AI Settings")]
-    public float chaseSpeed = 3.5f;
+    public float chaseSpeed = 5f;
     public float patrolSpeed = 2f;
     public float investigationTime = 5f;
     public float waypointWaitTime = 3f;
@@ -409,4 +409,18 @@ public class DELETE : MonoBehaviour
         ForceReset();
     }
 
+    public void ReactToSuspicionImmediately()
+    {
+        if (!CanChasePlayer())
+        {
+            Debug.Log($"{name} did not chase: MaxSuspicion = {NPCStateManager.Instance.maxSuspicion}, InReunion = {SuspicionManager.Instance.IsInReunionArea}");
+        }
+
+        if (CanChasePlayer())
+        {
+            Vector3 playerPos = NPCStateManager.Instance.PlayerTransform.position;
+            HandleStateUpdate(true, playerPos); // start chase
+            Debug.Log($"{name} is now chasing player due to max suspicion.");
+        }
+    }
 }

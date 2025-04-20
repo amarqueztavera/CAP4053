@@ -105,6 +105,13 @@ public class PuzzleSceneSwapper : MonoBehaviour
                     npc.ForceReset();
                 }
             }
+
+            // Force NPCs to react to max suspicion state
+            var allNPCs = FindObjectsByType<DELETE>(FindObjectsSortMode.None);
+            foreach (var npc in allNPCs)
+            {
+                npc.ReactToSuspicionImmediately();
+            }
         }
     }
 }

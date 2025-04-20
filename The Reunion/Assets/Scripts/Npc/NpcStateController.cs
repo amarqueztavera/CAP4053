@@ -78,6 +78,8 @@ public class NPCStateManager : MonoBehaviour
 
     public void SetMaxSuspicion(bool suspicious)
     {
+        Debug.Log($"[maxSuspicion] Set to {suspicious} by: {new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().Name}");
+
         if (maxSuspicion == suspicious) return;
 
         maxSuspicion = suspicious;
@@ -190,8 +192,8 @@ public class NPCStateManager : MonoBehaviour
             }
         }
 
-        // Reset global state
-        maxSuspicion = false;
+        // Reset path memory only
         lastPlayerPosition = Vector3.zero;
+        // DO NOT reset maxSuspicion here
     }
 }
