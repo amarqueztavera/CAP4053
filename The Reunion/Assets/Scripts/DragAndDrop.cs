@@ -9,7 +9,7 @@ public class DragAndDrop : MonoBehaviour
     private int correctlyPlacedPieces = 0;
 
     [Header("Completion Settings")]
-    public string puzzleID = "Note"; // Should match PuzzleTrigger's puzzleID
+    //public string puzzleID = "Note"; // Should match PuzzleTrigger's puzzleID
     public float returnDelay = 1.5f; // Delay before returning to map
 
     [Header("Clue Settings")]
@@ -72,6 +72,7 @@ public class DragAndDrop : MonoBehaviour
             ClueEventManager.PuzzleCompleted(clueID); 
 
             Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+            Debug.Log("attempting to add clue from database");
             if (clueFromDB != null)
             {
                 InventoryManager.Instance.AddClue(clueFromDB);
@@ -84,13 +85,14 @@ public class DragAndDrop : MonoBehaviour
 
             PlayerPrefs.Save();
             Debug.Log($"Puzzle completed. Returning to map...");
-            Invoke("ReturnToMap", returnDelay);
+            PuzzleSceneSwapper.Instance.ReturnToMap();
+            //Invoke("ReturnToMap", returnDelay);
             
         }
     }
 
-    private void ReturnToMap()
+   /* private void ReturnToMap()
     {
         PuzzleSceneSwapper.Instance.ReturnToMap();
-    }
+    }*/
 }
