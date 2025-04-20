@@ -9,7 +9,7 @@ public class DragAndDrop : MonoBehaviour
     private int correctlyPlacedPieces = 0;
 
     [Header("Completion Settings")]
-    public string puzzleID = "note"; // Should match PuzzleTrigger's puzzleID
+    public string puzzleID = "Note"; // Should match PuzzleTrigger's puzzleID
     public float returnDelay = 1.5f; // Delay before returning to map
 
     [Header("Clue Settings")]
