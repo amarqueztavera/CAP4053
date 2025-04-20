@@ -13,7 +13,7 @@ public class PiecesScript : MonoBehaviour
     void Start()
     { 
         RightPosition = transform.position;
-        transform.position = new Vector3(Random.Range(27.5f, 33f), Random.Range(20.5f, 13.5f));
+        transform.position = new Vector3(Random.Range(27.5f, 33f), Random.Range(10.5f, 5.5f));
         
         // Find the DragAndDrop manager in the scene
         dragAndDropManager = FindObjectOfType<DragAndDrop>();
