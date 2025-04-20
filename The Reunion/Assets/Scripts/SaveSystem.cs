@@ -5,6 +5,7 @@ using System.Linq;
 public static class SaveSystem
 {
     private const string PUZZLE_PREFIX = "Puzzle_";
+    private const string CLUE_PREFIX = "Clue_";
     private const string INVENTORY_KEY = "Inventory";
 
     // Save a puzzle as completed
@@ -45,10 +46,42 @@ public static class SaveSystem
             : serializedInventory.Split(',').ToList();
     }
 
+    public static void MarkClueCollected(string clueID)
+    {
+        PlayerPrefs.SetInt(CLUE_PREFIX + clueID, 1);
+        PlayerPrefs.Save();
+    }
+
+    public static bool IsClueCollected(string clueID)
+    {
+        return PlayerPrefs.GetInt(CLUE_PREFIX + clueID, 0) == 1;
+    }
+
+    public static List<string> AllClueIDs()
+    {
+        if (ClueDatabase.Instance == null)
+        {
+            Debug.LogWarning("ClueDatabase not initialized.");
+            return new List<string>();
+        }
+
+        return ClueDatabase.Instance.allClues.ConvertAll(clue => clue.clueName);
+    }
+
+    public static void ResetAllClueProgress()
+    {
+        foreach (string clueID in AllClueIDs())
+        {
+            PlayerPrefs.DeleteKey(CLUE_PREFIX + clueID);
+        }
+        PlayerPrefs.Save();
+    }
+
     public static void ResetInventory()
     {
         PlayerPrefs.DeleteKey(INVENTORY_KEY);
         PlayerPrefs.Save();
         Debug.Log("Inventory reset.");
     }
+
 }

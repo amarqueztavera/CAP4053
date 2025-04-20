@@ -6,6 +6,15 @@ public class ClickableClue : MonoBehaviour
     [Header("Clue Settings")]
     public string clueID; // Just type the clue ID/name here
 
+    private void Start()
+    {
+        // If already collected in past, destroy this clue
+        if (SaveSystem.IsClueCollected(clueID))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -34,6 +43,7 @@ public class ClickableClue : MonoBehaviour
         if (InventoryManager.Instance.AddClue(clueFromDB))
         {
             Debug.Log($"Clue '{clueID}' added to inventory.");
+            SaveSystem.MarkClueCollected(clueID);
             Destroy(gameObject);
         }
         else
