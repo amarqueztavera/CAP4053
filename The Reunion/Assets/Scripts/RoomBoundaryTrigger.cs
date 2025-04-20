@@ -6,12 +6,27 @@ public class RoomBoundaryTrigger : MonoBehaviour
     [Header("Settings")]
     public string playerTag = "Player";
     public GameObject[] roomInteractables; // Assign puzzles/clues in this room
+
+
     private bool playerInRoom = false;
+    private Collider2D roomCollider;
+    private GameObject player;
 
     private void Start()
     {
+        roomCollider = GetComponent<Collider2D>();
+        player = GameObject.FindGameObjectWithTag(playerTag);
+
         // Ensure all interactables' colliders are disabled when the scene starts
         SetInteractablesState(false);
+
+        // Check if player is already inside the room on Start
+        if (player != null && roomCollider.bounds.Contains(player.transform.position))
+        {
+            Debug.Log("Player was already inside room at Start()");
+            playerInRoom = true;
+            SetInteractablesState(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,6 +53,8 @@ public class RoomBoundaryTrigger : MonoBehaviour
     {
         foreach (GameObject obj in roomInteractables)
         {
+            if (obj == null) continue;
+
             Collider2D collider = obj.GetComponent<Collider2D>();
             if (collider != null) collider.enabled = state;
 

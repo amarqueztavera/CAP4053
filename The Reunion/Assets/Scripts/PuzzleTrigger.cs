@@ -34,7 +34,7 @@ public class PuzzleTrigger : MonoBehaviour
         interactionCollider = GetComponent<Collider2D>();
         RefreshPuzzleState();
 
-        Debug.Log($"PuzzleTrigger ({puzzleID}) initialized. Completed: {SaveSystem.IsPuzzleComplete(puzzleID)}");
+        //Debug.Log($"PuzzleTrigger ({puzzleID}) initialized. Completed: {SaveSystem.IsPuzzleComplete(puzzleID)}");
     }
 
     public void RefreshPuzzleState()
@@ -43,16 +43,19 @@ public class PuzzleTrigger : MonoBehaviour
         {
             MarkAsComplete();
 
-            Debug.Log($"Puzzle {puzzleID} is already completed. Disabling trigger.");
+            //Debug.Log($"Puzzle {puzzleID} is already completed. Disabling trigger.");
             spriteRenderer.color = completeColor;
-            interactionCollider.enabled = false;
         }
         else
         {
             spriteRenderer.color = incompleteColor;
-            interactionCollider.enabled = true;
+            //interactionCollider.enabled = true;
 
-            Debug.Log($"PuzzleTrigger ({puzzleID}) set to incomplete (yellow).");
+
+            // Do NOT enable the collider here
+            // Leave enabling to RoomBoundaryTrigger
+
+            //Debug.Log($"PuzzleTrigger ({puzzleID}) set to incomplete (yellow).");
         }
     }
 
