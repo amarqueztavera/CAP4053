@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+
 public class DragAndDrop : MonoBehaviour
 {
     public GameObject SelectedPiece; 
@@ -13,7 +18,8 @@ public class DragAndDrop : MonoBehaviour
     public float returnDelay = 1.5f; // Delay before returning to map
 
     [Header("Clue Settings")]
-    public string clueID = "Note"; // The ID of the clue to be added
+    public string clueID; // The ID of the clue to be added
+    public string puzzleID; // The ID of the puzzle
 
     void Start()
     {
@@ -68,8 +74,8 @@ public class DragAndDrop : MonoBehaviour
         {
             Debug.Log("Puzzle completed!");
             
-            SaveSystem.MarkPuzzleComplete(clueID); 
-            ClueEventManager.PuzzleCompleted(clueID); 
+            SaveSystem.MarkPuzzleComplete(puzzleID); 
+            ClueEventManager.PuzzleCompleted(puzzleID); 
 
             Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
             Debug.Log("attempting to add clue from database");
