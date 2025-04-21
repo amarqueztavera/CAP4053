@@ -148,7 +148,8 @@ public class ClueCounter : MonoBehaviour
     {
         if (cluesText != null)
         {
-            cluesText.text = $"{ClueCount}/{cluesRequiredForEnding} Clues Found";
+            int currentAct = CalculateCurrentAct(); // Get the current act for display
+            cluesText.text = $"Current Act: {currentAct} \n{ClueCount}/{cluesRequiredForEnding} Clues Found";
         }
         else
         {
