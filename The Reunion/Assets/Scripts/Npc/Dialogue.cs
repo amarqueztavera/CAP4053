@@ -88,11 +88,14 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator Typing()
     {
-        foreach(char letter in dialogue[index].ToCharArray())
-        {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(wordSpeed);
-        }
+        //foreach(char letter in dialogue[index].ToCharArray())
+        //{
+        //    dialogueText.text += letter;
+        //    yield return new WaitForSeconds(wordSpeed);
+        //}
+
+        dialogueText.text = dialogue[index].ToString();
+        yield return null;
     }
 
     public void NextLine()
