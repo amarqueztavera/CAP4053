@@ -6,17 +6,71 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: b07ba2b8950e6f044959b7bea4befb8c
+  - enabled: 1
+    path: Assets/Scenes/welcome_story.unity
+    guid: 4be8cca7cc59247fe9d994839cda0fb0
+  - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/Sample.unity
-    guid: 585fa73aa15566a4896698d7d6446174
   - enabled: 1
     path: Assets/Scenes/GameUI.unity
     guid: 68bc320c4b66dd4438d06333c0455f8f
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
-    guid: b07ba2b8950e6f044959b7bea4befb8c
+    path: Assets/Scenes/Code_Unlock.unity
+    guid: 74fa53a92437def488998a787ec417ea
+  - enabled: 1
+    path: Assets/Scenes/Sliding_Jigsaw.unity
+    guid: ecb53a928eea0ed4087727ff2e8842b0
+  - enabled: 1
+    path: Assets/Scenes/Pill_Sort.unity
+    guid: 37754fbe9ef40c64da1c26269d3b4989
+  - enabled: 1
+    path: Assets/Scenes/VendingImage.unity
+    guid: 2af6c29cfe8a25648becb28da6de6e3d
+  - enabled: 1
+    path: Assets/Scenes/ChalkboardImage.unity
+    guid: 4c7f9e6d4471b1947b7f285f93f9dcc8
+  - enabled: 1
+    path: Assets/Scenes/Sample.unity
+    guid: 585fa73aa15566a4896698d7d6446174
+  - enabled: 1
+    path: Assets/Scenes/End Scene.unity
+    guid: 93af77b3bf087824f97682f17346ea5b
+  - enabled: 1
+    path: Assets/Scenes/note.unity
+    guid: 1dfa4ab5c40a7450d9fed927f5a0bae5
+  - enabled: 1
+    path: Assets/Scenes/Thank_you_Scene.unity
+    guid: eeb7cec71f5534fbca7035e9871be1d9
+  - enabled: 1
+    path: Assets/Scenes/End Clue Review.unity
+    guid: 2521df794c9e37f4fb084dfb35af98b8
+  - enabled: 1
+    path: Assets/Scenes/End Good.unity
+    guid: eb047ea85ef292e4faa57e23c7a7b65c
+  - enabled: 1
+    path: Assets/Scenes/End Neutral Suspect.unity
+    guid: 28b3c7656290c824980ee6488ebf4664
+  - enabled: 1
+    path: Assets/Scenes/End Neutral Weapon.unity
+    guid: 906620525c34f434e925224a2dc6a397
+  - enabled: 1
+    path: Assets/Scenes/End Bad.unity
+    guid: 5d674a831ec63254f89a172a97474472
+  - enabled: 1
+    path: Assets/Scenes/Color_flow_connect_level1.unity
+    guid: b3a6861a99e304acb90959d05d82635c
+  - enabled: 1
+    path: Assets/Scenes/Chemical Connect.unity
+    guid: c9479151153efe54d9ca59b20be18c8a
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 7dc998254eb47ed48bc240b5dd42d4de
+  - enabled: 1
+    path: Assets/Scenes/Color_flow_connect_level1.unity
+    guid: b3a6861a99e304acb90959d05d82635c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

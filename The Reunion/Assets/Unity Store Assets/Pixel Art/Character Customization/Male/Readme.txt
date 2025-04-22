@@ -1,0 +1,9 @@
+- (*)SPECIFIC ORDER
+- 00 - BODY +
+- 01 - SHOES +
+- 02 - PANTS +
+- 03 - MOUTH +
+- 04 - EYES +
+- 05 - SHIRTS +
+- 06 - HAIRSTYLES +
+- 07 - ACCESSORIES

@@ -3,6 +3,7 @@ using UnityEngine;
 public class ReunionArea : MonoBehaviour
 {
     public SuspicionManager suspicionManager;
+    public static bool PlayerIsInside { get; private set; }
 
     // When player enters reunion area, suspicion decreases
 
@@ -17,6 +18,7 @@ public class ReunionArea : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             suspicionManager.SetReunionArea(true);
+            PlayerIsInside = true;
         }
     }
 
@@ -26,6 +28,7 @@ public class ReunionArea : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             suspicionManager.SetReunionArea(false);
+            PlayerIsInside = false;
         }
     }
 }

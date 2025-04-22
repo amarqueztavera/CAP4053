@@ -1,0 +1,855 @@
+fileFormatVersion: 2
+guid: 46670f536392a1a4cbf0a4329f50ea82
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8901412635220490904
+    second: spritesheetkomander_0
+  - first:
+      213: 8332970097287479526
+    second: spritesheetkomander_1
+  - first:
+      213: -2021497228795323308
+    second: spritesheetkomander_2
+  - first:
+      213: -501843125494080550
+    second: spritesheetkomander_3
+  - first:
+      213: 1389007721433730983
+    second: spritesheetkomander_4
+  - first:
+      213: -5965842601945174855
+    second: spritesheetkomander_5
+  - first:
+      213: -1849139701186808513
+    second: spritesheetkomander_6
+  - first:
+      213: 2745331934176406033
+    second: spritesheetkomander_7
+  - first:
+      213: -7718419890157787347
+    second: spritesheetkomander_8
+  - first:
+      213: 1200598628084762332
+    second: spritesheetkomander_9
+  - first:
+      213: 7724383683397884125
+    second: spritesheetkomander_10
+  - first:
+      213: 6573210882800145354
+    second: spritesheetkomander_11
+  - first:
+      213: 2175525470471274614
+    second: spritesheetkomander_12
+  - first:
+      213: -8903509864230280377
+    second: spritesheetkomander_13
+  - first:
+      213: 5693234300594628740
+    second: spritesheetkomander_14
+  - first:
+      213: 3888205501637166977
+    second: spritesheetkomander_15
+  - first:
+      213: -1557637331414525621
+    second: spritesheetkomander_16
+  - first:
+      213: 2061761267441684725
+    second: spritesheetkomander_17
+  - first:
+      213: -8626372424858693963
+    second: spritesheetkomander_18
+  - first:
+      213: 4831253144879413076
+    second: spritesheetkomander_19
+  - first:
+      213: 890166617696053186
+    second: spritesheetkomander_20
+  - first:
+      213: 5575810659986194627
+    second: spritesheetkomander_21
+  - first:
+      213: 1304732362949135890
+    second: spritesheetkomander_22
+  - first:
+      213: 4921527406512654119
+    second: spritesheetkomander_23
+  - first:
+      213: -8690860659790700561
+    second: spritesheetkomander_24
+  - first:
+      213: -1643884302424478582
+    second: spritesheetkomander_25
+  - first:
+      213: -2169678173891050903
+    second: spritesheetkomander_26
+  - first:
+      213: 8327077830141525981
+    second: spritesheetkomander_27
+  - first:
+      213: -4621540386797791293
+    second: spritesheetkomander_28
+  - first:
+      213: 3191328263548428073
+    second: spritesheetkomander_29
+  - first:
+      213: -6676369315865057672
+    second: spritesheetkomander_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 5
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spritesheetkomander_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 207
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89abd7941ab288b70800000000000000
+      internalID: 8901412635220490904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 207
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e0c5cc4728a4a370800000000000000
+      internalID: 8332970097287479526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 207
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45cd7331bf232f3e0800000000000000
+      internalID: -2021497228795323308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 207
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adb14f316581909f0800000000000000
+      internalID: -501843125494080550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 207
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7af0552d92fb64310800000000000000
+      internalID: 1389007721433730983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_6
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 207
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3530ba2d398656e0800000000000000
+      internalID: -1849139701186808513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_7
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 207
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11aee1749d0691620800000000000000
+      internalID: 2745331934176406033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_8
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 176
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27e5dbf00aa2e490800000000000000
+      internalID: -7718419890157787347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_10
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 176
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd811c5d806823b60800000000000000
+      internalID: 7724383683397884125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 176
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7432e5883f0607480800000000000000
+      internalID: -8903509864230280377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_14
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 176
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 488230eae6e620f40800000000000000
+      internalID: 5693234300594628740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_15
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 176
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1878dca9d4ea5f530800000000000000
+      internalID: 3888205501637166977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_16
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 143
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b49562c8919226ae0800000000000000
+      internalID: -1557637331414525621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_17
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 143
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f05585f2f8dc9c10800000000000000
+      internalID: 2061761267441684725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_18
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 143
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5be821cebf7f84880800000000000000
+      internalID: -8626372424858693963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_19
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 143
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 457b680632f0c0340800000000000000
+      internalID: 4831253144879413076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 111
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c72fae82d18a5c00800000000000000
+      internalID: 890166617696053186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_21
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 111
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c0405bd042416d40800000000000000
+      internalID: 5575810659986194627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_22
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 111
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21e0a8cdb275b1210800000000000000
+      internalID: 1304732362949135890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_23
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 79
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7274981d917cc4440800000000000000
+      internalID: 4921527406512654119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_24
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 79
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fef12cca64cd36780800000000000000
+      internalID: -8690860659790700561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_25
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 80
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ce526cfefbf29e0800000000000000
+      internalID: -1643884302424478582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_26
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 47
+        width: 33
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9624e404231c3e1e0800000000000000
+      internalID: -2169678173891050903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_27
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 47
+        width: 35
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddfbd92fa29bf8370800000000000000
+      internalID: 8327077830141525981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_28
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 47
+        width: 33
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c7dbc1118dfcdfb0800000000000000
+      internalID: -4621540386797791293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_29
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 15
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92fd776b520e94c20800000000000000
+      internalID: 3191328263548428073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheetkomander_30
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 15
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 876ab8aea75c853a0800000000000000
+      internalID: -6676369315865057672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 14d5db9c46b314044aed3810e50afa03
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      spritesheetkomander_0: 8901412635220490904
+      spritesheetkomander_1: 8332970097287479526
+      spritesheetkomander_10: 7724383683397884125
+      spritesheetkomander_11: 6573210882800145354
+      spritesheetkomander_12: 2175525470471274614
+      spritesheetkomander_13: -8903509864230280377
+      spritesheetkomander_14: 5693234300594628740
+      spritesheetkomander_15: 3888205501637166977
+      spritesheetkomander_16: -1557637331414525621
+      spritesheetkomander_17: 2061761267441684725
+      spritesheetkomander_18: -8626372424858693963
+      spritesheetkomander_19: 4831253144879413076
+      spritesheetkomander_2: -2021497228795323308
+      spritesheetkomander_20: 890166617696053186
+      spritesheetkomander_21: 5575810659986194627
+      spritesheetkomander_22: 1304732362949135890
+      spritesheetkomander_23: 4921527406512654119
+      spritesheetkomander_24: -8690860659790700561
+      spritesheetkomander_25: -1643884302424478582
+      spritesheetkomander_26: -2169678173891050903
+      spritesheetkomander_27: 8327077830141525981
+      spritesheetkomander_28: -4621540386797791293
+      spritesheetkomander_29: 3191328263548428073
+      spritesheetkomander_3: -501843125494080550
+      spritesheetkomander_30: -6676369315865057672
+      spritesheetkomander_4: 1389007721433730983
+      spritesheetkomander_5: -5965842601945174855
+      spritesheetkomander_6: -1849139701186808513
+      spritesheetkomander_7: 2745331934176406033
+      spritesheetkomander_8: -7718419890157787347
+      spritesheetkomander_9: 1200598628084762332
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307163
+  packageName: City Life Characters
+  packageVersion: 1.0
+  assetPath: Assets/CityLife-Characters/spritesheets/Komander_Spritesheet.png
+  uploadId: 721969

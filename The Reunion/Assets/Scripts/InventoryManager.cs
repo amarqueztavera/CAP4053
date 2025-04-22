@@ -5,24 +5,65 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using TMPro;
 
+
+
 public class InventoryManager : MonoBehaviour
 {
     public List<Clue> clues = new List<Clue>(); // List to store collected clues
     public GameObject[] inventorySlots; // Array of UI slots (2x5 grid)
     public int maxSlots = 10; // Maximum number of slots
 
-    public GameObject tooltipUI; // Reference to the tooltip UI
-    public TMP_Text tooltipText; // Reference to the tooltip text component
+    public ClueCounter clueCounter;
 
-    private Coroutine tooltipCoroutine;
+    public static InventoryManager Instance;
 
+    // Save the current inventory clues to PlayerPrefs
+    public void SaveInventoryToPrefs()
+    {
+        List<string> clueIDs = new List<string>();
+        foreach (Clue clue in clues)
+        {
+            clueIDs.Add(clue.clueName); // assuming clueName is unique ID
+        }
+        SaveSystem.SaveInventory(clueIDs);
+    }
+
+    // Load the inventory from PlayerPrefs
+    public void LoadInventoryFromSave()
+    {
+        List<string> clueIDs = SaveSystem.LoadInventory();
+        clues.Clear();
+
+        foreach (string clueID in clueIDs)
+        {
+            Clue loadedClue = ClueDatabase.Instance.GetClueByName(clueID);
+            if (loadedClue != null)
+            {
+                clues.Add(loadedClue);
+            }
+            else
+            {
+                Debug.LogWarning($"Clue '{clueID}' not found in ClueDatabase!");
+            }
+        }
+
+        UpdateInventoryUI();
+    }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // persist across scenes
+        } else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
-        // Hide the tooltip at the start
-        if (tooltipUI != null)
-        {
-            tooltipUI.SetActive(false);
-        }
+        LoadInventoryFromSave();
     }
 
     // Add a clue to the inventory
@@ -46,47 +87,42 @@ public class InventoryManager : MonoBehaviour
 
         clues.Add(clue); // Add the clue to the list
         UpdateInventoryUI(); // Update the inventory UI
+        clueCounter.AddClue(); // Update clue counter
+        SaveInventoryToPrefs(); // Save after adding clue
         Destroy(clue.gameObject); // Remove the clue from the game world
         return true;
     }
 
-    // Update the inventory UI
     private void UpdateInventoryUI()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (i < clues.Count)
             {
-                // Set the icon of the slot to the clue's icon
-                inventorySlots[i].GetComponent<Image>().sprite = clues[i].icon;
-                inventorySlots[i].GetComponent<Image>().color = Color.white; // Make the slot visible
-
-                // Add EventTrigger to the slot for tooltip functionality
+                Image slotImage = inventorySlots[i].GetComponent<Image>();
+                slotImage.sprite = clues[i].icon;
+                slotImage.color = Color.white;
                 AddEventTrigger(inventorySlots[i], i);
             }
             else
             {
-                // Clear the slot if it's empty
-                inventorySlots[i].GetComponent<Image>().sprite = null;
-                inventorySlots[i].GetComponent<Image>().color = Color.clear; // Make the slot transparent
-
-                // Remove EventTrigger if the slot is empty
+                Image slotImage = inventorySlots[i].GetComponent<Image>();
+                slotImage.sprite = null;
+                slotImage.color = Color.clear;
                 RemoveEventTrigger(inventorySlots[i]);
             }
         }
     }
 
-    // Remove EventTrigger from a slot
     private void RemoveEventTrigger(GameObject slot)
     {
         EventTrigger trigger = slot.GetComponent<EventTrigger>();
         if (trigger != null)
         {
-            trigger.triggers.Clear(); // Clear all triggers
+            trigger.triggers.Clear();
         }
     }
 
-    // Add EventTrigger to a slot
     private void AddEventTrigger(GameObject slot, int index)
     {
         EventTrigger trigger = slot.GetComponent<EventTrigger>();
@@ -96,53 +132,23 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            trigger.triggers.Clear(); // avoids duplicates
+            trigger.triggers.Clear();
         }
 
-        // Create a new entry for the PointerEnter event
-        EventTrigger.Entry entryEnter = new EventTrigger.Entry
+        EventTrigger.Entry clickEntry = new EventTrigger.Entry
         {
-            eventID = EventTriggerType.PointerEnter
+            eventID = EventTriggerType.PointerClick
         };
-        entryEnter.callback.AddListener((data) => { OnPointerEnterSlot(index); });
-        trigger.triggers.Add(entryEnter);
-
-        // Create a new entry for the PointerExit event
-        EventTrigger.Entry entryExit = new EventTrigger.Entry
-        {
-            eventID = EventTriggerType.PointerExit
-        };
-        entryExit.callback.AddListener((data) => { OnPointerExitSlot(); });
-        trigger.triggers.Add(entryExit);
+        clickEntry.callback.AddListener((data) => { OnClueClicked(index); });
+        trigger.triggers.Add(clickEntry);
     }
 
-    // Called when the pointer enters a slot
-    // Tooltip is bugging and flashes when hovering over item in inventory
-    private void OnPointerEnterSlot(int index)
+    private void OnClueClicked(int index)
     {
-        if (index < clues.Count && tooltipUI != null && tooltipText != null)
+        if (index < clues.Count)
         {
-            tooltipText.text = clues[index].description;
-
-            // Position the tooltip to the right of the slot
-            RectTransform slotRect = inventorySlots[index].GetComponent<RectTransform>();
-            Vector2 slotPosition = slotRect.position;
-            float slotWidth = slotRect.rect.width;
-
-            tooltipUI.transform.position = new Vector2(
-                slotPosition.x + slotWidth + 10f, // Offset to the right
-                slotPosition.y 
-            );
-
-            tooltipUI.SetActive(true);
-        }
-    }
-
-    private void OnPointerExitSlot()
-    {
-        if (tooltipUI != null)
-        {
-            tooltipUI.SetActive(false);
+            Clue clickedClue = clues[index];
+            ClueDetailPanel.Instance.ShowClueDetails(clickedClue.icon, clickedClue.clueName, clickedClue.description);
         }
     }
 }

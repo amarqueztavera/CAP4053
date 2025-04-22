@@ -6,19 +6,30 @@ TagManager:
   tags:
   - ItemDrop
   - ItemPickup
+  - Chalkboard
+  - PuzzleCamera
+  - act2 waypoint
+  - act3 waypoint
+  - act1 waypoint
+  - Tag
+  - Wall
+  - ReunionArea
+  - Puzzle
+  - Cell
+  - Dot
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Puzzle
   - Water
   - UI
   - player
-  - objects
-  - 
-  - 
-  - 
-  - 
+  - Objects
+  - GridLayer
+  - Lock
+  - Boundaries
+  - Wall
   - 
   - 
   - 
@@ -51,6 +62,15 @@ TagManager:
     locked: 0
   - name: top objects
     uniqueID: 4251766769
+    locked: 0
+  - name: NPC
+    uniqueID: 3342715685
+    locked: 0
+  - name: Cells
+    uniqueID: 1336834859
+    locked: 0
+  - name: Dots
+    uniqueID: 1899026511
     locked: 0
   m_RenderingLayers:
   - Default

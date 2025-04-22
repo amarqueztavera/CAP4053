@@ -1,0 +1,90 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
+
+public class PillManager : MonoBehaviour
+{
+    [Header("Clue Settings")]
+    public string clueID; // Just type the clue ID/name here
+    public string puzzleID; // Unique ID
+
+    public static PillManager Instance;
+    public GameObject winText;
+
+    private Dictionary<string, int> placedPills = new Dictionary<string, int>(); // Tracks placed pills by color
+    private int totalPillsPerColor = 3; // Number of pills per color
+    private int totalColors = 3; // Number of different pill colors
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    public void RegisterPill(GameObject pill, string pillColor)
+    {
+        if (!placedPills.ContainsKey(pillColor))
+        {
+            placedPills[pillColor] = 0; // Initialize count for this color
+        }
+
+        placedPills[pillColor]++; // Increment count for this color
+
+        if (AllPillsSorted())
+        {
+            ShowWinMessage();
+        }
+    }
+
+    private bool AllPillsSorted()
+    {
+        // If there are not enough colors sorted, return false
+        if (placedPills.Count < totalColors)
+        {
+            return false;
+        }
+
+        // Check that every color has the required number of pills sorted
+        foreach (var pillCount in placedPills.Values)
+        {
+            if (pillCount < totalPillsPerColor)
+            {
+                return false;
+            }
+        }
+
+        // Save completion state
+        SaveSystem.MarkPuzzleComplete(puzzleID);
+
+        // Trigger event to update puzzle object immediately
+        ClueEventManager.PuzzleCompleted(puzzleID);
+
+        // Add clue to inventory
+        Clue clueFromDB = ClueDatabase.Instance.GetClueByName(clueID);
+        if (clueFromDB != null)
+        {
+            InventoryManager.Instance.AddClue(clueFromDB);
+            Debug.Log($"Clue '{clueID}' added from database.");
+        }
+        else
+        {
+            Debug.LogError($"Clue '{clueID}' NOT found in database!");
+        }
+
+        // Force immediate save
+        PlayerPrefs.Save();
+
+        Debug.Log("Load back into game");
+        PuzzleSceneSwapper.Instance.ReturnToMap();
+
+        return true; // All colors have been sorted correctly
+    }
+
+    public void ShowWinMessage()
+    {
+        if (winText != null)
+        {
+            winText.SetActive(true);
+        }
+        Debug.Log("You Win!");
+    }
+}
